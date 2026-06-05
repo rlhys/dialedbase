@@ -1,6 +1,6 @@
 import React from "react";
 import { motion } from "framer-motion";
-import { Compass, Pencil, Code2, Rocket, ArrowRight } from "lucide-react";
+import { Compass, Pencil, Code2, Rocket } from "lucide-react";
 import { FadeIn, Stagger, StaggerItem } from "./Motion";
 
 const STEPS = [
@@ -101,13 +101,6 @@ const Process = () => {
                           </span>
                         ))}
                       </div>
-
-                      {/* Mobile / tablet connector arrow */}
-                      {i < STEPS.length - 1 && (
-                        <div className="lg:hidden absolute top-5 right-5 text-white/25">
-                          <ArrowRight className="w-3.5 h-3.5" />
-                        </div>
-                      )}
                     </div>
                   </motion.div>
                 </StaggerItem>
@@ -120,14 +113,14 @@ const Process = () => {
         <FadeIn delay={0.3}>
           <div className="mt-10 sm:mt-12 flex flex-col sm:flex-row items-center justify-center gap-4 text-center">
             <div className="text-white/45 text-[12.5px] tracking-[0.15em] uppercase">Typical timeline</div>
-            <div className="flex items-center gap-2 sm:gap-3">
+            <div className="flex items-center gap-2 sm:gap-3 flex-wrap justify-center">
               <Pill label="Discover" sub="Day 1" />
               <Dot />
-              <Pill label="Design" sub="Week 1–2" />
+              <Pill label="Design" sub="Week 1" />
               <Dot />
-              <Pill label="Build" sub="Week 2–6" />
+              <Pill label="Build" sub="Week 2–3" />
               <Dot />
-              <Pill label="Ship" sub="Week 6+" />
+              <Pill label="Ship" sub="Week 3+" />
             </div>
           </div>
         </FadeIn>
