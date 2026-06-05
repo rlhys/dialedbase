@@ -49,7 +49,7 @@ const Footer = () => {
               Book a call <ArrowUpRight className="w-3.5 h-3.5" />
             </a>
             <div className="mt-4 flex items-center gap-2">
-              <a href="https://instagram.com/rhysgbp" target="_blank" rel="noreferrer" className="w-9 h-9 grid place-items-center rounded-full glass hover:bg-white/10">
+              <a href="https://www.instagram.com/dialedbase/" target="_blank" rel="noreferrer" className="w-9 h-9 grid place-items-center rounded-full glass hover:bg-white/10">
                 <Instagram className="w-3.5 h-3.5" />
               </a>
             </div>

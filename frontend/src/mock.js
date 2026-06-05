@@ -148,7 +148,7 @@ export const TEAM = [
     name: "Rhys Evans",
     role: "CEO / Builder",
     img: "https://customer-assets.emergentagent.com/job_1c9e6057-134b-4c93-b3e6-eea3f8361ee1/artifacts/89uv7qh0_image.png",
-    socials: { instagram: "https://instagram.com/rhysgbp" },
+  socials: { instagram: "https://www.instagram.com/dialedbase/" },
     bio: "Designer, engineer and founder. Obsessed with building beautiful, fast, AI‑native products that move the needle.",
   },
 ];
