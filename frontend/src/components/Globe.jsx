@@ -11,8 +11,8 @@ const Globe = () => {
   return (
     <section id="about" ref={ref} className={`reveal ${inView ? "is-in" : ""} relative py-14 sm:py-20`}>
       <div className="max-w-6xl mx-auto px-4 sm:px-6">
-        <div className="relative rounded-3xl overflow-hidden glass">
-          <div className="absolute inset-0 card-inner-grid opacity-25 pointer-events-none" />
+        <div className="relative rounded-3xl overflow-hidden bg-black border border-white/[0.08]">
+          <div className="absolute inset-0 card-inner-grid opacity-20 pointer-events-none" />
 
           <div className="relative grid grid-cols-1 lg:grid-cols-2 min-h-[420px] sm:min-h-[480px] lg:min-h-[520px]">
             <div className="p-7 sm:p-10 lg:p-12 flex flex-col justify-between">
@@ -42,7 +42,7 @@ const Globe = () => {
               </div>
             </div>
 
-            <div className="relative overflow-hidden min-h-[340px] lg:min-h-0 bg-black">
+            <div className="relative overflow-hidden min-h-[340px] lg:min-h-0">
               <div className="absolute inset-0 grid place-items-center">
                 <div className="relative w-[360px] h-[360px] sm:w-[460px] sm:h-[460px] lg:w-[540px] lg:h-[540px]">
                   <div className="absolute inset-0 rounded-full bg-gradient-to-br from-sky-500/15 via-violet-700/10 to-transparent blur-3xl" />
@@ -77,10 +77,11 @@ const Globe = () => {
 
               <video src={ASSETS.planetVideo} autoPlay muted playsInline loop preload="auto" className="absolute inset-0 w-full h-full object-cover" />
 
-              <div className="absolute inset-x-0 top-0 h-16 bg-gradient-to-b from-black/80 to-transparent z-10 pointer-events-none" />
-              <div className="absolute inset-x-0 bottom-0 h-16 bg-gradient-to-t from-black/80 to-transparent z-10 pointer-events-none" />
-              <div className="absolute inset-y-0 left-0 w-14 bg-gradient-to-r from-black/80 to-transparent z-10 pointer-events-none" />
-              <div className="absolute inset-y-0 right-0 w-14 bg-gradient-to-l from-black/80 to-transparent z-10 pointer-events-none" />
+              {/* edge fades - softer so the container blends across both halves */}
+              <div className="absolute inset-x-0 top-0 h-16 bg-gradient-to-b from-black to-transparent z-10 pointer-events-none" />
+              <div className="absolute inset-x-0 bottom-0 h-16 bg-gradient-to-t from-black to-transparent z-10 pointer-events-none" />
+              <div className="absolute inset-y-0 left-0 w-24 bg-gradient-to-r from-black via-black/70 to-transparent z-10 pointer-events-none" />
+              <div className="absolute inset-y-0 right-0 w-16 bg-gradient-to-l from-black to-transparent z-10 pointer-events-none" />
             </div>
           </div>
         </div>

@@ -7,7 +7,13 @@ import { toast } from "sonner";
 const VerticalColumn = ({ reverse = false, offsetIndex = 0 }) => {
   const items = [...PROJECTS, ...PROJECTS, ...PROJECTS];
   return (
-    <div className="relative w-full h-full overflow-hidden">
+    <div
+      className="relative w-full h-full overflow-hidden"
+      style={{
+        WebkitMaskImage: "linear-gradient(to bottom, transparent 0%, black 12%, black 88%, transparent 100%)",
+        maskImage: "linear-gradient(to bottom, transparent 0%, black 12%, black 88%, transparent 100%)",
+      }}
+    >
       <div
         className="flex flex-col gap-3"
         style={{
