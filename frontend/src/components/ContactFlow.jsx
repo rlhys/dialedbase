@@ -24,19 +24,6 @@ const STEPS = [
     ],
   },
   {
-    id: "budget",
-    title: "What's your budget?",
-    subtitle: "Helps us shape the right scope from day one.",
-    type: "single",
-    options: [
-      { v: "Under £5k" },
-      { v: "£5k – £15k" },
-      { v: "£15k – £40k" },
-      { v: "£40k – £100k" },
-      { v: "£100k+" },
-    ],
-  },
-  {
     id: "timeline",
     title: "When do you want to launch?",
     subtitle: "We're booking July · August projects.",
@@ -111,16 +98,21 @@ const ContactModal = ({ onClose }) => {
   };
   const prev = () => setStep((s) => Math.max(0, s - 1));
 
-  // Build Calendly prefill from answers
+  // Build Calendly prefill — combine everything into the default "share anything" textarea (a1)
+  // so it shows up cleanly on the booking page.
+  const summaryLines = [
+    answers.service && `Looking for: ${answers.service}`,
+    answers.timeline && `Timeline: ${answers.timeline}`,
+    answers.contact?.company && `Company: ${answers.contact.company}`,
+    answers.contact?.website && `Website: ${answers.contact.website}`,
+    answers.about && `\nProject details:\n${answers.about}`,
+  ].filter(Boolean);
+
   const calendlyPrefill = {
     name: answers.contact?.name || "",
     email: answers.contact?.email || "",
     customAnswers: {
-      a1: answers.service || "",
-      a2: answers.budget || "",
-      a3: answers.timeline || "",
-      a4: answers.about || "",
-      a5: answers.contact?.company || "",
+      a1: summaryLines.join("\n"),
     },
   };
 
@@ -143,14 +135,16 @@ const ContactModal = ({ onClose }) => {
           showCalendly ? "max-w-5xl h-[95vh]" : "max-w-3xl max-h-[92vh]"
         }`}
       >
-        {/* Close */}
-        <button
-          onClick={onClose}
-          className="absolute top-3 right-3 z-10 w-9 h-9 rounded-full glass grid place-items-center hover:bg-white/10 transition-colors"
-          aria-label="Close"
-        >
-          <X className="w-4 h-4" />
-        </button>
+        {/* Close (only on questionnaire steps) */}
+        {!showCalendly && (
+          <button
+            onClick={onClose}
+            className="absolute top-3 right-3 z-10 w-9 h-9 rounded-full glass grid place-items-center hover:bg-white/10 transition-colors"
+            aria-label="Close"
+          >
+            <X className="w-4 h-4" />
+          </button>
+        )}
 
         {!showCalendly ? (
           <>
@@ -276,7 +270,7 @@ const ContactModal = ({ onClose }) => {
             </div>
           </>
         ) : (
-          <CalendlyStep answers={answers} prefill={calendlyPrefill} onBack={() => setShowCalendly(false)} />
+          <CalendlyStep answers={answers} prefill={calendlyPrefill} onBack={() => setShowCalendly(false)} onClose={onClose} />
         )}
       </motion.div>
     </motion.div>
@@ -297,7 +291,7 @@ const Field = ({ label, value, onChange, placeholder, type = "text" }) => (
 );
 
 // ---------------- Calendly step ----------------
-const CalendlyStep = ({ answers, prefill, onBack }) => (
+const CalendlyStep = ({ answers, prefill, onBack, onClose }) => (
   <div className="flex flex-col h-full">
     <div className="px-5 sm:px-7 pt-5 sm:pt-6 pb-3 flex items-center justify-between gap-3 shrink-0">
       <div className="flex items-center gap-2.5 min-w-0">
@@ -305,13 +299,18 @@ const CalendlyStep = ({ answers, prefill, onBack }) => (
         <div className="min-w-0">
           <div className="text-[14px] font-medium tracking-tight">Pick a time with Rhys</div>
           <div className="text-[11.5px] text-white/45 truncate">
-            {[answers.service, answers.budget, answers.timeline].filter(Boolean).join(" · ")}
+            {[answers.service, answers.timeline].filter(Boolean).join(" · ")}
           </div>
         </div>
       </div>
-      <button onClick={onBack} className="text-[12px] text-white/65 hover:text-white inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full glass hover:bg-white/10 transition-colors shrink-0">
-        <ArrowLeft className="w-3 h-3" /> Edit answers
-      </button>
+      <div className="flex items-center gap-2 shrink-0">
+        <button onClick={onBack} className="text-[12px] text-white/65 hover:text-white inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full glass hover:bg-white/10 transition-colors">
+          <ArrowLeft className="w-3 h-3" /> Edit answers
+        </button>
+        <button onClick={onClose} className="w-9 h-9 rounded-full glass grid place-items-center hover:bg-white/10 transition-colors" aria-label="Close">
+          <X className="w-4 h-4" />
+        </button>
+      </div>
     </div>
 
     {/* Calendly inline widget */}
