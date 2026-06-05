@@ -36,18 +36,22 @@ const Globe = () => {
 
                 <FadeIn delay={0.25}>
                   <div className="mt-8">
-                    <Magnetic strength={0.25}>
-                      <button onClick={onBook} className="group inline-flex items-center gap-2.5 glass-strong rounded-full pl-3 pr-1 py-1 hover:bg-white/[0.08] transition-colors">
-                        <span className="relative flex h-2 w-2">
-                          <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75" />
-                          <span className="relative inline-flex rounded-full h-2 w-2 bg-emerald-400" />
-                        </span>
-                        <span className="text-[13px] text-white pr-1">Book a Call Today</span>
-                        <span className="w-7 h-7 rounded-full ring-2 ring-black overflow-hidden">
-                          <img src={ASSETS.rhys} alt="Rhys" className="w-full h-full object-cover" style={{ objectPosition: "center 22%" }} />
-                        </span>
-                      </button>
-                    </Magnetic>
+                    <motion.button
+                      onClick={onBook}
+                      whileHover={{ scale: 1.02 }}
+                      whileTap={{ scale: 0.98 }}
+                      transition={{ type: "spring", stiffness: 300, damping: 18 }}
+                      className="group inline-flex items-center gap-2.5 glass-strong rounded-full pl-3 pr-1 py-1 hover:bg-white/[0.08] transition-colors"
+                    >
+                      <span className="relative flex h-2 w-2">
+                        <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75" />
+                        <span className="relative inline-flex rounded-full h-2 w-2 bg-emerald-400" />
+                      </span>
+                      <span className="text-[13px] text-white pr-1">Book a Call Today</span>
+                      <span className="w-7 h-7 rounded-full ring-2 ring-black overflow-hidden">
+                        <img src={ASSETS.rhys} alt="Rhys" className="w-full h-full object-cover" style={{ objectPosition: "center 22%" }} />
+                      </span>
+                    </motion.button>
                   </div>
                 </FadeIn>
               </div>

@@ -47,11 +47,12 @@ const Testimonials = () => {
 
       <Stagger gap={0.06}>
         <div ref={ref} className="no-scrollbar overflow-x-auto scroll-smooth pl-4 sm:pl-[max(1rem,calc((100vw-72rem)/2+1rem))]">
-          <div className="flex gap-3.5 sm:gap-4 pr-4 pb-2">
+          {/* py-3 gives lifted cards breathing room so they don't clip */}
+          <div className="flex gap-3.5 sm:gap-4 pr-4 pt-3 pb-4">
             {TESTIMONIALS.map((t, i) => (
               <StaggerItem key={t.id} className="shrink-0 w-[82vw] sm:w-[340px] md:w-[360px]">
                 <motion.article
-                  whileHover={{ y: -4 }}
+                  whileHover={{ scale: 1.015 }}
                   transition={{ type: "spring", stiffness: 220, damping: 18 }}
                   className="min-h-[360px] rounded-2xl glass glass-hover p-5 sm:p-6 relative overflow-hidden"
                 >

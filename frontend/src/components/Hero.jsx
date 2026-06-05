@@ -133,14 +133,14 @@ const Hero = () => {
           <StaggerItem className="col-span-4 row-span-3">
             <div className="h-full grid grid-rows-2 gap-3">
               <Tilt className="h-full">
-                <BentoCard>
+                <BentoCard fillHeight>
                   <CarouselImages idx={idx} />
                   <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-transparent" />
                   <ClientBar name={current.name} verified={current.verified} />
                 </BentoCard>
               </Tilt>
               <Tilt className="h-full">
-                <BentoCard>
+                <BentoCard fillHeight>
                   <CarouselImages idx={bottomIdx} />
                   <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-transparent" />
                   <ClientBar name={bottom.name} verified={bottom.verified} />
@@ -152,7 +152,7 @@ const Hero = () => {
           {/* Center — main showreel */}
           <StaggerItem className="col-span-5 row-span-3">
             <Tilt max={4} className="h-full">
-              <BentoCard className="cursor-pointer">
+              <BentoCard fillHeight className="cursor-pointer">
                 <CarouselImages idx={idx} scaleActive />
                 <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent" />
                 <div className="absolute inset-0 grid place-items-center">
@@ -178,7 +178,7 @@ const Hero = () => {
           {/* Right column */}
           <StaggerItem className="col-span-3 row-span-3">
             <div className="h-full grid grid-rows-2 gap-3">
-              <BentoCard className="flex items-center justify-center">
+              <BentoCard fillHeight className="flex items-center justify-center">
                 <div className="absolute inset-0 card-inner-grid opacity-30" />
                 <Magnetic strength={0.3}>
                   <a href="#work" className="relative btn-sheen group inline-flex items-center gap-1.5 bg-white text-black rounded-full pl-4 pr-1 py-1 text-[13px] font-medium">
@@ -190,7 +190,7 @@ const Hero = () => {
                 </Magnetic>
               </BentoCard>
               <Tilt className="h-full">
-                <BentoCard>
+                <BentoCard fillHeight>
                   <img src={ASSETS.rhys} alt="Rhys Evans" className="absolute inset-0 w-full h-full object-cover" style={{ objectPosition: "center 25%" }} />
                   <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent" />
                   <ClientBar name="Rhys Evans" verified />
@@ -204,8 +204,8 @@ const Hero = () => {
   );
 };
 
-const BentoCard = ({ children, className = "" }) => (
-  <div className={`relative glass glass-hover rounded-2xl overflow-hidden h-full ${className}`}>
+const BentoCard = ({ children, className = "", fillHeight = false }) => (
+  <div className={`relative glass glass-hover rounded-2xl overflow-hidden ${fillHeight ? "h-full" : ""} ${className}`}>
     <div className="absolute inset-0 card-inner-grid opacity-25 pointer-events-none" />
     {children}
   </div>
