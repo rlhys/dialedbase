@@ -92,7 +92,6 @@ const ContactModal = ({ onClose }) => {
   const current = STEPS[step];
   const total = STEPS.length;
   const progress = ((step + 1) / total) * 100;
-
   const setAnswer = (id, v) => setAnswers((s) => ({ ...s, [id]: v }));
 
   const canNext = (() => {
@@ -140,7 +139,9 @@ const ContactModal = ({ onClose }) => {
         animate={{ opacity: 1, y: 0, scale: 1 }}
         exit={{ opacity: 0, y: 24, scale: 0.97 }}
         transition={{ duration: 0.35, ease: [0.22, 0.61, 0.36, 1] }}
-        className="relative w-full max-w-3xl glass-strong rounded-3xl overflow-hidden flex flex-col max-h-[92vh]"
+        className={`relative w-full glass-strong rounded-3xl overflow-hidden flex flex-col ${
+          showCalendly ? "max-w-5xl h-[95vh]" : "max-w-3xl max-h-[92vh]"
+        }`}
       >
         {/* Close */}
         <button
@@ -298,34 +299,35 @@ const Field = ({ label, value, onChange, placeholder, type = "text" }) => (
 // ---------------- Calendly step ----------------
 const CalendlyStep = ({ answers, prefill, onBack }) => (
   <div className="flex flex-col h-full">
-    <div className="px-6 sm:px-8 pt-6 sm:pt-8 pb-3 flex items-center justify-between gap-3">
-      <div className="flex items-center gap-2.5">
-        <img src={ASSETS.logoBlack} className="w-7 h-7 rounded-md" alt="" />
-        <div>
+    <div className="px-5 sm:px-7 pt-5 sm:pt-6 pb-3 flex items-center justify-between gap-3 shrink-0">
+      <div className="flex items-center gap-2.5 min-w-0">
+        <img src={ASSETS.logoBlack} className="w-7 h-7 rounded-md shrink-0" alt="" />
+        <div className="min-w-0">
           <div className="text-[14px] font-medium tracking-tight">Pick a time with Rhys</div>
-          <div className="text-[11.5px] text-white/45 truncate max-w-[60vw] sm:max-w-none">
+          <div className="text-[11.5px] text-white/45 truncate">
             {[answers.service, answers.budget, answers.timeline].filter(Boolean).join(" · ")}
           </div>
         </div>
       </div>
-      <button onClick={onBack} className="text-[12.5px] text-white/65 hover:text-white inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full glass hover:bg-white/10 transition-colors">
+      <button onClick={onBack} className="text-[12px] text-white/65 hover:text-white inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full glass hover:bg-white/10 transition-colors shrink-0">
         <ArrowLeft className="w-3 h-3" /> Edit answers
       </button>
     </div>
 
     {/* Calendly inline widget */}
-    <div className="flex-1 min-h-[560px] sm:min-h-[640px] bg-white">
+    <div className="flex-1 min-h-0 bg-white">
       <InlineWidget
-        url="https://calendly.com/rhysgbp"
+        url="https://calendly.com/rhysgbp/rhysgbp-30-min-discovery"
         prefill={prefill}
         pageSettings={{
           backgroundColor: "ffffff",
-          hideEventTypeDetails: false,
-          hideLandingPageDetails: false,
+          hideEventTypeDetails: true,
+          hideLandingPageDetails: true,
+          hideGdprBanner: true,
           primaryColor: "0a0a0a",
           textColor: "111111",
         }}
-        styles={{ height: "100%", width: "100%" }}
+        styles={{ height: "100%", width: "100%", minHeight: "700px" }}
       />
     </div>
   </div>
