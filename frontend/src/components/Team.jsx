@@ -2,12 +2,14 @@ import React from "react";
 import { ArrowUpRight, Instagram, MapPin } from "lucide-react";
 import { ASSETS, TEAM } from "../mock";
 import { toast } from "sonner";
+import useReveal from "../hooks/useReveal";
 
 const Team = () => {
   const rhys = TEAM[0];
   const onBook = () => toast("Booking flow coming soon — mocked.");
+  const [ref, inView] = useReveal();
   return (
-    <section id="about" className="relative py-24 sm:py-32">
+    <section id="about" ref={ref} className={`reveal ${inView ? "is-in" : ""} relative py-24 sm:py-32`}>
       <div className="max-w-7xl mx-auto px-6 grid grid-cols-1 lg:grid-cols-12 gap-8">
         <div className="lg:col-span-7 flex flex-col justify-between">
           <div>
@@ -53,7 +55,7 @@ const Team = () => {
           <div className="relative glass rounded-3xl overflow-hidden">
             <div className="absolute inset-0 card-inner-grid opacity-30" />
             <div className="relative aspect-[4/5] w-full overflow-hidden">
-              <img src={rhys.img} alt={rhys.name} className="absolute inset-0 w-full h-full object-cover" />
+              <img src={rhys.img} alt={rhys.name} className="absolute inset-0 w-full h-full object-cover" style={{ objectPosition: "center 18%" }} />
               <div className="absolute inset-0 bg-gradient-to-t from-black via-black/30 to-transparent" />
               <div className="absolute top-4 left-4 glass-strong rounded-full px-3 py-1.5 text-[12px] inline-flex items-center gap-2">
                 <img src={ASSETS.logoBlack} className="w-4 h-4 rounded" alt="" />

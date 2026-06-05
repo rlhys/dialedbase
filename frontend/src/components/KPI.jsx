@@ -1,29 +1,14 @@
-import React, { useEffect, useRef, useState } from "react";
+import React from "react";
 import { BarChart3, Globe, Briefcase } from "lucide-react";
 import { KPIS } from "../mock";
+import useReveal from "../hooks/useReveal";
 
 const ICONS = { BarChart3, Globe, Briefcase };
 
-function useInView(ref) {
-  const [seen, setSeen] = useState(false);
-  useEffect(() => {
-    const el = ref.current;
-    if (!el) return;
-    const obs = new IntersectionObserver(
-      (entries) => entries.forEach((e) => e.isIntersecting && setSeen(true)),
-      { threshold: 0.25 }
-    );
-    obs.observe(el);
-    return () => obs.disconnect();
-  }, [ref]);
-  return seen;
-}
-
 const KPI = () => {
-  const ref = useRef(null);
-  const visible = useInView(ref);
+  const [ref, visible] = useReveal();
   return (
-    <section ref={ref} className="relative py-24 sm:py-32">
+    <section ref={ref} className={`reveal ${visible ? "is-in" : ""} relative py-24 sm:py-32`}>
       <div className="max-w-7xl mx-auto px-6">
         <div className="text-center mb-14">
           <div className="inline-flex items-center gap-2 glass rounded-full px-3 py-1 text-[12px] text-white/75 mb-5">
@@ -37,21 +22,14 @@ const KPI = () => {
           <p className="mt-6 text-white/55 max-w-xl mx-auto">Relentlessly KPI‑driven. Real outcomes. Real revenue.</p>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-5">
-          {KPIS.map((k, i) => {
+        <div className={`reveal-stagger ${visible ? "is-in" : ""} grid grid-cols-1 md:grid-cols-3 gap-5`}>
+          {KPIS.map((k) => {
             const Icon = ICONS[k.icon] || Globe;
             return (
               <div key={k.id} className="relative glass rounded-3xl p-8 sm:p-10 min-h-[260px] sm:min-h-[300px] overflow-hidden">
                 <div className="absolute inset-0 card-inner-grid opacity-40" />
                 <div className="relative">
-                  <div
-                    className={`shine-text font-semibold text-[64px] sm:text-[88px] leading-none tracking-[-0.04em] transition-all duration-1000 ${
-                      visible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4"
-                    }`}
-                    style={{ transitionDelay: `${i * 120}ms` }}
-                  >
-                    {k.value}
-                  </div>
+                  <div className="shine-text font-semibold text-[64px] sm:text-[88px] leading-none tracking-[-0.04em]">{k.value}</div>
                   <div className="mt-3 text-white/90 text-[18px] font-medium">{k.label}</div>
                   <p className="mt-2 text-white/50 text-[14px] max-w-[18rem]">{k.sub}</p>
                 </div>

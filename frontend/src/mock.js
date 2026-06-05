@@ -4,8 +4,8 @@ export const ASSETS = {
   logoBlack: "https://customer-assets.emergentagent.com/job_1c9e6057-134b-4c93-b3e6-eea3f8361ee1/artifacts/7bbm5r0b_image.png",
   logoGlass: "https://customer-assets.emergentagent.com/job_1c9e6057-134b-4c93-b3e6-eea3f8361ee1/artifacts/h8a0iokb_image.png",
   rhys: "https://customer-assets.emergentagent.com/job_1c9e6057-134b-4c93-b3e6-eea3f8361ee1/artifacts/89uv7qh0_image.png",
-  bloom: "https://images.pexels.com/photos/12489215/pexels-photo-12489215.jpeg",
-  bloomAlt: "https://images.pexels.com/photos/34939150/pexels-photo-34939150.jpeg",
+  bloom: "https://images.unsplash.com/photo-1650900007350-5f589c5fd1ca",
+  bloomAlt: "https://images.pexels.com/photos/12495671/pexels-photo-12495671.jpeg",
 };
 
 export const PROJECTS = [

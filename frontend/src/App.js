@@ -12,8 +12,10 @@ import FinalCTA from "./components/FinalCTA";
 import Footer from "./components/Footer";
 import SideRail from "./components/SideRail";
 import { Toaster } from "./components/ui/sonner";
+import useSmoothScroll from "./hooks/useSmoothScroll";
 
 const Home = () => {
+  useSmoothScroll();
   return (
     <div className="relative min-h-screen bg-black text-white overflow-x-hidden">
       <Navbar />
