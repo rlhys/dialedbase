@@ -35,20 +35,54 @@ html, body {
   background-size: 40px 40px;
 }
 
-/* Glass surface — refined sleek */
+/* Glass surface — refined sleek with multi-layer luminance */
 .glass {
-  background: linear-gradient(180deg, rgba(255,255,255,0.045), rgba(255,255,255,0.015));
+  background:
+    linear-gradient(180deg, rgba(255,255,255,0.055), rgba(255,255,255,0.012)),
+    radial-gradient(120% 80% at 50% 0%, rgba(255,255,255,0.06), transparent 60%);
   border: 1px solid rgba(255,255,255,0.07);
-  backdrop-filter: blur(24px) saturate(1.4);
-  -webkit-backdrop-filter: blur(24px) saturate(1.4);
-  box-shadow: 0 1px 0 rgba(255,255,255,0.05) inset, 0 0 0 0.5px rgba(255,255,255,0.03);
+  backdrop-filter: blur(28px) saturate(1.5);
+  -webkit-backdrop-filter: blur(28px) saturate(1.5);
+  box-shadow:
+    0 1px 0 rgba(255,255,255,0.06) inset,
+    0 0 0 0.5px rgba(255,255,255,0.03) inset,
+    0 24px 60px -24px rgba(0,0,0,0.5);
 }
 .glass-strong {
-  background: linear-gradient(180deg, rgba(255,255,255,0.08), rgba(255,255,255,0.025));
+  background:
+    linear-gradient(180deg, rgba(255,255,255,0.1), rgba(255,255,255,0.02)),
+    radial-gradient(120% 80% at 50% 0%, rgba(255,255,255,0.1), transparent 60%);
   border: 1px solid rgba(255,255,255,0.1);
-  backdrop-filter: blur(32px) saturate(1.5);
-  -webkit-backdrop-filter: blur(32px) saturate(1.5);
-  box-shadow: 0 1px 0 rgba(255,255,255,0.08) inset, 0 8px 30px rgba(0,0,0,0.4);
+  backdrop-filter: blur(36px) saturate(1.6);
+  -webkit-backdrop-filter: blur(36px) saturate(1.6);
+  box-shadow:
+    0 1px 0 rgba(255,255,255,0.1) inset,
+    0 0 0 0.5px rgba(255,255,255,0.05) inset,
+    0 12px 40px -8px rgba(0,0,0,0.55);
+}
+
+/* glass hover sheen - moving highlight */
+.glass-hover { position: relative; overflow: hidden; }
+.glass-hover::before {
+  content: "";
+  position: absolute; inset: 0;
+  background: radial-gradient(600px circle at var(--mx, 50%) var(--my, 50%), rgba(255,255,255,0.08), transparent 40%);
+  opacity: 0; transition: opacity 0.4s ease;
+  pointer-events: none;
+}
+.glass-hover:hover::before { opacity: 1; }
+
+/* noise overlay */
+.noise {
+  position: relative;
+}
+.noise::after {
+  content: "";
+  position: absolute; inset: 0;
+  background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='240' height='240' viewBox='0 0 240 240'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2' stitchTiles='stitch'/><feColorMatrix values='0 0 0 0 1 0 0 0 0 1 0 0 0 0 1 0 0 0 0.08 0'/></filter><rect width='100%' height='100%' filter='url(%23n)'/></svg>");
+  opacity: 0.6;
+  mix-blend-mode: overlay;
+  pointer-events: none;
 }
 
 .card-inner-grid {
