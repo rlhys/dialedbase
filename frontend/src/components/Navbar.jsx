@@ -21,24 +21,23 @@ const Navbar = () => {
 
   return (
     <>
-      <header className="fixed top-4 inset-x-0 z-50 flex justify-center px-4">
+      <header className="fixed top-3 sm:top-4 inset-x-0 z-50 flex justify-center px-3 sm:px-4">
         <nav
-          className={`glass-strong rounded-full transition-all duration-500 ease-out flex items-center gap-2 sm:gap-4 pl-3 pr-3 py-2 ${
+          className={`glass-strong rounded-full transition-all duration-500 ease-out flex items-center gap-1 sm:gap-2 pl-2.5 pr-1.5 py-1.5 ${
             scrolled ? "shadow-[0_8px_40px_-8px_rgba(0,0,0,0.8)]" : ""
           }`}
-          style={{ width: "min(960px, 96vw)" }}
+          style={{ width: "min(720px, 96vw)" }}
         >
-          {/* Logo */}
-          <a href="#home" className="flex items-center gap-2 pl-1 pr-2 py-1 rounded-full hover:bg-white/5 transition-colors">
-            <img src={ASSETS.logoBlack} alt="Dialedbase" className="w-7 h-7 rounded-md" />
-            <span className="hidden sm:inline text-white font-semibold tracking-tight text-[15px]">Dialedbase</span>
+          <a href="#home" className="flex items-center gap-2 pl-1 pr-1.5 py-1 rounded-full hover:bg-white/5 transition-colors">
+            <img src={ASSETS.logoBlack} alt="Dialedbase" className="w-6 h-6 rounded-md" />
+            <span className="hidden sm:inline text-white font-medium tracking-tight text-[13.5px]">Dialedbase</span>
           </a>
-          <div className="hidden md:flex items-center gap-1 ml-auto">
+          <div className="hidden md:flex items-center gap-0.5 ml-auto">
             {NAV_LINKS.map((l) => (
               <a
                 key={l.href}
                 href={l.href}
-                className="px-3 py-2 text-[14px] text-white/70 hover:text-white transition-colors rounded-full"
+                className="px-3 py-1.5 text-[13px] text-white/65 hover:text-white transition-colors rounded-full"
               >
                 {l.label}
               </a>
@@ -47,31 +46,31 @@ const Navbar = () => {
           <a
             href="#contact"
             onClick={handleContact}
-            className="ml-auto md:ml-2 btn-sheen group inline-flex items-center gap-2 bg-white text-black rounded-full pl-4 pr-1 py-1 text-[14px] font-medium hover:bg-white/90 transition-colors"
+            className="ml-auto md:ml-1.5 btn-sheen group inline-flex items-center gap-1.5 bg-white text-black rounded-full pl-3.5 pr-1 py-1 text-[13px] font-medium hover:bg-white/90 transition-colors"
           >
             Get In Touch
-            <span className="w-7 h-7 rounded-full bg-black text-white flex items-center justify-center group-hover:rotate-45 transition-transform duration-300">
-              <ArrowUpRight className="w-3.5 h-3.5" />
+            <span className="w-6 h-6 rounded-full bg-black text-white flex items-center justify-center group-hover:rotate-45 transition-transform duration-300">
+              <ArrowUpRight className="w-3 h-3" />
             </span>
           </a>
           <button
             onClick={() => setOpen((s) => !s)}
-            className="md:hidden ml-1 w-9 h-9 grid place-items-center rounded-full bg-white/5 border border-white/10 text-white"
+            className="md:hidden ml-1 w-8 h-8 grid place-items-center rounded-full bg-white/5 border border-white/10 text-white"
             aria-label="Menu"
           >
-            {open ? <X className="w-4 h-4" /> : <Menu className="w-4 h-4" />}
+            {open ? <X className="w-3.5 h-3.5" /> : <Menu className="w-3.5 h-3.5" />}
           </button>
         </nav>
       </header>
 
       {open && (
-        <div className="fixed top-20 inset-x-4 z-50 glass-strong rounded-2xl p-4 md:hidden">
+        <div className="fixed top-16 inset-x-3 z-50 glass-strong rounded-2xl p-3 md:hidden">
           {NAV_LINKS.map((l) => (
             <a
               key={l.href}
               href={l.href}
               onClick={() => setOpen(false)}
-              className="block px-3 py-2 text-white/80 hover:text-white"
+              className="block px-3 py-2 text-[14px] text-white/80 hover:text-white"
             >
               {l.label}
             </a>
