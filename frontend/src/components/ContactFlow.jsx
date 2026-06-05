@@ -313,8 +313,8 @@ const CalendlyStep = ({ answers, prefill, onBack, onClose }) => (
       </div>
     </div>
 
-    {/* Calendly inline widget */}
-    <div className="flex-1 min-h-0 bg-white">
+    {/* Calendly inline widget — give it enough height so the Schedule button is reachable */}
+    <div className="flex-1 min-h-0 bg-white overflow-y-auto">
       <InlineWidget
         url="https://calendly.com/rhysgbp/rhysgbp-30-min-discovery"
         prefill={prefill}
@@ -326,7 +326,7 @@ const CalendlyStep = ({ answers, prefill, onBack, onClose }) => (
           primaryColor: "0a0a0a",
           textColor: "111111",
         }}
-        styles={{ height: "100%", width: "100%", minHeight: "700px" }}
+        styles={{ height: "1180px", width: "100%" }}
       />
     </div>
   </div>
