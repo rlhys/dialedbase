@@ -5,7 +5,7 @@ import Navbar from "./components/Navbar";
 import Hero from "./components/Hero";
 import Services from "./components/Services";
 import KPI from "./components/KPI";
-import Testimonials from "./components/Testimonials";
+import Process from "./components/Process";
 import Globe from "./components/Globe";
 import Founder from "./components/Founder";
 import FinalCTA from "./components/FinalCTA";
@@ -22,7 +22,7 @@ const Home = () => (
     <Hero />
     <Services />
     <KPI />
-    <Testimonials />
+    <Process />
     <Globe />
     <Founder />
     <FinalCTA />
