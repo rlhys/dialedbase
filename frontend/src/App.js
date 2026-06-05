@@ -2,15 +2,13 @@ import "./App.css";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Navbar from "./components/Navbar";
 import Hero from "./components/Hero";
-import Showcase from "./components/Showcase";
 import Services from "./components/Services";
 import KPI from "./components/KPI";
 import Testimonials from "./components/Testimonials";
-import Team from "./components/Team";
-import Bloom from "./components/Bloom";
+import Globe from "./components/Globe";
+import Founder from "./components/Founder";
 import FinalCTA from "./components/FinalCTA";
 import Footer from "./components/Footer";
-import SideRail from "./components/SideRail";
 import { Toaster } from "./components/ui/sonner";
 import useSmoothScroll from "./hooks/useSmoothScroll";
 
@@ -19,15 +17,13 @@ const Home = () => {
   return (
     <div className="relative min-h-screen bg-black text-white overflow-x-hidden">
       <Navbar />
-      <SideRail />
       <main className="relative">
         <Hero />
-        <Showcase />
         <Services />
         <KPI />
         <Testimonials />
-        <Team />
-        <Bloom />
+        <Globe />
+        <Founder />
         <FinalCTA />
         <Footer />
       </main>

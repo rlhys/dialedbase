@@ -1,56 +1,65 @@
 import React from "react";
 import useReveal from "../hooks/useReveal";
-import { Flower2, Sparkles } from "lucide-react";
+import { MonitorSmartphone, Flower2, Sparkles } from "lucide-react";
 import { ASSETS } from "../mock";
 
 const Bloom = () => {
   const [ref, inView] = useReveal();
   return (
-    <section ref={ref} className={`reveal-slow reveal ${inView ? "is-in" : ""} relative py-32 sm:py-40 overflow-hidden`}>
-      <div className="pointer-events-none absolute inset-0">
-        <div className="absolute inset-x-0 top-0 h-[400px] grid-bg opacity-25 [mask-image:linear-gradient(to_bottom,black,transparent)]" />
+    <section ref={ref} className={`reveal-slow reveal ${inView ? "is-in" : ""} relative py-24 sm:py-32 overflow-hidden`}>
+      {/* fades */}
+      <div className="pointer-events-none absolute inset-x-0 top-0 h-40 bg-gradient-to-b from-black to-transparent z-10" />
+      <div className="pointer-events-none absolute inset-x-0 bottom-0 h-40 bg-gradient-to-t from-black to-transparent z-10" />
+
+      {/* flower visual: CENTERED behind text */}
+      <div className="absolute inset-0 grid place-items-center pointer-events-none">
+        <div className="relative w-[700px] h-[700px] sm:w-[900px] sm:h-[900px] lg:w-[1100px] lg:h-[1100px]">
+          <div className="absolute inset-[20%] rounded-full bg-fuchsia-600/30 blur-[110px] glow-pulse" />
+          <div className="absolute inset-[30%] rounded-full bg-violet-500/25 blur-[90px] glow-pulse" style={{ animationDelay: "1.5s" }} />
+          <img
+            src={ASSETS.bloom}
+            alt=""
+            className="relative w-full h-full object-contain drift-rotate"
+            style={{ filter: "saturate(1.2) contrast(1.05) brightness(1.08) drop-shadow(0 40px 80px rgba(180,80,255,0.45))" }}
+          />
+        </div>
       </div>
 
-      {/* HUGE 3D flower visual */}
-      <div className="absolute right-[-120px] sm:right-[-100px] lg:right-[-60px] top-1/2 -translate-y-1/2 w-[560px] h-[560px] sm:w-[760px] sm:h-[760px] lg:w-[920px] lg:h-[920px] pointer-events-none">
-        <div className="absolute inset-[18%] rounded-full bg-fuchsia-600/30 blur-[100px] glow-pulse" />
-        <div className="absolute inset-[28%] rounded-full bg-violet-500/25 blur-[80px] glow-pulse" style={{ animationDelay: "1.5s" }} />
-        <img
-          src={ASSETS.bloom}
-          alt=""
-          className="relative w-full h-full object-contain drift-rotate"
-          style={{
-            filter: "saturate(1.2) contrast(1.05) brightness(1.05) drop-shadow(0 40px 80px rgba(180,80,255,0.45))",
-          }}
-        />
-      </div>
-
-      <div className="relative max-w-7xl mx-auto px-6">
-        <div className="inline-flex items-center gap-2 glass rounded-full px-3 py-1 text-[12px] text-white/75 mb-7">
+      {/* text rows on top */}
+      <div className="relative z-20 max-w-7xl mx-auto px-5 sm:px-6">
+        <div className="inline-flex items-center gap-2 glass rounded-full px-3 py-1 text-[12px] text-white/75 mb-8">
           <Sparkles className="w-3.5 h-3.5" /> Manifesto
         </div>
-        <h2 className="font-semibold tracking-[-0.04em] leading-[0.95] text-[56px] sm:text-[88px] md:text-[104px] max-w-[14ch]">
-          <span className="shine-text">Grow Your</span>
-          <br />
-          <span className="shine-text">Digital Presence,</span>
-          <br />
-          <span className="shine-text">Let Your </span>
-          <InlineFlowerChip />
-          <br />
-          <span className="shine-text">Vision </span>
-          <span className="serif text-white">Bloom.</span>
-        </h2>
-        <p className="mt-8 max-w-md text-white/55 text-[15px] sm:text-[17px] leading-relaxed">
-          Beautiful, fast, AI‑native products engineered to compound your brand's growth — month after month, year after year.
-        </p>
+
+        <div className="flex flex-col gap-2 sm:gap-3 font-semibold tracking-[-0.04em] leading-[0.95] text-[48px] sm:text-[80px] md:text-[100px] lg:text-[124px]">
+          {/* Row 1: Grow Your Digital [icon] */}
+          <div className="flex items-center flex-wrap gap-x-4 sm:gap-x-6">
+            <span className="shine-text">Grow</span>
+            <span className="shine-text">Your</span>
+            <span className="shine-text">Digital</span>
+            <InlineChip icon={MonitorSmartphone} />
+          </div>
+          {/* Row 2: Presence, Let Your */}
+          <div className="flex items-center flex-wrap gap-x-4 sm:gap-x-6">
+            <span className="shine-text">Presence,</span>
+            <span className="shine-text">Let</span>
+            <span className="shine-text">Your</span>
+          </div>
+          {/* Row 3: Vision [flower] Bloom */}
+          <div className="flex items-center flex-wrap gap-x-4 sm:gap-x-6">
+            <span className="shine-text">Vision</span>
+            <InlineChip icon={Flower2} />
+            <span className="serif text-white">Bloom.</span>
+          </div>
+        </div>
       </div>
     </section>
   );
 };
 
-const InlineFlowerChip = () => (
-  <span className="inline-flex align-middle items-center justify-center w-[0.7em] h-[0.7em] rounded-2xl glass-strong mx-1 sm:mx-2 -translate-y-1">
-    <Flower2 className="w-[44%] h-[44%] text-white" strokeWidth={1.6} />
+const InlineChip = ({ icon: Icon }) => (
+  <span className="inline-flex items-center justify-center w-[0.85em] h-[0.85em] rounded-2xl glass-strong" style={{ backdropFilter: "blur(28px) saturate(1.3)" }}>
+    <Icon className="w-[42%] h-[42%] text-white" strokeWidth={1.5} />
   </span>
 );
 

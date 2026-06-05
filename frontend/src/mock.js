@@ -6,6 +6,7 @@ export const ASSETS = {
   rhys: "https://customer-assets.emergentagent.com/job_1c9e6057-134b-4c93-b3e6-eea3f8361ee1/artifacts/89uv7qh0_image.png",
   bloom: "https://images.unsplash.com/photo-1650900007350-5f589c5fd1ca",
   bloomAlt: "https://images.pexels.com/photos/12495671/pexels-photo-12495671.jpeg",
+  planetVideo: "https://customer-assets.emergentagent.com/job_tech-crafted/artifacts/zsllwdgs_planet4.mp4",
 };
 
 export const PROJECTS = [
