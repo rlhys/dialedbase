@@ -78,7 +78,7 @@ const Work = () => {
       {/* GRID */}
       <section className="relative py-8 sm:py-12">
         <div className="max-w-6xl mx-auto px-4 sm:px-6">
-          <Stagger gap={0.05} className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-5">
+          <Stagger key={cat} gap={0.05} className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-5">
             {filtered.map((c) => (
               <StaggerItem key={c.id}>
                 <CapabilityCard cap={c} onClick={open} />
