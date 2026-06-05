@@ -3,11 +3,11 @@ import { ArrowUpRight, Instagram, MapPin, BadgeCheck } from "lucide-react";
 import { motion } from "framer-motion";
 import { ASSETS, TEAM } from "../mock";
 import { FadeIn, Magnetic } from "./Motion";
-import { toast } from "sonner";
+import { useContact } from "./ContactFlow";
 
 const Founder = () => {
   const rhys = TEAM[0];
-  const onBook = () => toast("Booking flow coming soon — mocked.");
+  const { open: onBook } = useContact();
   return (
     <section className="relative py-14 sm:py-20">
       <div className="max-w-6xl mx-auto px-4 sm:px-6">

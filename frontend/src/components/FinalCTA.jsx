@@ -2,7 +2,7 @@ import React from "react";
 import { ArrowUpRight } from "lucide-react";
 import { PROJECTS } from "../mock";
 import { FadeIn, Magnetic } from "./Motion";
-import { toast } from "sonner";
+import { useContact } from "./ContactFlow";
 
 const VerticalColumn = ({ reverse = false, offsetIndex = 0 }) => {
   const items = [...PROJECTS, ...PROJECTS, ...PROJECTS];
@@ -68,7 +68,7 @@ const HorizontalStrip = ({ reverse = false, offsetIndex = 0 }) => {
 };
 
 const FinalCTA = () => {
-  const onBook = () => toast("Mocked: opens Calendly in production.");
+  const { open: onBook } = useContact();
 
   return (
     <section id="contact" className="relative py-14 sm:py-20 overflow-hidden">

@@ -1,20 +1,25 @@
 import React from "react";
 import { Instagram, ArrowUpRight } from "lucide-react";
+import { Link } from "react-router-dom";
 import { ASSETS } from "../mock";
+import { useContact } from "./ContactFlow";
 
 const Footer = () => {
+  const { open: openContact } = useContact();
+  const handleContact = (e) => { e.preventDefault(); openContact(); };
+
   return (
     <footer className="relative pt-16 pb-8 border-t border-white/5">
       <div className="max-w-6xl mx-auto px-4 sm:px-6">
         <div className="grid grid-cols-1 md:grid-cols-12 gap-8 pb-10">
           <div className="md:col-span-5">
-            <a href="#home" className="inline-flex items-center gap-2.5">
+            <Link to="/" className="inline-flex items-center gap-2.5">
               <img src={ASSETS.logoBlack} alt="" className="w-8 h-8 rounded-lg" />
               <div>
                 <div className="text-[17px] font-semibold tracking-tight">Dialedbase</div>
                 <div className="text-[11px] text-white/45">Design & Technology</div>
               </div>
-            </a>
+            </Link>
             <p className="mt-4 text-white/55 max-w-sm text-[13.5px] leading-relaxed">
               Websites, apps and AI systems engineered to compound your brand's growth.
             </p>
@@ -23,10 +28,10 @@ const Footer = () => {
           <div className="md:col-span-2">
             <div className="text-[10.5px] text-white/40 tracking-[0.2em] uppercase mb-3">Studio</div>
             <ul className="space-y-1.5 text-[13px] text-white/70">
-              <li><a href="#services" className="hover:text-white">Services</a></li>
-              <li><a href="#work" className="hover:text-white">Work</a></li>
-              <li><a href="#about" className="hover:text-white">About</a></li>
-              <li><a href="#contact" className="hover:text-white">Contact</a></li>
+              <li><Link to="/" className="hover:text-white">Home</Link></li>
+              <li><Link to="/work" className="hover:text-white">Work</Link></li>
+              <li><Link to="/about" className="hover:text-white">About</Link></li>
+              <li><a href="#contact" onClick={handleContact} className="hover:text-white">Contact</a></li>
             </ul>
           </div>
           <div className="md:col-span-2">
@@ -40,8 +45,8 @@ const Footer = () => {
           </div>
           <div className="md:col-span-3">
             <div className="text-[10.5px] text-white/40 tracking-[0.2em] uppercase mb-3">Get in touch</div>
-            <a href="mailto:hello@dialedbase.com" className="inline-flex items-center gap-1.5 text-[13.5px] hover:text-white text-white/85">
-              hello@dialedbase.com <ArrowUpRight className="w-3.5 h-3.5" />
+            <a href="#contact" onClick={handleContact} className="inline-flex items-center gap-1.5 text-[13.5px] hover:text-white text-white/85">
+              Book a call <ArrowUpRight className="w-3.5 h-3.5" />
             </a>
             <div className="mt-4 flex items-center gap-2">
               <a href="https://instagram.com/rhysgbp" target="_blank" rel="noreferrer" className="w-9 h-9 grid place-items-center rounded-full glass hover:bg-white/10">

@@ -1,12 +1,15 @@
 import React, { useEffect, useState } from "react";
 import { ArrowUpRight, BadgeCheck, Play } from "lucide-react";
 import { motion } from "framer-motion";
+import { Link } from "react-router-dom";
 import { PROJECTS, ASSETS } from "../mock";
 import { Tilt, Magnetic, FadeIn, Stagger, StaggerItem } from "./Motion";
+import { useContact } from "./ContactFlow";
 
 const Hero = () => {
   const [idx, setIdx] = useState(0);
   const [bottomIdx, setBottomIdx] = useState(3);
+  const { open: openContact } = useContact();
 
   useEffect(() => {
     const id = setInterval(() => setIdx((i) => (i + 1) % PROJECTS.length), 3500);
@@ -115,12 +118,12 @@ const Hero = () => {
               <BentoCard className="h-20 flex items-center justify-center">
                 <div className="absolute inset-0 card-inner-grid opacity-30" />
                 <Magnetic strength={0.25}>
-                  <a href="#work" className="relative btn-sheen group inline-flex items-center gap-1.5 bg-white text-black rounded-full pl-4 pr-1 py-1 text-[13px] font-medium">
+                  <Link to="/work" className="relative btn-sheen group inline-flex items-center gap-1.5 bg-white text-black rounded-full pl-4 pr-1 py-1 text-[13px] font-medium">
                     See All Work
                     <span className="w-7 h-7 rounded-full bg-black text-white flex items-center justify-center group-hover:rotate-45 transition-transform duration-300">
                       <ArrowUpRight className="w-3.5 h-3.5" />
                     </span>
-                  </a>
+                  </Link>
                 </Magnetic>
               </BentoCard>
             </StaggerItem>
@@ -181,12 +184,12 @@ const Hero = () => {
               <BentoCard fillHeight className="flex items-center justify-center">
                 <div className="absolute inset-0 card-inner-grid opacity-30" />
                 <Magnetic strength={0.3}>
-                  <a href="#work" className="relative btn-sheen group inline-flex items-center gap-1.5 bg-white text-black rounded-full pl-4 pr-1 py-1 text-[13px] font-medium">
+                  <Link to="/work" className="relative btn-sheen group inline-flex items-center gap-1.5 bg-white text-black rounded-full pl-4 pr-1 py-1 text-[13px] font-medium">
                     See All Work
                     <span className="w-7 h-7 rounded-full bg-black text-white flex items-center justify-center group-hover:rotate-45 transition-transform duration-300">
                       <ArrowUpRight className="w-3.5 h-3.5" />
                     </span>
-                  </a>
+                  </Link>
                 </Magnetic>
               </BentoCard>
               <Tilt className="h-full">

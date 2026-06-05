@@ -2,11 +2,11 @@ import React from "react";
 import { Globe as GlobeIcon } from "lucide-react";
 import { motion } from "framer-motion";
 import { ASSETS } from "../mock";
-import { FadeIn, Magnetic } from "./Motion";
-import { toast } from "sonner";
+import { FadeIn } from "./Motion";
+import { useContact } from "./ContactFlow";
 
 const Globe = () => {
-  const onBook = () => toast("Booking flow coming soon — mocked.");
+  const { open: onBook } = useContact();
 
   return (
     <section id="about" className="relative py-14 sm:py-20">

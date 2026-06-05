@@ -2,13 +2,13 @@ import React from "react";
 import { ArrowUpRight, Globe, Smartphone, Sparkles, Wand2, Check } from "lucide-react";
 import { motion } from "framer-motion";
 import { SERVICES } from "../mock";
-import { toast } from "sonner";
 import { FadeIn, Stagger, StaggerItem, Magnetic, Tilt } from "./Motion";
+import { useContact } from "./ContactFlow";
 
 const ICONS = { Globe, Smartphone, Sparkles, Wand2 };
 
 const Services = () => {
-  const onBook = () => toast("We'll be in touch shortly — mocked for now.");
+  const { open: onBook } = useContact();
   return (
     <section id="services" className="relative py-16 sm:py-24">
       <div className="max-w-6xl mx-auto px-4 sm:px-6">

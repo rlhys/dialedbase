@@ -1,13 +1,16 @@
 import React, { useEffect, useState } from "react";
 import { ArrowUpRight, Menu, X } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
+import { Link, useLocation } from "react-router-dom";
 import { ASSETS, NAV_LINKS } from "../mock";
-import { toast } from "sonner";
 import { Magnetic } from "./Motion";
+import { useContact } from "./ContactFlow";
 
 const Navbar = () => {
   const [scrolled, setScrolled] = useState(false);
   const [open, setOpen] = useState(false);
+  const { pathname } = useLocation();
+  const { open: openContact } = useContact();
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 24);
@@ -16,17 +19,19 @@ const Navbar = () => {
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
 
-  // lock scroll when mobile menu open
   useEffect(() => {
     if (open) document.body.style.overflow = "hidden";
     else document.body.style.overflow = "";
     return () => { document.body.style.overflow = ""; };
   }, [open]);
 
+  // close drawer on route change
+  useEffect(() => { setOpen(false); }, [pathname]);
+
   const handleContact = (e) => {
     e.preventDefault();
     setOpen(false);
-    toast("Let's build something. Drop us a line at hello@dialedbase.com");
+    openContact();
   };
 
   return (
@@ -43,8 +48,7 @@ const Navbar = () => {
           }`}
           style={{ maxWidth: "min(720px, 96vw)" }}
         >
-          {/* Logo + brand (always visible) */}
-          <a href="#home" className="flex items-center gap-2 pl-1 pr-2 py-0.5 rounded-full hover:bg-white/5 transition-colors shrink-0">
+          <Link to="/" className="flex items-center gap-2 pl-1 pr-2 py-0.5 rounded-full hover:bg-white/5 transition-colors shrink-0">
             <motion.img
               src={ASSETS.logoBlack}
               alt="Dialedbase"
@@ -53,23 +57,24 @@ const Navbar = () => {
               transition={{ type: "spring", stiffness: 300, damping: 14 }}
             />
             <span className="text-white font-medium tracking-tight text-[13.5px]">Dialedbase</span>
-          </a>
+          </Link>
 
-          {/* Desktop links */}
           <div className="hidden md:flex items-center gap-0.5 ml-auto">
-            {NAV_LINKS.map((l) => (
-              <a
-                key={l.href}
-                href={l.href}
-                className="relative px-3 py-1.5 text-[13px] text-white/65 hover:text-white transition-colors rounded-full group"
-              >
-                {l.label}
-                <span className="absolute inset-x-3 -bottom-px h-px bg-white/30 scale-x-0 group-hover:scale-x-100 origin-left transition-transform duration-300" />
-              </a>
-            ))}
+            {NAV_LINKS.map((l) => {
+              const active = pathname === l.href;
+              return (
+                <Link
+                  key={l.href}
+                  to={l.href}
+                  className={`relative px-3 py-1.5 text-[13px] transition-colors rounded-full group ${active ? "text-white" : "text-white/60 hover:text-white"}`}
+                >
+                  {l.label}
+                  <span className={`absolute inset-x-3 -bottom-px h-px bg-white/40 origin-left transition-transform duration-300 ${active ? "scale-x-100" : "scale-x-0 group-hover:scale-x-100"}`} />
+                </Link>
+              );
+            })}
           </div>
 
-          {/* CTA — desktop only inline */}
           <div className="hidden sm:block ml-auto md:ml-1.5">
             <Magnetic strength={0.2}>
               <a
@@ -85,7 +90,6 @@ const Navbar = () => {
             </Magnetic>
           </div>
 
-          {/* Mobile menu button */}
           <button
             onClick={() => setOpen((s) => !s)}
             className="sm:hidden ml-auto w-9 h-9 grid place-items-center rounded-full bg-white text-black"
@@ -98,7 +102,6 @@ const Navbar = () => {
         </nav>
       </motion.header>
 
-      {/* Mobile drawer */}
       <AnimatePresence>
         {open && (
           <>
@@ -117,19 +120,25 @@ const Navbar = () => {
               transition={{ duration: 0.3, ease: [0.22, 0.61, 0.36, 1] }}
               className="fixed top-[68px] inset-x-3 z-50 glass-strong rounded-2xl p-2 sm:hidden"
             >
-              {NAV_LINKS.map((l, i) => (
-                <motion.a
-                  key={l.href}
-                  href={l.href}
-                  onClick={() => setOpen(false)}
-                  initial={{ opacity: 0, x: -10 }}
-                  animate={{ opacity: 1, x: 0 }}
-                  transition={{ delay: 0.05 + i * 0.05 }}
-                  className="block px-4 py-3 text-[15px] text-white/85 hover:text-white hover:bg-white/5 rounded-xl"
-                >
-                  {l.label}
-                </motion.a>
-              ))}
+              {NAV_LINKS.map((l, i) => {
+                const active = pathname === l.href;
+                return (
+                  <motion.div
+                    key={l.href}
+                    initial={{ opacity: 0, x: -10 }}
+                    animate={{ opacity: 1, x: 0 }}
+                    transition={{ delay: 0.05 + i * 0.05 }}
+                  >
+                    <Link
+                      to={l.href}
+                      onClick={() => setOpen(false)}
+                      className={`block px-4 py-3 text-[15px] rounded-xl ${active ? "text-white bg-white/5" : "text-white/85 hover:text-white hover:bg-white/5"}`}
+                    >
+                      {l.label}
+                    </Link>
+                  </motion.div>
+                );
+              })}
               <div className="p-2 pt-3">
                 <a
                   href="#contact"
