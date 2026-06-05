@@ -1,20 +1,20 @@
 import React, { useMemo, useState } from "react";
 import { motion } from "framer-motion";
-import { ArrowUpRight, BadgeCheck } from "lucide-react";
+import { ArrowUpRight, Sparkles } from "lucide-react";
 import { WordByWord } from "../components/SpacedHeader";
-import { FadeIn, Stagger, StaggerItem, Tilt } from "../components/Motion";
-import { WORKS, INDUSTRIES } from "../data/extra";
+import { FadeIn, Stagger, StaggerItem } from "../components/Motion";
+import CapabilityCard from "../components/CapabilityCard";
+import { CAPABILITIES, CATEGORIES } from "../data/capabilities";
+import { INDUSTRIES } from "../data/extra";
 import { useContact } from "../components/ContactFlow";
-
-const CATEGORIES = ["All", "Web & Motion", "SaaS Platform", "Mobile App", "AI"];
 
 const Work = () => {
   const [cat, setCat] = useState("All");
   const { open } = useContact();
 
   const filtered = useMemo(() => {
-    if (cat === "All") return WORKS;
-    return WORKS.filter((w) => w.tag === cat || (cat === "AI" && /AI/i.test(w.tag)));
+    if (cat === "All") return CAPABILITIES;
+    return CAPABILITIES.filter((c) => c.category === cat);
   }, [cat]);
 
   return (
@@ -28,20 +28,20 @@ const Work = () => {
         <div className="relative max-w-6xl mx-auto px-4 sm:px-6">
           <FadeIn>
             <div className="glass inline-flex items-center gap-2 rounded-full px-2.5 py-1 text-[11px] text-white/80 mb-5">
-              <span className="w-1.5 h-1.5 rounded-full bg-emerald-400" /> Selected Work
+              <Sparkles className="w-3 h-3" /> Capabilities
             </div>
           </FadeIn>
 
           <FadeIn delay={0.05}>
             <h1 className="font-semibold tracking-[-0.03em] leading-[1.02] text-[32px] sm:text-[46px] md:text-[60px] lg:text-[72px] max-w-[18ch]">
-              <span className="shine-text">Tech that feels premium. </span>
-              <span className="serif text-white">Brands people remember.</span>
+              <span className="shine-text">What we ship. </span>
+              <span className="serif text-white">Tech that feels premium.</span>
             </h1>
           </FadeIn>
 
           <FadeIn delay={0.15}>
             <p className="mt-5 text-white/55 text-[14.5px] sm:text-[16px] max-w-2xl leading-relaxed">
-              A growing library of websites, apps and AI systems engineered to compound our partners' growth.
+              From marketing sites to AI agents, mobile apps to brand systems — here's the full stack of work we deliver, all under one studio.
             </p>
           </FadeIn>
         </div>
@@ -78,38 +78,16 @@ const Work = () => {
       {/* GRID */}
       <section className="relative py-8 sm:py-12">
         <div className="max-w-6xl mx-auto px-4 sm:px-6">
-          <Stagger gap={0.06} className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-5">
-            {filtered.map((p) => (
-              <StaggerItem key={p.id}>
-                <Tilt max={4}>
-                  <motion.article
-                    whileHover={{ scale: 1.015 }}
-                    transition={{ type: "spring", stiffness: 240, damping: 20 }}
-                    className="relative glass glass-hover rounded-2xl overflow-hidden aspect-[4/3] group cursor-pointer"
-                  >
-                    <img src={p.mockup} alt={p.name} className="absolute inset-0 w-full h-full object-cover group-hover:scale-[1.04] transition-transform duration-[1400ms] ease-out" />
-                    <div className="absolute inset-0 bg-gradient-to-t from-black/75 via-black/15 to-transparent" />
-                    <div className="absolute top-3 left-3 glass-strong rounded-full px-2.5 py-1 text-[10.5px] text-white/80">
-                      {p.tag}
-                    </div>
-                    <div className="absolute left-3 right-3 bottom-3 flex items-end justify-between gap-3">
-                      <div className="glass-strong rounded-full pl-1.5 pr-2.5 py-1 flex items-center gap-1.5 max-w-fit">
-                        <span className="w-5 h-5 rounded-full bg-white/10 grid place-items-center text-[9.5px] font-semibold">{p.name.charAt(0)}</span>
-                        <span className="text-[11.5px] font-medium">{p.name}</span>
-                        <BadgeCheck className="w-3 h-3 text-sky-400" />
-                      </div>
-                      <span className="w-9 h-9 rounded-full bg-white text-black grid place-items-center group-hover:rotate-45 transition-transform duration-300">
-                        <ArrowUpRight className="w-4 h-4" />
-                      </span>
-                    </div>
-                  </motion.article>
-                </Tilt>
+          <Stagger gap={0.05} className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-5">
+            {filtered.map((c) => (
+              <StaggerItem key={c.id}>
+                <CapabilityCard cap={c} onClick={open} />
               </StaggerItem>
             ))}
           </Stagger>
 
           {filtered.length === 0 && (
-            <div className="text-center py-16 text-white/45 text-[14px]">No projects in this category yet.</div>
+            <div className="text-center py-16 text-white/45 text-[14px]">No capabilities in this category.</div>
           )}
         </div>
       </section>
@@ -124,12 +102,12 @@ const Work = () => {
           </FadeIn>
           <FadeIn delay={0.05}>
             <WordByWord
-              text="Driving innovation across diverse industries."
+              text="Built for ambitious brands across every industry."
               className="font-semibold tracking-[-0.03em] leading-[1.05] text-[28px] sm:text-[38px] md:text-[48px] lg:text-[56px] max-w-[20ch]"
             />
           </FadeIn>
           <FadeIn delay={0.15}>
-            <p className="mt-4 text-white/55 max-w-xl text-[14px]">Our experience fuels tailored solutions for every unique challenge.</p>
+            <p className="mt-4 text-white/55 max-w-xl text-[14px]">Our craft adapts to your sector — from hospitality to AI startups.</p>
           </FadeIn>
 
           <Stagger gap={0.06} className="mt-8 flex flex-wrap gap-2.5">

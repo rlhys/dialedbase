@@ -1,0 +1,118 @@
+// Capabilities — what we BUILD, replacing the need for fake client logos.
+// Each item: icon (lucide name), title, blurb, category, gradient palette, accent.
+
+export const CATEGORIES = ["All", "Websites", "Apps", "AI", "Brand & Motion"];
+
+export const CAPABILITIES = [
+  {
+    id: "marketing-site",
+    title: "Marketing Website",
+    category: "Websites",
+    blurb: "Motion-driven landing pages engineered to convert visitors into customers.",
+    icon: "Globe",
+    gradient: "from-sky-500/30 via-blue-600/15 to-transparent",
+    accent: "sky",
+  },
+  {
+    id: "ecommerce",
+    title: "Luxury E-commerce",
+    category: "Websites",
+    blurb: "Premium storefronts with Stripe, subscriptions and cinematic product pages.",
+    icon: "ShoppingBag",
+    gradient: "from-cyan-500/30 via-sky-600/15 to-transparent",
+    accent: "cyan",
+  },
+  {
+    id: "saas",
+    title: "SaaS Dashboard",
+    category: "Apps",
+    blurb: "Realtime, multi-tenant web apps with auth, billing and analytics built in.",
+    icon: "LayoutDashboard",
+    gradient: "from-emerald-500/30 via-teal-600/15 to-transparent",
+    accent: "emerald",
+  },
+  {
+    id: "mobile",
+    title: "Native Mobile App",
+    category: "Apps",
+    blurb: "iOS & Android apps designed for the App Store first day, shipped in weeks.",
+    icon: "Smartphone",
+    gradient: "from-teal-500/30 via-emerald-600/15 to-transparent",
+    accent: "teal",
+  },
+  {
+    id: "internal-tools",
+    title: "Internal Tools",
+    category: "Apps",
+    blurb: "Admin dashboards, ops tools and back-office software that ship in days.",
+    icon: "Wrench",
+    gradient: "from-lime-500/25 via-emerald-600/15 to-transparent",
+    accent: "lime",
+  },
+  {
+    id: "ai-agents",
+    title: "AI Agents & Copilots",
+    category: "AI",
+    blurb: "Custom GPT agents that learn your business and act on behalf of your team.",
+    icon: "Sparkles",
+    gradient: "from-violet-500/30 via-fuchsia-600/15 to-transparent",
+    accent: "violet",
+  },
+  {
+    id: "ai-voice",
+    title: "AI Voice Agents",
+    category: "AI",
+    blurb: "Voice automations that handle bookings, support and sales calls 24/7.",
+    icon: "AudioLines",
+    gradient: "from-fuchsia-500/30 via-pink-600/15 to-transparent",
+    accent: "fuchsia",
+  },
+  {
+    id: "automation",
+    title: "Workflow Automation",
+    category: "AI",
+    blurb: "End-to-end automations that compound — fewer humans, fewer mistakes.",
+    icon: "Workflow",
+    gradient: "from-purple-500/30 via-violet-600/15 to-transparent",
+    accent: "purple",
+  },
+  {
+    id: "brand",
+    title: "Brand Identity",
+    category: "Brand & Motion",
+    blurb: "Logo systems, type, color and voice — built to scale across every surface.",
+    icon: "Palette",
+    gradient: "from-amber-500/25 via-orange-600/15 to-transparent",
+    accent: "amber",
+  },
+  {
+    id: "motion",
+    title: "Motion & 3D",
+    category: "Brand & Motion",
+    blurb: "Cinematic motion design, 3D renders and product launch films.",
+    icon: "Film",
+    gradient: "from-orange-500/25 via-amber-600/15 to-transparent",
+    accent: "orange",
+  },
+  {
+    id: "integrations",
+    title: "Payments & Auth",
+    category: "Apps",
+    blurb: "Stripe, Auth, Resend — wired in cleanly so revenue flows on day one.",
+    icon: "CreditCard",
+    gradient: "from-blue-500/30 via-indigo-600/15 to-transparent",
+    accent: "blue",
+  },
+  {
+    id: "booking",
+    title: "Booking Platforms",
+    category: "Apps",
+    blurb: "Hospitality-grade reservations, calendars and customer experiences.",
+    icon: "CalendarCheck",
+    gradient: "from-indigo-500/30 via-violet-600/15 to-transparent",
+    accent: "indigo",
+  },
+];
+
+// Subset for hero bento - the most impactful 3-4
+export const FEATURED_CAPABILITIES = ["ai-agents", "mobile", "marketing-site"];

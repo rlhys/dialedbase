@@ -1,11 +1,13 @@
 import React from "react";
 import { ArrowUpRight } from "lucide-react";
-import { PROJECTS } from "../mock";
 import { FadeIn, Magnetic } from "./Motion";
 import { useContact } from "./ContactFlow";
+import CapabilityCard from "./CapabilityCard";
+import { CAPABILITIES } from "../data/capabilities";
 
-const VerticalColumn = ({ reverse = false, offsetIndex = 0 }) => {
-  const items = [...PROJECTS, ...PROJECTS, ...PROJECTS];
+const VerticalColumn = ({ reverse = false, offsetIndex = 0, slice }) => {
+  // duplicate the list 3x for seamless infinite scroll
+  const items = [...slice, ...slice, ...slice];
   return (
     <div
       className="relative w-full h-full overflow-hidden"
@@ -22,14 +24,9 @@ const VerticalColumn = ({ reverse = false, offsetIndex = 0 }) => {
           animationDelay: `${-offsetIndex * 3}s`,
         }}
       >
-        {items.map((p, i) => (
-          <div key={`${p.id}-${i}`} className="relative w-full aspect-[9/16] rounded-xl overflow-hidden glass">
-            <img src={p.mockup} alt={p.name} className="absolute inset-0 w-full h-full object-cover opacity-95" />
-            <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-transparent" />
-            <div className="absolute bottom-2 left-2 glass-strong rounded-full pl-1.5 pr-2.5 py-0.5 text-[10px] inline-flex items-center gap-1">
-              <span className="w-3.5 h-3.5 rounded-full bg-white/10 grid place-items-center text-[8px] font-semibold">{p.name.charAt(0)}</span>
-              {p.name}
-            </div>
+        {items.map((cap, i) => (
+          <div key={`${cap.id}-${i}`} className="relative w-full aspect-[9/16]">
+            <CapabilityCard cap={cap} variant="vertical" />
           </div>
         ))}
       </div>
@@ -37,9 +34,8 @@ const VerticalColumn = ({ reverse = false, offsetIndex = 0 }) => {
   );
 };
 
-// horizontal scroller for mobile
-const HorizontalStrip = ({ reverse = false, offsetIndex = 0 }) => {
-  const items = [...PROJECTS, ...PROJECTS, ...PROJECTS];
+const HorizontalStrip = ({ reverse = false, offsetIndex = 0, slice }) => {
+  const items = [...slice, ...slice, ...slice];
   return (
     <div
       className="relative w-full overflow-hidden"
@@ -57,9 +53,9 @@ const HorizontalStrip = ({ reverse = false, offsetIndex = 0 }) => {
           animationDelay: `${-offsetIndex * 2}s`,
         }}
       >
-        {items.map((p, i) => (
-          <div key={`${p.id}-${i}`} className="shrink-0 w-[100px] aspect-[9/16] rounded-xl overflow-hidden glass">
-            <img src={p.mockup} alt={p.name} className="absolute inset-0 w-full h-full object-cover opacity-95" />
+        {items.map((cap, i) => (
+          <div key={`${cap.id}-${i}`} className="shrink-0 w-[100px] aspect-[9/16]">
+            <CapabilityCard cap={cap} variant="vertical" />
           </div>
         ))}
       </div>
@@ -69,6 +65,9 @@ const HorizontalStrip = ({ reverse = false, offsetIndex = 0 }) => {
 
 const FinalCTA = () => {
   const { open: onBook } = useContact();
+  const half = Math.ceil(CAPABILITIES.length / 2);
+  const left = CAPABILITIES.slice(0, half);
+  const right = CAPABILITIES.slice(half);
 
   return (
     <section id="contact" className="relative py-14 sm:py-20 overflow-hidden">
@@ -83,12 +82,12 @@ const FinalCTA = () => {
             <div className="relative grid grid-cols-12 gap-3 sm:gap-5 p-3 sm:p-5 md:p-6 min-h-[440px] sm:min-h-[500px]">
               {/* Mobile top strip */}
               <div className="col-span-12 md:hidden">
-                <HorizontalStrip />
+                <HorizontalStrip slice={left} />
               </div>
 
               {/* Left vertical column (md+) */}
               <div className="hidden md:block col-span-3 h-[460px]">
-                <VerticalColumn />
+                <VerticalColumn slice={left} />
               </div>
 
               <div className="col-span-12 md:col-span-6 flex items-center justify-center text-center px-3 py-6 md:py-0">
@@ -122,12 +121,12 @@ const FinalCTA = () => {
 
               {/* Right vertical column (md+) */}
               <div className="hidden md:block col-span-3 h-[460px]">
-                <VerticalColumn reverse offsetIndex={2} />
+                <VerticalColumn reverse offsetIndex={2} slice={right} />
               </div>
 
-              {/* Mobile bottom strip (reverse) */}
+              {/* Mobile bottom strip */}
               <div className="col-span-12 md:hidden">
-                <HorizontalStrip reverse offsetIndex={2} />
+                <HorizontalStrip reverse offsetIndex={2} slice={right} />
               </div>
             </div>
           </div>
