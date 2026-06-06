@@ -108,7 +108,7 @@ const About = () => {
                         </span>
                       </button>
                       <a href={m.social} target="_blank" rel="noreferrer" className="inline-flex items-center gap-1.5 glass glass-hover rounded-full px-3 py-1.5 text-[12.5px] text-white/85 hover:bg-white/10 transition-colors">
-                        <Instagram className="w-3.5 h-3.5" /> @dialedbase
+                        <Instagram className="w-3.5 h-3.5" /> @rhysgbp
                       </a>
                     </div>
                   </div>

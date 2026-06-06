@@ -32,7 +32,7 @@ const Team = () => {
                 </span>
               </button>
               <a href={rhys.socials.instagram} target="_blank" rel="noreferrer" className="inline-flex items-center gap-2 glass rounded-full px-4 py-2 text-[13.5px] text-white/80 hover:bg-white/10">
-                <Instagram className="w-4 h-4" /> @dialedbase
+                <Instagram className="w-4 h-4" /> @rhysgbp
               </a>
             </div>
           </div>

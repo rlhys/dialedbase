@@ -56,8 +56,8 @@ const Footer = () => {
           </div>
         </div>
 
-        <div className="relative my-6 select-none">
-          <div className="text-[18vw] sm:text-[15vw] md:text-[13vw] leading-[0.85] font-semibold tracking-[-0.05em] shine-text whitespace-nowrap text-center">
+        <div className="relative my-6 select-none overflow-hidden px-2">
+          <div className="text-[clamp(2.75rem,7vw,5.75rem)] leading-[0.9] font-semibold tracking-[-0.05em] shine-text whitespace-nowrap text-center">
             Dialedbase
           </div>
         </div>
