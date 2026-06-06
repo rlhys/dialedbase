@@ -49,8 +49,9 @@ const Footer = () => {
               Book a call <ArrowUpRight className="w-3.5 h-3.5" />
             </a>
             <div className="mt-4 flex items-center gap-2">
-              <a href="https://instagram.com/rhysgbp" target="_blank" rel="noreferrer" className="w-9 h-9 grid place-items-center rounded-full glass hover:bg-white/10">
+              <a href="https://instagram.com/dialedbase" target="_blank" rel="noreferrer" className="inline-flex items-center gap-2 rounded-full glass hover:bg-white/10 px-3 py-2 text-[12.5px] text-white/80 transition-colors">
                 <Instagram className="w-3.5 h-3.5" />
+                <span>@dialedbase</span>
               </a>
             </div>
           </div>

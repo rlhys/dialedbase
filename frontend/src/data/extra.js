@@ -7,7 +7,7 @@ export const TEAM_MEMBERS = [
     role: "CEO / Founder",
     bio: "Designer & engineer leading every Dialedbase project end‑to‑end.",
     img: "https://customer-assets.emergentagent.com/job_1c9e6057-134b-4c93-b3e6-eea3f8361ee1/artifacts/89uv7qh0_image.png",
-    social: "https://instagram.com/rhysgbp",
+    social: "https://instagram.com/dialedbase",
     palette: "from-amber-400/30 to-orange-700/50",
   },
 ];
