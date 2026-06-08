@@ -1,0 +1,35 @@
+/* HUMANS.TXT */
+/* The humans responsible & technology behind this site. */
+
+/* TEAM */
+  Founder & Lead: Rhys Evans
+  Designer & Engineer: Rhys Evans
+  Location: Marbella, Spain & London, UK
+
+/* SITE */
+  Last Updated: 2026-06-08
+  Standards: HTML5, CSS3, React 19, JavaScript ES6+
+  Components: Framer Motion, Radix UI, TailwindCSS
+  Hosting: Vercel
+  Language: English
+
+/* THANKS */
+  Design Inspiration: Modern web design patterns
+  Motion & Animation: Framer Motion team
+  UI Components: Radix UI team
+  Styling: TailwindCSS team
+
+/* CONTACT */
+  Website: https://dialedbase.com
+  Email: hello@dialedbase.com
+  Instagram: @dialedbase
+  
+/* ABOUT */
+  Dialedbase is a founder-led design & technology studio
+  building high-end digital experiences.
+  
+  Services: Web Design, Web Development, App Development,
+  AI Systems, Brand Strategy, Motion Design
+  
+  We partner with ambitious brands to compound their growth
+  through innovative, bespoke digital solutions.
