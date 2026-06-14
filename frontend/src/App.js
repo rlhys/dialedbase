@@ -17,6 +17,17 @@ import useSmoothScroll from "./hooks/useSmoothScroll";
 import { ContactProvider } from "./components/ContactFlow";
 import { useEffect } from "react";
 
+// Admin
+import { AuthProvider } from "./context/AuthContext";
+import ProtectedRoute from "./admin/ProtectedRoute";
+import AdminLayout from "./admin/AdminLayout";
+import Login from "./admin/pages/Login";
+import Dashboard from "./admin/pages/Dashboard";
+import Clients from "./admin/pages/Clients";
+import ClientDetail from "./admin/pages/ClientDetail";
+import Payments from "./admin/pages/Payments";
+import Settings from "./admin/pages/Settings";
+
 const Home = () => (
   <>
     <Hero />
@@ -63,28 +74,55 @@ const AnimatedRoutes = () => {
   );
 };
 
-const Shell = () => {
+const PublicShell = () => {
   useSmoothScroll();
   return (
-    <div className="relative min-h-screen bg-black text-white overflow-x-hidden">
-      <Navbar />
-      <ScrollToTop />
-      <main className="relative">
-        <AnimatedRoutes />
-        <Footer />
-      </main>
-      <Toaster position="bottom-center" theme="dark" />
-    </div>
+    <ContactProvider>
+      <div className="relative min-h-screen bg-black text-white overflow-x-hidden">
+        <Navbar />
+        <ScrollToTop />
+        <main className="relative">
+          <AnimatedRoutes />
+          <Footer />
+        </main>
+      </div>
+    </ContactProvider>
   );
+};
+
+const AdminRoutes = () => (
+  <Routes>
+    <Route path="/admin/login" element={<Login />} />
+    <Route
+      path="/admin"
+      element={
+        <ProtectedRoute>
+          <AdminLayout />
+        </ProtectedRoute>
+      }
+    >
+      <Route index element={<Dashboard />} />
+      <Route path="clients" element={<Clients />} />
+      <Route path="clients/:id" element={<ClientDetail />} />
+      <Route path="payments" element={<Payments />} />
+      <Route path="settings" element={<Settings />} />
+    </Route>
+  </Routes>
+);
+
+const AppRoutes = () => {
+  const { pathname } = useLocation();
+  return pathname.startsWith("/admin") ? <AdminRoutes /> : <PublicShell />;
 };
 
 function App() {
   return (
     <div className="App">
       <BrowserRouter>
-        <ContactProvider>
-          <Shell />
-        </ContactProvider>
+        <AuthProvider>
+          <AppRoutes />
+          <Toaster position="bottom-center" theme="dark" />
+        </AuthProvider>
       </BrowserRouter>
     </div>
   );
