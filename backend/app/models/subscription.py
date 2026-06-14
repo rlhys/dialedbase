@@ -15,7 +15,7 @@ class Subscription(BaseModel):
     square_plan_variation_id: str | None = None
     status: str = "ACTIVE"  # Square vocabulary: ACTIVE | PAUSED | CANCELED | DEACTIVATED
     amount: int = 0         # integer cents
-    currency: str = "USD"
+    currency: str = "GBP"
     cadence: str = "MONTHLY"
     start_date: datetime | None = None
     canceled_date: datetime | None = None

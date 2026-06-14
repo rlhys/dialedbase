@@ -236,7 +236,7 @@ function AddPaymentDialog({ clientId, defaultMonthly, onClose, onDone }) {
             </select>
           </div>
           <div className="space-y-1.5">
-            <label className="text-xs text-white/60">Amount ($)</label>
+            <label className="text-xs text-white/60">Amount (£)</label>
             <input type="number" min="0" step="0.01" required value={amount} onChange={(e) => setAmount(e.target.value)} className={inputCls} />
           </div>
           <div className="space-y-1.5">

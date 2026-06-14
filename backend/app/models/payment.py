@@ -10,7 +10,7 @@ class PaymentBase(BaseModel):
     client_id: str
     type: PaymentType
     amount: int = Field(..., ge=0, description="Amount in integer cents")
-    currency: str = "USD"
+    currency: str = "GBP"
     status: PaymentStatus = PaymentStatus.pending
     due_date: datetime
     paid_at: datetime | None = None

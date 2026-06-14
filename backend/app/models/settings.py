@@ -13,7 +13,7 @@ class AppSettings(BaseModel):
 
     id: str = SETTINGS_ID
     business_name: str = "dialedbase"
-    default_currency: str = "USD"
+    default_currency: str = "GBP"
     upcoming_window_days: int = 7
     overdue_grace_days: int = 0
     timezone: str = "UTC"

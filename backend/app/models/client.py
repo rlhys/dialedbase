@@ -17,7 +17,7 @@ class ClientBase(BaseModel):
     deposit_amount: int = Field(0, ge=0, description="Deposit in integer cents")
     monthly_recurring_amount: int = Field(0, ge=0, description="Monthly recurring in integer cents")
     start_date: date | None = None
-    currency: str = "USD"
+    currency: str = "GBP"
 
 
 class ClientCreate(ClientBase):

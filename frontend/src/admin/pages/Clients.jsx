@@ -205,8 +205,8 @@ function ClientDialog({ mode, client, onClose, onSubmit, saving }) {
                 {STATUSES.map((s) => <option key={s} value={s} className="bg-neutral-900">{s}</option>)}
               </select>
             </Field>
-            <Field label="Deposit ($)"><input type="number" min="0" step="0.01" value={form.deposit_amount} onChange={set("deposit_amount")} className={inputCls} /></Field>
-            <Field label="Monthly ($)"><input type="number" min="0" step="0.01" value={form.monthly_recurring_amount} onChange={set("monthly_recurring_amount")} className={inputCls} /></Field>
+            <Field label="Deposit (£)"><input type="number" min="0" step="0.01" value={form.deposit_amount} onChange={set("deposit_amount")} className={inputCls} /></Field>
+            <Field label="Monthly (£)"><input type="number" min="0" step="0.01" value={form.monthly_recurring_amount} onChange={set("monthly_recurring_amount")} className={inputCls} /></Field>
           </div>
           <Field label="Project"><input value={form.project_description} onChange={set("project_description")} className={inputCls} placeholder="What you're building for them" /></Field>
           <Field label="Notes"><textarea rows={3} value={form.notes} onChange={set("notes")} className={inputCls} /></Field>

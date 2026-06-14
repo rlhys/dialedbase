@@ -3,12 +3,12 @@
 export const centsToDollars = (cents) => (Number(cents || 0) / 100);
 export const dollarsToCents = (dollars) => Math.round(Number(dollars || 0) * 100);
 
-export const formatMoney = (cents, currency = "USD") =>
-  new Intl.NumberFormat("en-US", { style: "currency", currency }).format(centsToDollars(cents));
+export const formatMoney = (cents, currency = "GBP") =>
+  new Intl.NumberFormat("en-GB", { style: "currency", currency }).format(centsToDollars(cents));
 
 // Compact for big KPI numbers, e.g. $12.4k
-export const formatMoneyCompact = (cents, currency = "USD") =>
-  new Intl.NumberFormat("en-US", {
+export const formatMoneyCompact = (cents, currency = "GBP") =>
+  new Intl.NumberFormat("en-GB", {
     style: "currency",
     currency,
     notation: "compact",
@@ -18,7 +18,7 @@ export const formatMoneyCompact = (cents, currency = "USD") =>
 export const formatDate = (iso) => {
   if (!iso) return "—";
   try {
-    return new Date(iso).toLocaleDateString("en-US", { month: "short", day: "numeric", year: "numeric" });
+    return new Date(iso).toLocaleDateString("en-GB", { month: "short", day: "numeric", year: "numeric" });
   } catch {
     return "—";
   }
@@ -27,7 +27,7 @@ export const formatDate = (iso) => {
 export const formatMonth = (iso) => {
   if (!iso) return "";
   try {
-    return new Date(iso).toLocaleDateString("en-US", { month: "short", year: "2-digit" });
+    return new Date(iso).toLocaleDateString("en-GB", { month: "short", year: "2-digit" });
   } catch {
     return "";
   }

@@ -18,7 +18,7 @@ export default function Settings() {
     queryFn: async () => (await api.get("/square/health")).data,
   });
 
-  const [form, setForm] = useState({ business_name: "", default_currency: "USD", upcoming_window_days: 7 });
+  const [form, setForm] = useState({ business_name: "", default_currency: "GBP", upcoming_window_days: 7 });
   useEffect(() => {
     if (settings) setForm({
       business_name: settings.business_name || "",

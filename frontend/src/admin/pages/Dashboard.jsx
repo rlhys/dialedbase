@@ -117,8 +117,8 @@ export default function Dashboard() {
                 </defs>
                 <CartesianGrid stroke="rgba(255,255,255,0.06)" vertical={false} />
                 <XAxis dataKey="label" stroke="rgba(255,255,255,0.35)" fontSize={11} tickLine={false} axisLine={false} />
-                <YAxis stroke="rgba(255,255,255,0.35)" fontSize={11} tickLine={false} axisLine={false} tickFormatter={(v) => `$${v}`} />
-                <Tooltip {...chartTooltip} formatter={(v) => [`$${Number(v).toLocaleString()}`, "Revenue"]} />
+                <YAxis stroke="rgba(255,255,255,0.35)" fontSize={11} tickLine={false} axisLine={false} tickFormatter={(v) => `£${v}`} />
+                <Tooltip {...chartTooltip} formatter={(v) => [`£${Number(v).toLocaleString()}`, "Revenue"]} />
                 <Area type="monotone" dataKey="totalD" stroke="#fff" strokeWidth={2} fill="url(#rev)" />
               </AreaChart>
             </ResponsiveContainer>
@@ -133,8 +133,8 @@ export default function Dashboard() {
               <LineChart data={mrrData} margin={{ left: -16, right: 8, top: 8 }}>
                 <CartesianGrid stroke="rgba(255,255,255,0.06)" vertical={false} />
                 <XAxis dataKey="label" stroke="rgba(255,255,255,0.35)" fontSize={11} tickLine={false} axisLine={false} />
-                <YAxis stroke="rgba(255,255,255,0.35)" fontSize={11} tickLine={false} axisLine={false} tickFormatter={(v) => `$${v}`} />
-                <Tooltip {...chartTooltip} formatter={(v) => [`$${Number(v).toLocaleString()}`, "MRR"]} />
+                <YAxis stroke="rgba(255,255,255,0.35)" fontSize={11} tickLine={false} axisLine={false} tickFormatter={(v) => `£${v}`} />
+                <Tooltip {...chartTooltip} formatter={(v) => [`£${Number(v).toLocaleString()}`, "MRR"]} />
                 <Line type="monotone" dataKey="mrr" stroke="#34d399" strokeWidth={2} dot={false} />
               </LineChart>
             </ResponsiveContainer>
@@ -155,7 +155,7 @@ export default function Dashboard() {
                     <Cell key={i} fill={PIE_COLORS[i]} stroke="none" />
                   ))}
                 </Pie>
-                <Tooltip {...chartTooltip} formatter={(v, n) => [`$${Number(v).toLocaleString()}`, n]} />
+                <Tooltip {...chartTooltip} formatter={(v, n) => [`£${Number(v).toLocaleString()}`, n]} />
               </PieChart>
             </ResponsiveContainer>
           )}
