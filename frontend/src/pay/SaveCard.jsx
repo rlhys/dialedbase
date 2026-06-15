@@ -32,10 +32,11 @@ export default function SaveCard() {
   const [phase, setPhase] = useState("loading"); // loading | ready | submitting | done | error | active
   const [session, setSession] = useState(null);
   const [error, setError] = useState("");
+  const [cardReady, setCardReady] = useState(false);
   const cardRef = useRef(null);
   const containerRef = useRef(null);
 
-  // 1) Load session info, then Square.js + card form.
+  // 1) Load session info first.
   useEffect(() => {
     let cancelled = false;
     (async () => {
@@ -48,17 +49,7 @@ export default function SaveCard() {
         const data = await res.json();
         if (cancelled) return;
         setSession(data);
-        if (data.already_active) {
-          setPhase("active");
-          return;
-        }
-        const Square = await loadSquareJs(SQUARE_JS[data.environment] || SQUARE_JS.production);
-        if (cancelled) return;
-        const payments = Square.payments(data.application_id, data.location_id);
-        const card = await payments.card();
-        await card.attach(containerRef.current);
-        cardRef.current = card;
-        setPhase("ready");
+        setPhase(data.already_active ? "active" : "ready");
       } catch (e) {
         if (!cancelled) {
           setError(e.message || "Something went wrong.");
@@ -70,6 +61,32 @@ export default function SaveCard() {
       cancelled = true;
     };
   }, [token]);
+
+  // 2) Once the form (and its container) is rendered, mount the Square card field.
+  useEffect(() => {
+    if (phase !== "ready" || !session || cardRef.current || !containerRef.current) return;
+    let cancelled = false;
+    (async () => {
+      try {
+        const Square = await loadSquareJs(SQUARE_JS[session.environment] || SQUARE_JS.production);
+        if (cancelled || !containerRef.current) return;
+        const payments = Square.payments(session.application_id, session.location_id);
+        const card = await payments.card();
+        await card.attach(containerRef.current);
+        if (cancelled) return;
+        cardRef.current = card;
+        setCardReady(true);
+      } catch (e) {
+        if (!cancelled) {
+          setError(e.message || "Couldn't load the secure card field.");
+          setPhase("error");
+        }
+      }
+    })();
+    return () => {
+      cancelled = true;
+    };
+  }, [phase, session]);
 
   const submit = async () => {
     if (!cardRef.current) return;
@@ -162,13 +179,20 @@ export default function SaveCard() {
               </p>
             </div>
 
-            <div ref={containerRef} className="rounded-xl border border-white/10 bg-white/5 p-3" />
+            <div className="relative">
+              <div ref={containerRef} className="min-h-[60px] rounded-xl border border-white/10 bg-white/5 p-3" />
+              {!cardReady && (
+                <div className="pointer-events-none absolute inset-0 flex items-center justify-center text-white/40">
+                  <Loader2 className="h-4 w-4 animate-spin" />
+                </div>
+              )}
+            </div>
 
             {error && <p className="mt-3 text-sm text-rose-300">{error}</p>}
 
             <button
               onClick={submit}
-              disabled={phase === "submitting"}
+              disabled={phase === "submitting" || !cardReady}
               className="mt-5 flex w-full items-center justify-center gap-2 rounded-xl bg-white py-3 text-sm font-semibold text-black transition-opacity hover:opacity-90 disabled:opacity-60"
             >
               {phase === "submitting" && <Loader2 className="h-4 w-4 animate-spin" />}
