@@ -2,7 +2,7 @@ import { useState } from "react";
 import { useParams, Link } from "react-router-dom";
 import { useQuery, useMutation, useQueryClient } from "@tanstack/react-query";
 import {
-  ArrowLeft, Loader2, Link2, UserPlus, Repeat, XCircle, Copy, Plus, Check, Mail, Phone, Building2,
+  ArrowLeft, Loader2, Link2, UserPlus, Repeat, XCircle, Copy, Plus, Check, Mail, Phone, Building2, Trash2,
 } from "lucide-react";
 import { toast } from "sonner";
 import api from "@/lib/api";
@@ -37,6 +37,12 @@ export default function ClientDetail() {
       else toast.success("Done");
     },
     onError: (e) => toast.error(e?.response?.data?.detail || "Action failed"),
+  });
+
+  const cancelPayment = useMutation({
+    mutationFn: async (pid) => (await api.delete(`/payments/${pid}`)).data,
+    onSuccess: () => { invalidate(); toast.success("Payment cancelled"); },
+    onError: (e) => toast.error(e?.response?.data?.detail || "Couldn't cancel payment"),
   });
 
   if (isLoading) return <div className="flex justify-center py-20"><Loader2 className="h-6 w-6 animate-spin opacity-50" /></div>;
@@ -176,6 +182,15 @@ export default function ClientDetail() {
                                 Mark paid
                               </button>
                             )}
+                            <button
+                              title="Cancel payment"
+                              onClick={() => {
+                                if (window.confirm("Cancel this payment? It will be removed from the client's record.")) cancelPayment.mutate(p.id);
+                              }}
+                              className="text-white/40 transition-colors hover:text-rose-300"
+                            >
+                              <Trash2 className="h-3.5 w-3.5" />
+                            </button>
                           </div>
                         </td>
                       </tr>
