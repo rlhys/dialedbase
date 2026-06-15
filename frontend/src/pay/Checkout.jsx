@@ -33,7 +33,7 @@ export default function Checkout() {
   const [phase, setPhase] = useState("loading"); // loading | ready | paying | done | error | paid
   const [session, setSession] = useState(null);
   const [error, setError] = useState("");
-  const [cardReady, setCardReady] = useState(false);
+  const [formReady, setFormReady] = useState(false);
   const [wallets, setWallets] = useState({ apple: false, google: false, clearpay: false });
 
   const payments = useRef(null);
@@ -75,12 +75,6 @@ export default function Checkout() {
         const pmts = Square.payments(session.application_id, session.location_id);
         payments.current = pmts;
 
-        // Card
-        const c = await pmts.card();
-        await c.attach(cardBox.current);
-        card.current = c;
-        setCardReady(true);
-
         const paymentRequest = () =>
           pmts.paymentRequest({
             countryCode: session.country || "GB",
@@ -88,29 +82,41 @@ export default function Checkout() {
             total: { amount: amountStr, label: session.business_name || "Total" },
           });
 
-        // Google Pay
-        try {
-          const gp = await pmts.googlePay(paymentRequest());
-          await gp.attach("#gpay-btn", { buttonColor: "white", buttonType: "pay", buttonSizeMode: "fill" });
-          // Square renders Google's button; we handle the click and tokenize.
-          document.getElementById("gpay-btn")?.addEventListener("click", () => onTokenize(gp, false));
-          if (!cancelled) setWallets((w) => ({ ...w, google: true }));
-        } catch { /* not available */ }
+        // Initialize every method concurrently so nothing pops in late.
+        const initCard = (async () => {
+          const c = await pmts.card();
+          await c.attach(cardBox.current);
+          card.current = c;
+        })();
 
-        // Apple Pay (Safari + verified domain only)
-        try {
-          const ap = await pmts.applePay(paymentRequest());
-          applePay.current = ap;
-          if (!cancelled) setWallets((w) => ({ ...w, apple: true }));
-        } catch { /* not available */ }
+        const initGoogle = (async () => {
+          try {
+            const gp = await pmts.googlePay(paymentRequest());
+            await gp.attach("#gpay-btn", { buttonColor: "white", buttonType: "pay", buttonSizeMode: "fill" });
+            document.getElementById("gpay-btn")?.addEventListener("click", () => onTokenize(gp, false));
+            if (!cancelled) setWallets((w) => ({ ...w, google: true }));
+          } catch { /* not available */ }
+        })();
 
-        // Afterpay / Clearpay
-        try {
-          const cp = await pmts.afterpayClearpay(paymentRequest());
-          await cp.attach("#clearpay-btn");
-          document.getElementById("clearpay-btn")?.addEventListener("click", async () => onTokenize(cp, false));
-          if (!cancelled) setWallets((w) => ({ ...w, clearpay: true }));
-        } catch { /* not available / ineligible amount */ }
+        const initApple = (async () => {
+          try {
+            const ap = await pmts.applePay(paymentRequest());
+            applePay.current = ap;
+            if (!cancelled) setWallets((w) => ({ ...w, apple: true }));
+          } catch { /* not available */ }
+        })();
+
+        const initClearpay = (async () => {
+          try {
+            const cp = await pmts.afterpayClearpay(paymentRequest());
+            await cp.attach("#clearpay-btn");
+            document.getElementById("clearpay-btn")?.addEventListener("click", () => onTokenize(cp, false));
+            if (!cancelled) setWallets((w) => ({ ...w, clearpay: true }));
+          } catch { /* not available / ineligible amount */ }
+        })();
+
+        await Promise.allSettled([initCard, initGoogle, initApple, initClearpay]);
+        if (!cancelled) setFormReady(true);
       } catch (e) {
         if (!cancelled) { setError(e.message || "Couldn't load the secure payment form."); setPhase("error"); }
       }
@@ -165,6 +171,13 @@ export default function Checkout() {
 
   return (
     <div className="relative flex min-h-screen items-center justify-center overflow-hidden bg-black px-4 text-white">
+      <style>{`
+        .apple-pay-button {
+          display: block; width: 100%; height: 44px; border-radius: 12px; cursor: pointer;
+          -webkit-appearance: -apple-pay-button; appearance: -apple-pay-button;
+          -apple-pay-button-type: plain; -apple-pay-button-style: white;
+        }
+      `}</style>
       <div className="pointer-events-none absolute inset-0 grid-bg opacity-40" />
       <div className="pointer-events-none absolute left-1/2 top-1/3 h-[420px] w-[420px] -translate-x-1/2 rounded-full bg-white/5 blur-[120px]" />
 
@@ -209,7 +222,7 @@ export default function Checkout() {
             <div className="mb-6 text-center">
               <div className="mx-auto mb-4 flex justify-center"><Logo size="h-14 w-14" /></div>
               <h1 className="text-xl font-semibold tracking-tight">{session?.business_name || "dialedbase"}</h1>
-              <p className="mt-1 text-sm text-white/50 capitalize">
+              <p className="mt-1 text-sm text-white/70 capitalize">
                 {session?.type ? `${session.type} payment` : "Payment"}
               </p>
               <div className="mt-3 text-3xl font-semibold tracking-tight">
@@ -217,49 +230,46 @@ export default function Checkout() {
               </div>
             </div>
 
-            {/* Digital wallets */}
-            {(wallets.apple || wallets.google) && (
-              <div className="mb-4 space-y-2">
-                {wallets.apple && (
-                  <button
-                    onClick={payByApple}
-                    className="flex h-11 w-full items-center justify-center rounded-xl bg-white font-medium text-black hover:opacity-90"
-                  >
-                     Pay
-                  </button>
-                )}
-                <div id="gpay-btn" className={wallets.google ? "h-11 w-full overflow-hidden rounded-xl" : "hidden"} />
-                <div className="flex items-center gap-3 py-1 text-[11px] text-white/30">
-                  <div className="h-px flex-1 bg-white/10" /> or pay by card <div className="h-px flex-1 bg-white/10" />
-                </div>
-              </div>
-            )}
-
-            {/* Card */}
-            <div className="relative">
-              <div ref={cardBox} className="min-h-[60px] rounded-xl border border-white/10 bg-white/5 p-3" />
-              {!cardReady && (
-                <div className="pointer-events-none absolute inset-0 flex items-center justify-center text-white/40">
-                  <Loader2 className="h-4 w-4 animate-spin" />
+            {/* Payment methods — all mounted up front, revealed together once ready */}
+            <div className="relative min-h-[150px]">
+              {!formReady && (
+                <div className="absolute inset-0 flex items-center justify-center text-white/50">
+                  <Loader2 className="h-5 w-5 animate-spin" />
                 </div>
               )}
+              <div className={formReady ? "opacity-100 transition-opacity duration-300" : "opacity-0"}>
+                {/* Apple Pay (official button) */}
+                {wallets.apple && (
+                  <button onClick={payByApple} aria-label="Pay with Apple Pay" className="apple-pay-button mb-2" />
+                )}
+                {/* Google Pay (Square renders the official button into this node) */}
+                <div id="gpay-btn" className={wallets.google ? "mb-2 h-11 w-full overflow-hidden rounded-xl" : ""} />
+
+                {(wallets.apple || wallets.google) && (
+                  <div className="mb-3 flex items-center gap-3 text-[11px] text-white/45">
+                    <div className="h-px flex-1 bg-white/10" /> or pay by card <div className="h-px flex-1 bg-white/10" />
+                  </div>
+                )}
+
+                <div ref={cardBox} className="min-h-[60px] rounded-xl border border-white/10 bg-white/5 p-3" />
+
+                {error && <p className="mt-3 text-sm text-rose-300">{error}</p>}
+
+                <button
+                  onClick={payByCard}
+                  disabled={phase === "paying" || !formReady}
+                  className="mt-4 flex w-full items-center justify-center gap-2 rounded-xl bg-white py-3 text-sm font-semibold text-black transition-opacity hover:opacity-90 disabled:opacity-60"
+                >
+                  {phase === "paying" && <Loader2 className="h-4 w-4 animate-spin" />}
+                  {phase === "paying" ? "Processing…" : `Pay ${formatMoney(session?.amount, session?.currency)}`}
+                </button>
+
+                {/* Clearpay / Afterpay (Square renders the official button here) */}
+                <div id="clearpay-btn" className={wallets.clearpay ? "mt-3" : ""} />
+              </div>
             </div>
 
-            {error && <p className="mt-3 text-sm text-rose-300">{error}</p>}
-
-            <button
-              onClick={payByCard}
-              disabled={phase === "paying" || !cardReady}
-              className="mt-5 flex w-full items-center justify-center gap-2 rounded-xl bg-white py-3 text-sm font-semibold text-black transition-opacity hover:opacity-90 disabled:opacity-60"
-            >
-              {phase === "paying" && <Loader2 className="h-4 w-4 animate-spin" />}
-              {phase === "paying" ? "Processing…" : `Pay ${formatMoney(session?.amount, session?.currency)}`}
-            </button>
-
-            {/* Clearpay / Afterpay */}
-            <div id="clearpay-btn" className={wallets.clearpay ? "mt-3" : "hidden"} />
-
-            <p className="mt-4 flex items-center justify-center gap-1.5 text-[11px] text-white/35">
+            <p className="mt-4 flex items-center justify-center gap-1.5 text-[11px] text-white/55">
               <Lock className="h-3 w-3" /> Secure payment processed by Square.
             </p>
           </>
