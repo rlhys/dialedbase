@@ -178,6 +178,41 @@ async def list_subscription_plan_variations() -> list[dict]:
         raise SquareError(str(exc))
 
 
+async def create_payment(
+    *,
+    source_id: str,
+    amount: int,
+    currency: str,
+    customer_id: str | None = None,
+    note: str | None = None,
+    reference_id: str | None = None,
+    verification_token: str | None = None,
+    idempotency_seed: str | None = None,
+) -> dict:
+    """Charge a tokenized source (card / wallet / Clearpay) via Square Payments.
+    Returns the created payment dict (id, order_id, status, ...)."""
+    client = get_square()
+    kwargs = dict(
+        source_id=source_id,
+        idempotency_key=_idempotency_key(idempotency_seed),
+        amount_money={"amount": amount, "currency": currency},
+        location_id=settings.SQUARE_LOCATION_ID,
+    )
+    if customer_id:
+        kwargs["customer_id"] = customer_id
+    if note:
+        kwargs["note"] = note
+    if reference_id:
+        kwargs["reference_id"] = reference_id
+    if verification_token:
+        kwargs["verification_token"] = verification_token
+    try:
+        resp = await client.payments.create(**kwargs)
+        return _as_dict(getattr(resp, "payment", None)) or {}
+    except Exception as exc:
+        raise SquareError(str(exc))
+
+
 async def create_card_on_file(*, customer_id: str, source_id: str) -> dict:
     """Save a tokenized card (source_id/nonce from Web Payments SDK) on file
     for a customer. Returns the created card (incl. its id) as a dict."""

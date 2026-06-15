@@ -1,9 +1,10 @@
 import { useEffect, useRef, useState } from "react";
 import { useParams } from "react-router-dom";
 import { motion } from "framer-motion";
-import { Loader2, CheckCircle2, ShieldCheck, Lock } from "lucide-react";
+import { Loader2, CheckCircle2, Lock } from "lucide-react";
 import { API_BASE } from "@/lib/api";
 import { formatMoney } from "@/lib/format";
+import Logo from "@/components/Logo";
 
 const SQUARE_JS = {
   production: "https://web.squarecdn.com/v1/square.js",
@@ -168,8 +169,8 @@ export default function SaveCard() {
         {(phase === "ready" || phase === "submitting") && (
           <>
             <div className="mb-6 text-center">
-              <div className="mx-auto mb-4 flex h-12 w-12 items-center justify-center rounded-2xl bg-white text-black">
-                <ShieldCheck className="h-5 w-5" />
+              <div className="mx-auto mb-4 flex justify-center">
+                <Logo size="h-14 w-14" />
               </div>
               <h1 className="text-xl font-semibold tracking-tight">{session?.business_name || "dialedbase"}</h1>
               <p className="mt-1 text-sm text-white/50">

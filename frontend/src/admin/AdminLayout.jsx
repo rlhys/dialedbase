@@ -10,6 +10,7 @@ import {
 } from "lucide-react";
 import { useAuth } from "@/context/AuthContext";
 import { cn } from "@/lib/utils";
+import Logo from "@/components/Logo";
 
 const NAV = [
   { to: "/admin", label: "Dashboard", icon: LayoutDashboard, end: true },
@@ -34,10 +35,7 @@ export default function AdminLayout() {
         {/* Sidebar */}
         <aside className="sticky top-0 hidden h-screen w-64 shrink-0 flex-col border-r border-white/10 bg-black/60 p-5 backdrop-blur-xl md:flex">
           <div className="mb-8 flex items-center gap-2 px-2">
-            <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-white text-black font-bold">
-              d
-            </div>
-            <span className="text-lg font-semibold tracking-tight">dialedbase</span>
+            <Logo size="h-8 w-8" wordmark wordmarkClass="text-lg" />
             <span className="ml-1 rounded bg-white/10 px-1.5 py-0.5 text-[10px] font-medium uppercase tracking-wider text-white/60">
               admin
             </span>
@@ -87,7 +85,7 @@ export default function AdminLayout() {
         {/* Mobile top bar */}
         <div className="flex flex-1 flex-col">
           <header className="sticky top-0 z-20 flex items-center justify-between border-b border-white/10 bg-black/70 px-4 py-3 backdrop-blur-xl md:hidden">
-            <span className="font-semibold">dialedbase admin</span>
+            <Logo size="h-7 w-7" wordmark wordmarkClass="text-sm" />
             <button onClick={handleLogout} className="text-white/60">
               <LogOut className="h-5 w-5" />
             </button>

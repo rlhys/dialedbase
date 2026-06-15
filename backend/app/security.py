@@ -57,6 +57,20 @@ def verify_card_session_token(token: str) -> str:
     return payload["sub"]
 
 
+def create_checkout_token(payment_id: str, days_valid: int = 30) -> str:
+    expires_at = datetime.now(timezone.utc) + timedelta(days=days_valid)
+    payload = {"sub": payment_id, "purpose": "checkout", "exp": expires_at}
+    return jwt.encode(payload, settings.JWT_SECRET, algorithm=settings.JWT_ALGORITHM)
+
+
+def verify_checkout_token(token: str) -> str:
+    """Return the payment_id for a valid checkout token, else raise JWTError."""
+    payload = jwt.decode(token, settings.JWT_SECRET, algorithms=[settings.JWT_ALGORITHM])
+    if payload.get("purpose") != "checkout" or not payload.get("sub"):
+        raise JWTError("invalid checkout token")
+    return payload["sub"]
+
+
 # --- Dependency ---
 async def get_current_admin(
     creds: HTTPAuthorizationCredentials | None = Depends(_bearer),

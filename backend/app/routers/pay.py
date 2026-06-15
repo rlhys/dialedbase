@@ -15,7 +15,7 @@ from ..db import db
 from ..models.common import PaymentSource, PaymentStatus, PaymentType, utcnow
 from ..models.payment import Payment
 from ..models.subscription import Subscription
-from ..security import verify_card_session_token
+from ..security import verify_card_session_token, verify_checkout_token
 from ..serialize import to_doc
 from ..services import square_client as sq
 
@@ -26,6 +26,11 @@ router = APIRouter(prefix="/pay", tags=["pay"])
 
 class SaveCardBody(BaseModel):
     source_id: str  # nonce from the Web Payments SDK
+
+
+class CheckoutBody(BaseModel):
+    source_id: str
+    verification_token: str | None = None  # 3DS / SCA buyer verification
 
 
 async def _client_from_token(token: str) -> dict:
@@ -56,6 +61,78 @@ async def card_session(token: str):
         "location_id": settings.SQUARE_LOCATION_ID,
         "environment": settings.SQUARE_ENVIRONMENT,
     }
+
+
+async def _payment_from_token(token: str) -> dict:
+    try:
+        payment_id = verify_checkout_token(token)
+    except JWTError:
+        raise HTTPException(status.HTTP_401_UNAUTHORIZED, "This payment link is invalid or has expired")
+    doc = await db.payments.find_one({"id": payment_id}, {"_id": 0})
+    if not doc:
+        raise HTTPException(status.HTTP_404_NOT_FOUND, "Payment not found")
+    return doc
+
+
+@router.get("/checkout-session/{token}")
+async def checkout_session(token: str):
+    """Public config + display info for the branded checkout page."""
+    payment = await _payment_from_token(token)
+    if not settings.SQUARE_APPLICATION_ID:
+        raise HTTPException(status.HTTP_503_SERVICE_UNAVAILABLE, "Payments are not configured yet")
+    client = await db.clients.find_one({"id": payment["client_id"]}, {"_id": 0}) or {}
+    settings_doc = await db.app_settings.find_one({"id": "singleton"}, {"_id": 0}) or {}
+    return {
+        "amount": payment.get("amount", 0),
+        "currency": payment.get("currency", "GBP"),
+        "type": payment.get("type"),
+        "status": payment.get("status"),
+        "note": payment.get("note"),
+        "client_name": client.get("name"),
+        "business_name": settings_doc.get("business_name", "dialedbase"),
+        "application_id": settings.SQUARE_APPLICATION_ID,
+        "location_id": settings.SQUARE_LOCATION_ID,
+        "environment": settings.SQUARE_ENVIRONMENT,
+        "country": "GB",
+    }
+
+
+@router.post("/checkout/{token}")
+async def checkout_pay(token: str, body: CheckoutBody):
+    """Charge a tokenized source (card / Google Pay / Apple Pay / Clearpay)
+    via Square and mark the payment paid."""
+    payment = await _payment_from_token(token)
+    if payment.get("status") == PaymentStatus.paid.value:
+        return {"ok": True, "already_paid": True}
+
+    client = await db.clients.find_one({"id": payment["client_id"]}, {"_id": 0}) or {}
+    try:
+        result = await sq.create_payment(
+            source_id=body.source_id,
+            amount=payment["amount"],
+            currency=payment.get("currency", "GBP"),
+            customer_id=client.get("square_customer_id"),
+            note=f"{payment.get('type', 'payment').title()} — {client.get('name', '')}".strip(" —"),
+            reference_id=payment["id"],
+            verification_token=body.verification_token,
+            idempotency_seed=payment["id"],
+        )
+    except sq.SquareError as exc:
+        raise HTTPException(status.HTTP_402_PAYMENT_REQUIRED, f"Payment failed: {exc}")
+
+    pstatus = (result.get("status") or "").upper()
+    paid = pstatus in ("COMPLETED", "APPROVED")
+    await db.payments.update_one(
+        {"id": payment["id"]},
+        {"$set": {
+            "status": PaymentStatus.paid.value if paid else PaymentStatus.pending.value,
+            "paid_at": utcnow() if paid else None,
+            "square_payment_id": result.get("id"),
+            "square_order_id": result.get("order_id"),
+            "updated_at": utcnow(),
+        }},
+    )
+    return {"ok": True, "paid": paid, "status": pstatus}
 
 
 @router.post("/save-card/{token}")

@@ -28,6 +28,7 @@ import ClientDetail from "./admin/pages/ClientDetail";
 import Payments from "./admin/pages/Payments";
 import Settings from "./admin/pages/Settings";
 import SaveCard from "./pay/SaveCard";
+import Checkout from "./pay/Checkout";
 
 const Home = () => (
   <>
@@ -114,6 +115,7 @@ const AdminRoutes = () => (
 const PayRoutes = () => (
   <Routes>
     <Route path="/pay/save-card/:token" element={<SaveCard />} />
+    <Route path="/pay/checkout/:token" element={<Checkout />} />
   </Routes>
 );
 

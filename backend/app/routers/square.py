@@ -8,7 +8,7 @@ from ..db import db
 from ..models.common import PaymentSource, PaymentStatus, PaymentType, utcnow
 from ..models.payment import Payment
 from ..models.subscription import Subscription
-from ..security import create_card_session_token, get_current_admin
+from ..security import create_card_session_token, create_checkout_token, get_current_admin
 from ..serialize import to_doc
 from ..services import square_client as sq
 
@@ -79,13 +79,14 @@ async def create_save_card_link(client_id: str):
 
 @router.post("/clients/{client_id}/deposit-link")
 async def create_deposit_link(client_id: str):
+    """Create a pending deposit and return a branded on-site checkout link
+    (hosted at /pay/checkout/... on dialedbase.com, processed by Square)."""
     client = await _get_client_or_404(client_id)
     amount = client.get("deposit_amount", 0)
     if amount <= 0:
         raise HTTPException(status.HTTP_400_BAD_REQUEST, "Client has no deposit amount set")
-    currency = client.get("currency", "USD")
+    currency = client.get("currency", "GBP")
 
-    # Persist a pending deposit payment up front so its id seeds idempotency.
     payment = Payment(
         client_id=client_id,
         type=PaymentType.deposit,
@@ -94,23 +95,29 @@ async def create_deposit_link(client_id: str):
         status=PaymentStatus.pending,
         due_date=utcnow(),
         source=PaymentSource.square_link,
-        note="Deposit payment link",
+        note="Deposit",
     )
-    try:
-        link = await sq.create_deposit_link(
-            name=f"{client['name']} — Deposit",
-            amount=amount,
-            currency=currency,
-            payment_id=payment.id,
-        )
-    except Exception as exc:
-        raise _sq_error(exc)
-
-    payment.square_payment_link_id = link.get("id")
-    payment.square_payment_link_url = link.get("url")
-    payment.square_order_id = link.get("order_id")
+    token = create_checkout_token(payment.id)
+    url = f"{settings.PUBLIC_BASE_URL}/pay/checkout/{token}"
+    payment.square_payment_link_url = url
     await db.payments.insert_one(to_doc(payment))
-    return {"payment_id": payment.id, "url": link.get("url"), "square_order_id": link.get("order_id")}
+    return {"payment_id": payment.id, "url": url}
+
+
+@router.post("/payments/{payment_id}/checkout-link")
+async def payment_checkout_link(payment_id: str):
+    """Return a branded checkout link for an existing pending payment (resend)."""
+    doc = await db.payments.find_one({"id": payment_id}, {"_id": 0})
+    if not doc:
+        raise HTTPException(status.HTTP_404_NOT_FOUND, "Payment not found")
+    if doc.get("status") == PaymentStatus.paid.value:
+        raise HTTPException(status.HTTP_400_BAD_REQUEST, "Payment is already paid")
+    token = create_checkout_token(payment_id)
+    url = f"{settings.PUBLIC_BASE_URL}/pay/checkout/{token}"
+    await db.payments.update_one(
+        {"id": payment_id}, {"$set": {"square_payment_link_url": url, "updated_at": utcnow()}}
+    )
+    return {"payment_id": payment_id, "url": url}
 
 
 @router.post("/clients/{client_id}/subscription")

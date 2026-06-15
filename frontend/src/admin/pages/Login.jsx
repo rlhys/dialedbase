@@ -1,10 +1,11 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { motion } from "framer-motion";
-import { Loader2, Lock } from "lucide-react";
+import { Loader2 } from "lucide-react";
 import { toast } from "sonner";
 import { useAuth } from "@/context/AuthContext";
 import { LOGIN } from "@/constants/testIds/auth";
+import Logo from "@/components/Logo";
 
 export default function Login() {
   const { login } = useAuth();
@@ -40,10 +41,8 @@ export default function Login() {
         className="glass-strong relative w-full max-w-sm rounded-3xl p-8"
       >
         <div className="mb-7 flex flex-col items-center text-center">
-          <div className="mb-4 flex h-12 w-12 items-center justify-center rounded-2xl bg-white text-black">
-            <Lock className="h-5 w-5" />
-          </div>
-          <h1 className="text-xl font-semibold tracking-tight">dialedbase admin</h1>
+          <Logo size="h-14 w-14" />
+          <h1 className="mt-4 text-xl font-semibold tracking-tight">dialedbase admin</h1>
           <p className="mt-1 text-sm text-white/45">Sign in to manage clients & revenue</p>
         </div>
 
