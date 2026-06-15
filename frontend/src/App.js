@@ -27,6 +27,7 @@ import Clients from "./admin/pages/Clients";
 import ClientDetail from "./admin/pages/ClientDetail";
 import Payments from "./admin/pages/Payments";
 import Settings from "./admin/pages/Settings";
+import SaveCard from "./pay/SaveCard";
 
 const Home = () => (
   <>
@@ -110,9 +111,17 @@ const AdminRoutes = () => (
   </Routes>
 );
 
+const PayRoutes = () => (
+  <Routes>
+    <Route path="/pay/save-card/:token" element={<SaveCard />} />
+  </Routes>
+);
+
 const AppRoutes = () => {
   const { pathname } = useLocation();
-  return pathname.startsWith("/admin") ? <AdminRoutes /> : <PublicShell />;
+  if (pathname.startsWith("/admin")) return <AdminRoutes />;
+  if (pathname.startsWith("/pay")) return <PayRoutes />;
+  return <PublicShell />;
 };
 
 function App() {

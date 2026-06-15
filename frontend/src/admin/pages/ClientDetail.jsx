@@ -109,15 +109,22 @@ export default function ClientDetail() {
                 </button>
               ) : (
                 <button
-                  onClick={() => action.mutate({ url: `/square/clients/${id}/subscription`, onDone: () => toast.success("Subscription started") })}
-                  disabled={action.isPending || !client.square_customer_id}
-                  className="flex w-full items-center justify-center gap-2 rounded-lg border border-white/15 py-2 text-sm hover:bg-white/5 disabled:opacity-50"
+                  onClick={() =>
+                    action.mutate({
+                      url: `/square/clients/${id}/save-card-link`,
+                      onDone: (d) => {
+                        if (d.url) { navigator.clipboard?.writeText(d.url); toast.success("Subscription link copied — send it to your client"); }
+                      },
+                    })
+                  }
+                  disabled={action.isPending || !client.monthly_recurring_amount}
+                  className="flex w-full items-center justify-center gap-2 rounded-lg bg-white/10 py-2 text-sm font-medium hover:bg-white/15 disabled:opacity-50"
                 >
-                  <Repeat className="h-4 w-4" /> Start monthly subscription
+                  <Repeat className="h-4 w-4" /> Create subscription link
                 </button>
               )}
               <p className="text-[11px] leading-relaxed text-white/35">
-                Subscriptions auto-charge a card on file. Create the Square customer and have the client add a card before starting.
+                Sends the client a secure link to add their card once. After that, their monthly plan auto-charges every month — nothing more for you to do.
               </p>
             </div>
           </ChartCard>

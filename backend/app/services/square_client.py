@@ -178,6 +178,21 @@ async def list_subscription_plan_variations() -> list[dict]:
         raise SquareError(str(exc))
 
 
+async def create_card_on_file(*, customer_id: str, source_id: str) -> dict:
+    """Save a tokenized card (source_id/nonce from Web Payments SDK) on file
+    for a customer. Returns the created card (incl. its id) as a dict."""
+    client = get_square()
+    try:
+        resp = await client.cards.create(
+            idempotency_key=_idempotency_key(),
+            source_id=source_id,
+            card={"customer_id": customer_id},
+        )
+        return _as_dict(getattr(resp, "card", None)) or {}
+    except Exception as exc:
+        raise SquareError(str(exc))
+
+
 async def cancel_subscription(*, subscription_id: str) -> dict:
     client = get_square()
     try:

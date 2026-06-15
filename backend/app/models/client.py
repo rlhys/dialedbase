@@ -44,6 +44,7 @@ class Client(ClientBase):
     id: str = Field(default_factory=new_id)
     square_customer_id: str | None = None
     square_subscription_id: str | None = None
+    square_card_id: str | None = None
     created_at: datetime = Field(default_factory=utcnow)
     updated_at: datetime = Field(default_factory=utcnow)
 

@@ -19,6 +19,7 @@ from app.routers import (
     auth,
     clients,
     dashboard,
+    pay,
     payments,
     settings_router,
     square,
@@ -87,6 +88,7 @@ api_router.include_router(clients.router)
 api_router.include_router(payments.router)
 api_router.include_router(dashboard.router)
 api_router.include_router(square.router)
+api_router.include_router(pay.router)
 api_router.include_router(webhooks.router)
 api_router.include_router(settings_router.router)
 

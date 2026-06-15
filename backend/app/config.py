@@ -33,7 +33,9 @@ class Settings(BaseSettings):
     # --- Square ---
     SQUARE_ACCESS_TOKEN: str = ""
     SQUARE_ENVIRONMENT: str = "sandbox"  # sandbox | production
+    SQUARE_APPLICATION_ID: str = ""  # public app id (sq0idp-...) for Web Payments SDK
     SQUARE_LOCATION_ID: str = ""
+    PUBLIC_BASE_URL: str = "https://www.dialedbase.com"  # for building client-facing links
     SQUARE_WEBHOOK_SIGNATURE_KEY: str = ""
     SQUARE_WEBHOOK_NOTIFICATION_URL: str = ""
     SQUARE_DEFAULT_PLAN_VARIATION_ID: str = ""  # optional shared monthly plan variation

@@ -8,7 +8,7 @@ from ..db import db
 from ..models.common import PaymentSource, PaymentStatus, PaymentType, utcnow
 from ..models.payment import Payment
 from ..models.subscription import Subscription
-from ..security import get_current_admin
+from ..security import create_card_session_token, get_current_admin
 from ..serialize import to_doc
 from ..services import square_client as sq
 
@@ -53,6 +53,28 @@ async def create_square_customer(client_id: str):
         {"id": client_id}, {"$set": {"square_customer_id": cid, "updated_at": utcnow()}}
     )
     return {"square_customer_id": cid, "already_linked": False}
+
+
+@router.post("/clients/{client_id}/save-card-link")
+async def create_save_card_link(client_id: str):
+    """Generate a client-facing link where they enter their card once.
+    Saving the card auto-starts their monthly subscription."""
+    client = await _get_client_or_404(client_id)
+    # Ensure a Square customer exists so the card can be attached.
+    customer_id = client.get("square_customer_id")
+    if not customer_id:
+        try:
+            customer_id = await sq.create_customer(
+                name=client["name"], email=client.get("email"), phone=client.get("phone")
+            )
+        except Exception as exc:
+            raise _sq_error(exc)
+        await db.clients.update_one(
+            {"id": client_id}, {"$set": {"square_customer_id": customer_id, "updated_at": utcnow()}}
+        )
+    token = create_card_session_token(client_id)
+    url = f"{settings.PUBLIC_BASE_URL}/pay/save-card/{token}"
+    return {"url": url, "token": token}
 
 
 @router.post("/clients/{client_id}/deposit-link")

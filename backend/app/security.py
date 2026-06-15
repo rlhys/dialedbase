@@ -42,6 +42,21 @@ def decode_token(token: str) -> dict:
     return jwt.decode(token, settings.JWT_SECRET, algorithms=[settings.JWT_ALGORITHM])
 
 
+# --- Client-facing card-capture links (no admin login) ---
+def create_card_session_token(client_id: str, days_valid: int = 14) -> str:
+    expires_at = datetime.now(timezone.utc) + timedelta(days=days_valid)
+    payload = {"sub": client_id, "purpose": "save_card", "exp": expires_at}
+    return jwt.encode(payload, settings.JWT_SECRET, algorithm=settings.JWT_ALGORITHM)
+
+
+def verify_card_session_token(token: str) -> str:
+    """Return the client_id for a valid save-card token, else raise JWTError."""
+    payload = jwt.decode(token, settings.JWT_SECRET, algorithms=[settings.JWT_ALGORITHM])
+    if payload.get("purpose") != "save_card" or not payload.get("sub"):
+        raise JWTError("invalid card session token")
+    return payload["sub"]
+
+
 # --- Dependency ---
 async def get_current_admin(
     creds: HTTPAuthorizationCredentials | None = Depends(_bearer),
