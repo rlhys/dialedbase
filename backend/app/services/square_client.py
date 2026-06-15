@@ -129,19 +129,51 @@ async def create_deposit_link(*, name: str, amount: int, currency: str, payment_
 
 
 async def create_subscription(
-    *, customer_id: str, plan_variation_id: str, amount: int, currency: str
+    *,
+    customer_id: str,
+    plan_variation_id: str,
+    amount: int,
+    currency: str,
+    card_id: str | None = None,
 ) -> dict:
-    """Create a Square subscription for monthly recurring billing."""
+    """Create a Square subscription for monthly recurring billing.
+
+    Uses price_override_money so a single shared plan variation can bill each
+    client their own monthly rate. If a card_id is supplied the subscription
+    auto-charges that card; otherwise Square emails an invoice each cycle.
+    """
     client = get_square()
+    kwargs = dict(
+        idempotency_key=_idempotency_key(),
+        location_id=settings.SQUARE_LOCATION_ID,
+        plan_variation_id=plan_variation_id,
+        customer_id=customer_id,
+    )
+    if amount and amount > 0:
+        kwargs["price_override_money"] = {"amount": amount, "currency": currency}
+    if card_id:
+        kwargs["card_id"] = card_id
     try:
-        resp = await client.subscriptions.create(
-            idempotency_key=_idempotency_key(),
-            location_id=settings.SQUARE_LOCATION_ID,
-            plan_variation_id=plan_variation_id,
-            customer_id=customer_id,
-        )
+        resp = await client.subscriptions.create(**kwargs)
         sub = _as_dict(getattr(resp, "subscription", None)) or {}
         return sub
+    except Exception as exc:
+        raise SquareError(str(exc))
+
+
+async def list_subscription_plan_variations() -> list[dict]:
+    """List Catalog subscription plan variations (id + name + price) so the
+    admin can discover the plan variation id to configure."""
+    client = get_square()
+    out: list[dict] = []
+    try:
+        resp = await client.catalog.list(types="SUBSCRIPTION_PLAN_VARIATION")
+        items = getattr(resp, "items", None) or getattr(resp, "objects", None) or []
+        for obj in items:
+            d = _as_dict(obj) or {}
+            data = d.get("subscription_plan_variation_data") or {}
+            out.append({"id": d.get("id"), "name": data.get("name")})
+        return out
     except Exception as exc:
         raise SquareError(str(exc))
 
