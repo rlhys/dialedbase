@@ -106,28 +106,6 @@ async def create_customer(*, name: str, email: str | None, phone: str | None) ->
         raise SquareError(str(exc))
 
 
-async def create_deposit_link(*, name: str, amount: int, currency: str, payment_id: str) -> dict:
-    """Create a one-time hosted Checkout Payment Link for a deposit."""
-    client = get_square()
-    try:
-        resp = await client.checkout.payment_links.create(
-            idempotency_key=_idempotency_key(payment_id),
-            quick_pay={
-                "name": name,
-                "price_money": {"amount": amount, "currency": currency},
-                "location_id": settings.SQUARE_LOCATION_ID,
-            },
-        )
-        link = _as_dict(getattr(resp, "payment_link", None)) or {}
-        return {
-            "url": link.get("url") or link.get("long_url"),
-            "id": link.get("id"),
-            "order_id": link.get("order_id"),
-        }
-    except Exception as exc:
-        raise SquareError(str(exc))
-
-
 async def create_subscription(
     *,
     customer_id: str,
@@ -157,23 +135,6 @@ async def create_subscription(
         resp = await client.subscriptions.create(**kwargs)
         sub = _as_dict(getattr(resp, "subscription", None)) or {}
         return sub
-    except Exception as exc:
-        raise SquareError(str(exc))
-
-
-async def list_subscription_plan_variations() -> list[dict]:
-    """List Catalog subscription plan variations (id + name + price) so the
-    admin can discover the plan variation id to configure."""
-    client = get_square()
-    out: list[dict] = []
-    try:
-        resp = await client.catalog.list(types="SUBSCRIPTION_PLAN_VARIATION")
-        items = getattr(resp, "items", None) or getattr(resp, "objects", None) or []
-        for obj in items:
-            d = _as_dict(obj) or {}
-            data = d.get("subscription_plan_variation_data") or {}
-            out.append({"id": d.get("id"), "name": data.get("name")})
-        return out
     except Exception as exc:
         raise SquareError(str(exc))
 

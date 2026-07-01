@@ -1,4 +1,5 @@
 """Clients (CRM) router — protected."""
+import re
 from datetime import datetime, timezone
 
 from fastapi import APIRouter, Depends, HTTPException, Query, status
@@ -68,10 +69,12 @@ async def list_clients(
     if status_filter:
         query["status"] = status_filter.value
     if search:
+        # Escape so the input is matched literally (no regex/ReDoS surprises).
+        safe = re.escape(search[:100])
         query["$or"] = [
-            {"name": {"$regex": search, "$options": "i"}},
-            {"company": {"$regex": search, "$options": "i"}},
-            {"email": {"$regex": search, "$options": "i"}},
+            {"name": {"$regex": safe, "$options": "i"}},
+            {"company": {"$regex": safe, "$options": "i"}},
+            {"email": {"$regex": safe, "$options": "i"}},
         ]
     docs = await db.clients.find(query, {"_id": 0}).sort("created_at", DESCENDING).skip(skip).limit(limit).to_list(limit)
     rollups = await _payment_rollup([d["id"] for d in docs])
