@@ -11,7 +11,7 @@ import { cn } from "@/lib/utils";
 const STATUSES = ["lead", "active", "paused", "churned"];
 const empty = {
   name: "", company: "", email: "", phone: "", status: "lead",
-  project_description: "", notes: "", deposit_amount: "", monthly_recurring_amount: "",
+  project_description: "", notes: "", total_amount: "", deposit_amount: "", monthly_recurring_amount: "",
 };
 
 export default function Clients() {
@@ -162,6 +162,7 @@ function ClientDialog({ mode, client, onClose, onSubmit, saving }) {
     status: client.status || "lead",
     project_description: client.project_description || "",
     notes: client.notes || "",
+    total_amount: client.total_amount != null ? centsToDollars(client.total_amount) : "",
     deposit_amount: client.deposit_amount != null ? centsToDollars(client.deposit_amount) : "",
     monthly_recurring_amount:
       client.monthly_recurring_amount != null ? centsToDollars(client.monthly_recurring_amount) : "",
@@ -178,6 +179,7 @@ function ClientDialog({ mode, client, onClose, onSubmit, saving }) {
       status: form.status,
       project_description: form.project_description || null,
       notes: form.notes || null,
+      total_amount: dollarsToCents(form.total_amount),
       deposit_amount: dollarsToCents(form.deposit_amount),
       monthly_recurring_amount: dollarsToCents(form.monthly_recurring_amount),
     });
@@ -199,15 +201,21 @@ function ClientDialog({ mode, client, onClose, onSubmit, saving }) {
             <Field label="Email"><input type="email" required value={form.email} onChange={set("email")} className={inputCls} /></Field>
             <Field label="Phone"><input value={form.phone} onChange={set("phone")} className={inputCls} /></Field>
           </div>
+          <Field label="Status">
+            <select value={form.status} onChange={set("status")} className={cn(inputCls, "capitalize")}>
+              {STATUSES.map((s) => <option key={s} value={s} className="bg-neutral-900">{s}</option>)}
+            </select>
+          </Field>
           <div className="grid grid-cols-3 gap-4">
-            <Field label="Status">
-              <select value={form.status} onChange={set("status")} className={cn(inputCls, "capitalize")}>
-                {STATUSES.map((s) => <option key={s} value={s} className="bg-neutral-900">{s}</option>)}
-              </select>
-            </Field>
+            <Field label="Full price (£)"><input type="number" min="0" step="0.01" value={form.total_amount} onChange={set("total_amount")} className={inputCls} /></Field>
             <Field label="Deposit (£)"><input type="number" min="0" step="0.01" value={form.deposit_amount} onChange={set("deposit_amount")} className={inputCls} /></Field>
             <Field label="Monthly (£)"><input type="number" min="0" step="0.01" value={form.monthly_recurring_amount} onChange={set("monthly_recurring_amount")} className={inputCls} /></Field>
           </div>
+          {form.total_amount && form.deposit_amount && Number(form.total_amount) > Number(form.deposit_amount) && (
+            <p className="-mt-1 text-xs text-white/40">
+              Balance after deposit: £{(Number(form.total_amount) - Number(form.deposit_amount)).toFixed(2)}
+            </p>
+          )}
           <Field label="Project"><input value={form.project_description} onChange={set("project_description")} className={inputCls} placeholder="What you're building for them" /></Field>
           <Field label="Notes"><textarea rows={3} value={form.notes} onChange={set("notes")} className={inputCls} /></Field>
 

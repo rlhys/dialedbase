@@ -104,6 +104,37 @@ async def create_deposit_link(client_id: str):
     return {"payment_id": payment.id, "url": url}
 
 
+@router.post("/clients/{client_id}/final-link")
+async def create_final_link(client_id: str):
+    """Create a pending balance/final payment (full price - deposit) and return
+    a branded on-site checkout link. Taken after the site goes live."""
+    client = await _get_client_or_404(client_id)
+    total = client.get("total_amount", 0)
+    deposit = client.get("deposit_amount", 0)
+    balance = total - deposit
+    if total <= 0:
+        raise HTTPException(status.HTTP_400_BAD_REQUEST, "Set the client's full project price first")
+    if balance <= 0:
+        raise HTTPException(status.HTTP_400_BAD_REQUEST, "Balance is zero (deposit covers the full price)")
+    currency = client.get("currency", "GBP")
+
+    payment = Payment(
+        client_id=client_id,
+        type=PaymentType.final,
+        amount=balance,
+        currency=currency,
+        status=PaymentStatus.pending,
+        due_date=utcnow(),
+        source=PaymentSource.square_link,
+        note="Final balance",
+    )
+    token = create_checkout_token(payment.id)
+    url = f"{settings.PUBLIC_BASE_URL}/pay/checkout/{token}"
+    payment.square_payment_link_url = url
+    await db.payments.insert_one(to_doc(payment))
+    return {"payment_id": payment.id, "url": url, "amount": balance}
+
+
 @router.post("/payments/{payment_id}/checkout-link")
 async def payment_checkout_link(payment_id: str):
     """Return a branded checkout link for an existing pending payment (resend)."""

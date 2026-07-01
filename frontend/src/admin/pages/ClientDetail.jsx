@@ -66,7 +66,9 @@ export default function ClientDetail() {
               <Info icon={Mail} label="Email" value={client.email} />
               <Info icon={Phone} label="Phone" value={client.phone || "—"} />
               <Info icon={Building2} label="Company" value={client.company || "—"} />
-              <div className="flex justify-between border-t border-white/5 pt-3"><span className="text-white/45">Deposit</span><span>{formatMoney(client.deposit_amount, client.currency)}</span></div>
+              <div className="flex justify-between border-t border-white/5 pt-3"><span className="text-white/45">Full price</span><span>{formatMoney(client.total_amount, client.currency)}</span></div>
+              <div className="flex justify-between"><span className="text-white/45">Deposit</span><span>{formatMoney(client.deposit_amount, client.currency)}</span></div>
+              <div className="flex justify-between"><span className="text-white/45">Balance</span><span>{formatMoney(Math.max(0, (client.total_amount || 0) - (client.deposit_amount || 0)), client.currency)}</span></div>
               <div className="flex justify-between"><span className="text-white/45">Monthly</span><span>{formatMoney(client.monthly_recurring_amount, client.currency)}/mo</span></div>
               <div className="flex justify-between"><span className="text-white/45">Outstanding</span><span className={client.overdue_count > 0 ? "text-rose-300" : ""}>{formatMoney(client.outstanding_balance, client.currency)}</span></div>
               <div className="flex justify-between"><span className="text-white/45">Paid to date</span><span className="text-emerald-300">{formatMoney(client.paid_total, client.currency)}</span></div>
@@ -104,6 +106,21 @@ export default function ClientDetail() {
                 className="flex w-full items-center justify-center gap-2 rounded-lg bg-white/10 py-2 text-sm font-medium hover:bg-white/15 disabled:opacity-50"
               >
                 <Link2 className="h-4 w-4" /> Create deposit link
+              </button>
+
+              <button
+                onClick={() =>
+                  action.mutate({
+                    url: `/square/clients/${id}/final-link`,
+                    onDone: (d) => {
+                      if (d.url) { navigator.clipboard?.writeText(d.url); toast.success("Final payment link copied"); }
+                    },
+                  })
+                }
+                disabled={action.isPending || !client.total_amount || (client.total_amount - client.deposit_amount) <= 0}
+                className="flex w-full items-center justify-center gap-2 rounded-lg bg-white/10 py-2 text-sm font-medium hover:bg-white/15 disabled:opacity-50"
+              >
+                <Link2 className="h-4 w-4" /> Create final payment link
               </button>
 
               {client.square_subscription_id ? (

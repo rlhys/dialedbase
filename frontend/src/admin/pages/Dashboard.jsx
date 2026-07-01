@@ -65,7 +65,8 @@ export default function Dashboard() {
   const mrrData = mrrTrend.map((r) => ({ label: formatMonth(r.period), mrr: r.mrr / 100 }));
   const splitData = [
     { name: "Deposits", value: (s.deposits_collected || 0) / 100 },
-    { name: "Recurring", value: (s.recurring_collected || 0) / 100 },
+    { name: "Final", value: (s.final_collected || 0) / 100 },
+    { name: "Retainer", value: (s.recurring_collected || 0) / 100 },
   ];
   const statusData = Object.entries(breakdown).map(([name, value]) => ({ name, value }));
 
@@ -144,7 +145,7 @@ export default function Dashboard() {
 
       {/* Split + status + lists */}
       <div className="mt-5 grid gap-5 lg:grid-cols-3">
-        <ChartCard title="Deposits vs recurring">
+        <ChartCard title="Revenue by type">
           {splitData.every((d) => d.value === 0) ? (
             <EmptyState title="No revenue split yet" />
           ) : (

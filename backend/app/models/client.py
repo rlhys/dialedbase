@@ -14,6 +14,7 @@ class ClientBase(BaseModel):
     status: ClientStatus = ClientStatus.lead
     project_description: str | None = None
     notes: str | None = None
+    total_amount: int = Field(0, ge=0, description="Full project price in integer cents")
     deposit_amount: int = Field(0, ge=0, description="Deposit in integer cents")
     monthly_recurring_amount: int = Field(0, ge=0, description="Monthly recurring in integer cents")
     start_date: date | None = None
@@ -32,6 +33,7 @@ class ClientUpdate(BaseModel):
     status: ClientStatus | None = None
     project_description: str | None = None
     notes: str | None = None
+    total_amount: int | None = Field(None, ge=0)
     deposit_amount: int | None = Field(None, ge=0)
     monthly_recurring_amount: int | None = Field(None, ge=0)
     start_date: date | None = None

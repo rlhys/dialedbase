@@ -30,6 +30,7 @@ class ClientStatus(str, Enum):
 
 class PaymentType(str, Enum):
     deposit = "deposit"
+    final = "final"        # balance after launch (full price - deposit)
     recurring = "recurring"
 
 

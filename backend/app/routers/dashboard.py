@@ -67,6 +67,7 @@ async def summary():
         "overdue_total": scalar("overdue_total"),
         "overdue_count": scalar("overdue_total", "c"),
         "deposits_collected": by_type.get("deposit", 0),
+        "final_collected": by_type.get("final", 0),
         "recurring_collected": by_type.get("recurring", 0),
         "currency": "GBP",
     }
