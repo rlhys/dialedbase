@@ -1,19 +1,19 @@
 import type { Metadata } from "next";
-import { Source_Sans_3, Syne } from "next/font/google";
+import { IBM_Plex_Sans, Space_Grotesk } from "next/font/google";
 import { Footer } from "@/components/Footer";
 import { Header } from "@/components/Header";
 import { SmoothScroll } from "@/components/SmoothScroll";
 import { brand } from "@/content/site";
 import "./globals.css";
 
-const syne = Syne({
-  variable: "--font-syne",
+const spaceGrotesk = Space_Grotesk({
+  variable: "--font-space-grotesk",
   subsets: ["latin"],
-  weight: ["500", "600", "700", "800"],
+  weight: ["400", "500", "600", "700"],
 });
 
-const sourceSans = Source_Sans_3({
-  variable: "--font-source-sans",
+const ibmPlex = IBM_Plex_Sans({
+  variable: "--font-ibm-plex",
   subsets: ["latin"],
   weight: ["400", "500", "600", "700"],
 });
@@ -38,12 +38,12 @@ export const metadata: Metadata = {
 
 export default function RootLayout({ children }: LayoutProps<"/">) {
   return (
-    <html lang="en-GB" className={`${syne.variable} ${sourceSans.variable} h-full antialiased`}>
-      <body className="flex min-h-full flex-col font-sans text-ink">
+    <html lang="en-GB" className={`${spaceGrotesk.variable} ${ibmPlex.variable} h-full antialiased`}>
+      <body className="flex min-h-full flex-col bg-paper font-sans text-ink">
         <SmoothScroll>
           <a
             href="#main"
-            className="sr-only focus:not-sr-only focus:absolute focus:left-4 focus:top-4 focus:z-[100] focus:rounded-md focus:bg-signal focus:px-4 focus:py-2 focus:text-ink"
+            className="sr-only focus:not-sr-only focus:absolute focus:left-4 focus:top-4 focus:z-[100] focus:bg-signal focus:px-4 focus:py-2 focus:text-ink"
           >
             Skip to content
           </a>

@@ -13,14 +13,14 @@ export function QuoteForm() {
     const form = event.currentTarget;
     const data = new FormData(form);
     const name = String(data.get("name") || "").trim();
+    const email = String(data.get("email") || "").trim();
     const phone = String(data.get("phone") || "").trim();
     const from = String(data.get("from") || "").trim();
     const to = String(data.get("to") || "").trim();
     const date = String(data.get("date") || "").trim();
-    const notes = String(data.get("notes") || "").trim();
-    const service = String(data.get("service") || "").trim();
+    const rooms = String(data.get("rooms") || "").trim();
 
-    if (!name || !phone) {
+    if (!name || !email || !phone) {
       setStatus("error");
       return;
     }
@@ -28,12 +28,12 @@ export function QuoteForm() {
     const body = [
       `Quote request from the ${site.name} website`,
       `Name: ${name}`,
+      `Email: ${email}`,
       `Phone: ${phone}`,
-      `Service: ${service || "Not specified"}`,
-      `From: ${from || "Not specified"}`,
-      `To: ${to || "Not specified"}`,
-      `Preferred date: ${date || "Flexible"}`,
-      `Notes: ${notes || "None"}`,
+      `Current address: ${from || "Not specified"}`,
+      `New address: ${to || "Not specified"}`,
+      `Move date: ${date || "Not sure yet"}`,
+      `Rooms: ${rooms || "Not specified"}`,
     ].join("\n");
 
     const mailto = `mailto:?subject=${encodeURIComponent(
@@ -54,87 +54,49 @@ export function QuoteForm() {
       aria-describedby="quote-form-help"
     >
       <p id="quote-form-help" className="text-sm text-steel">
-        Tell us the basics and we will come back with a clear quote. Required
-        fields are marked.
+        Same details as the current Move It Dan quote form. Required fields are marked.
       </p>
 
       <div className="grid gap-4 sm:grid-cols-2">
-        <Field label="Your name" htmlFor="name" required>
-          <input
-            id="name"
-            name="name"
-            required
-            autoComplete="name"
-            className="field"
-            placeholder="Alex Smith"
-          />
+        <Field label="Name" htmlFor="name" required>
+          <input id="name" name="name" required autoComplete="name" className="field" />
         </Field>
-        <Field label="Phone" htmlFor="phone" required>
-          <input
-            id="phone"
-            name="phone"
-            type="tel"
-            required
-            autoComplete="tel"
-            inputMode="tel"
-            className="field"
-            placeholder="07..."
-          />
+        <Field label="Email" htmlFor="email" required>
+          <input id="email" name="email" type="email" required autoComplete="email" className="field" />
         </Field>
       </div>
 
-      <Field label="Service" htmlFor="service">
-        <select id="service" name="service" className="field" defaultValue="">
-          <option value="" disabled>
-            Choose a service
-          </option>
-          <option value="Domestic move">Domestic move</option>
-          <option value="Commercial move">Commercial move</option>
-          <option value="Packing">Packing</option>
-          <option value="Overseas move">Overseas move</option>
-          <option value="Not sure yet">Not sure yet</option>
-        </select>
-      </Field>
-
-      <div className="grid gap-4 sm:grid-cols-2">
-        <Field label="Moving from" htmlFor="from">
-          <input
-            id="from"
-            name="from"
-            className="field"
-            placeholder="Town or postcode"
-            autoComplete="address-level2"
-          />
-        </Field>
-        <Field label="Moving to" htmlFor="to">
-          <input
-            id="to"
-            name="to"
-            className="field"
-            placeholder="Town, postcode, or country"
-          />
-        </Field>
-      </div>
-
-      <Field label="Preferred date" htmlFor="date">
-        <input id="date" name="date" type="date" className="field" />
-      </Field>
-
-      <Field label="Anything else we should know?" htmlFor="notes">
-        <textarea
-          id="notes"
-          name="notes"
-          rows={4}
-          className="field resize-y"
-          placeholder="Stairs, piano, packing help, access notes..."
+      <Field label="Phone" htmlFor="phone" required>
+        <input
+          id="phone"
+          name="phone"
+          type="tel"
+          required
+          autoComplete="tel"
+          inputMode="tel"
+          className="field"
         />
       </Field>
 
+      <Field label="Address (street, city, postcode)" htmlFor="from">
+        <input id="from" name="from" className="field" autoComplete="street-address" />
+      </Field>
+
+      <Field label="Address of your new home" htmlFor="to">
+        <input id="to" name="to" className="field" />
+      </Field>
+
+      <div className="grid gap-4 sm:grid-cols-2">
+        <Field label="Date of your move" htmlFor="date">
+          <input id="date" name="date" type="date" className="field" />
+        </Field>
+        <Field label="How many rooms is your home?" htmlFor="rooms">
+          <input id="rooms" name="rooms" inputMode="numeric" className="field" />
+        </Field>
+      </div>
+
       <div className="flex flex-col gap-3 sm:flex-row sm:items-center">
-        <button
-          type="submit"
-          className="cta-pulse rounded-md bg-signal px-5 py-3 text-sm font-semibold text-chalk transition hover:bg-signal-deep"
-        >
+        <button type="submit" className="btn btn-signal">
           Send quote request
         </button>
         <a
@@ -153,7 +115,7 @@ export function QuoteForm() {
       ) : null}
       {status === "error" ? (
         <p className="text-sm text-red-700" role="alert">
-          Please add your name and phone number so we can reach you.
+          Please add your name, email, and phone number so we can reach you.
         </p>
       ) : null}
     </form>

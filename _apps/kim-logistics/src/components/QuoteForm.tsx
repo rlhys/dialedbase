@@ -1,11 +1,11 @@
 "use client";
 
 import { FormEvent, useState } from "react";
-import { contact, services } from "@/content/site";
+import { contact } from "@/content/site";
 import { cx } from "@/lib/utils";
 
 const fieldClass =
-  "mt-1.5 w-full rounded-md border border-ink/15 bg-paper px-3.5 py-3 text-base text-ink outline-none transition focus:border-signal focus:ring-2 focus:ring-signal/30";
+  "mt-1.5 w-full border border-ink/15 bg-paper px-3.5 py-3 text-base text-ink outline-none transition focus:border-signal focus:ring-2 focus:ring-signal/25";
 
 export function QuoteForm({ compact = false }: { compact?: boolean }) {
   const [status, setStatus] = useState<"idle" | "sent">("idle");
@@ -16,14 +16,14 @@ export function QuoteForm({ compact = false }: { compact?: boolean }) {
     const data = new FormData(form);
     const lines = [
       "Kim Logistics quote request",
-      `Name: ${data.get("name") || ""}`,
+      `First name: ${data.get("firstName") || ""}`,
+      `Last name: ${data.get("lastName") || ""}`,
       `Phone: ${data.get("phone") || ""}`,
       `Email: ${data.get("email") || ""}`,
-      `Service: ${data.get("service") || ""}`,
-      `From: ${data.get("from") || ""}`,
-      `To: ${data.get("to") || ""}`,
-      `Preferred date: ${data.get("date") || ""}`,
-      `Details: ${data.get("details") || ""}`,
+      `Moving from: ${data.get("from") || ""}`,
+      `Moving to: ${data.get("to") || ""}`,
+      `Moving date: ${data.get("date") || ""}`,
+      `Number of rooms: ${data.get("rooms") || ""}`,
     ];
     const body = encodeURIComponent(lines.join("\n"));
     const subject = encodeURIComponent("Quote request from kimlogistics.co.uk rebuild");
@@ -34,9 +34,9 @@ export function QuoteForm({ compact = false }: { compact?: boolean }) {
 
   if (status === "sent") {
     return (
-      <div className="rounded-xl border border-ink/15 bg-field p-6" role="status" aria-live="polite">
+      <div className="border border-ink/15 bg-paper p-6" role="status" aria-live="polite">
         <p className="font-display text-2xl text-ink">Thanks. Your email draft should be open.</p>
-        <p className="mt-2 text-steel">
+        <p className="mt-2 text-mute">
           If nothing opened, email{" "}
           <a className="font-semibold text-ink underline" href={contact.emailHref}>
             {contact.email}
@@ -49,7 +49,7 @@ export function QuoteForm({ compact = false }: { compact?: boolean }) {
         </p>
         <button
           type="button"
-          className="mt-5 rounded-md bg-ink px-4 py-2.5 text-sm font-semibold text-paper"
+          className="btn-solid mt-5 bg-ink px-4 py-2.5 text-sm text-paper hover:bg-ink-soft"
           onClick={() => setStatus("idle")}
         >
           Send another request
@@ -61,51 +61,36 @@ export function QuoteForm({ compact = false }: { compact?: boolean }) {
   return (
     <form onSubmit={onSubmit} className={cx("grid gap-4", compact ? "" : "md:grid-cols-2")}>
       <label className="block text-sm font-medium text-ink">
-        Full name
-        <input className={fieldClass} name="name" type="text" autoComplete="name" required />
+        First name
+        <input className={fieldClass} name="firstName" type="text" autoComplete="given-name" required />
+      </label>
+      <label className="block text-sm font-medium text-ink">
+        Last name
+        <input className={fieldClass} name="lastName" type="text" autoComplete="family-name" required />
       </label>
       <label className="block text-sm font-medium text-ink">
         Phone
         <input className={fieldClass} name="phone" type="tel" autoComplete="tel" required />
       </label>
-      <label className="block text-sm font-medium text-ink md:col-span-2">
+      <label className="block text-sm font-medium text-ink">
         Email
         <input className={fieldClass} name="email" type="email" autoComplete="email" required />
       </label>
       <label className="block text-sm font-medium text-ink">
-        Service needed
-        <select className={fieldClass} name="service" defaultValue="" required>
-          <option value="" disabled>
-            Choose a service
-          </option>
-          {services.map((service) => (
-            <option key={service.id} value={service.title}>
-              {service.title}
-            </option>
-          ))}
-          <option value="Not sure yet">Not sure yet</option>
-        </select>
-      </label>
-      <label className="block text-sm font-medium text-ink">
-        Preferred move date
-        <input className={fieldClass} name="date" type="date" />
-      </label>
-      <label className="block text-sm font-medium text-ink">
         Moving from
-        <input className={fieldClass} name="from" type="text" placeholder="Town or postcode" required />
+        <input className={fieldClass} name="from" type="text" required />
       </label>
       <label className="block text-sm font-medium text-ink">
         Moving to
-        <input className={fieldClass} name="to" type="text" placeholder="Town or postcode" required />
+        <input className={fieldClass} name="to" type="text" required />
       </label>
-      <label className="block text-sm font-medium text-ink md:col-span-2">
-        Anything else we should know?
-        <textarea
-          className={cx(fieldClass, "min-h-28 resize-y")}
-          name="details"
-          rows={4}
-          placeholder="Property size, stairs, parking, packing help..."
-        />
+      <label className="block text-sm font-medium text-ink">
+        Moving date
+        <input className={fieldClass} name="date" type="date" required />
+      </label>
+      <label className="block text-sm font-medium text-ink">
+        Number of rooms
+        <input className={fieldClass} name="rooms" inputMode="numeric" />
       </label>
       <div
         className={cx(
@@ -113,17 +98,14 @@ export function QuoteForm({ compact = false }: { compact?: boolean }) {
           compact ? "" : "md:col-span-2 md:flex-row md:items-center md:justify-between",
         )}
       >
-        <p className="text-sm text-steel">
+        <p className="text-sm text-mute">
           Free, no-obligation quote. Or call{" "}
           <a className="font-semibold text-ink underline" href={contact.phoneHref}>
             {contact.phoneDisplay}
           </a>
           .
         </p>
-        <button
-          type="submit"
-          className="inline-flex items-center justify-center rounded-md bg-signal px-5 py-3 text-base font-semibold text-ink transition hover:bg-signal-deep hover:text-paper"
-        >
+        <button type="submit" className="btn-solid btn-signal px-5 py-3">
           Request free quote
         </button>
       </div>

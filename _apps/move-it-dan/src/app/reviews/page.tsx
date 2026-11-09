@@ -1,13 +1,12 @@
 import type { Metadata } from "next";
 import { CtaBand } from "@/components/CtaBand";
 import { PageHero } from "@/components/PageHero";
-import { Reveal } from "@/components/Reveal";
-import { reviewPlaceholders } from "@/content/site";
+import { pillars, site } from "@/content/site";
 
 export const metadata: Metadata = {
   title: "Reviews",
   description:
-    "Approved customer reviews for Move It Dan will appear here once permission is confirmed.",
+    "Move It Dan says the work has built a reputation of 5 star reviews. Specific quotes are added only when a customer approves them.",
 };
 
 export default function ReviewsPage() {
@@ -15,51 +14,24 @@ export default function ReviewsPage() {
     <>
       <PageHero
         eyebrow="Reviews"
-        title="Real feedback only"
-        lead="We are not inventing star ratings or quotes for this rebuild. When Dan shares approved review text or Google links, this page fills in properly."
+        title="Only 5 star reviews"
+        lead="The current Move It Dan site says the team has built a great reputation, resulting in only 5 star reviews. Named quotes go here once a customer has approved the wording."
       />
 
-      <section className="mx-auto max-w-6xl px-5 py-16 sm:px-8 sm:py-20">
-        <Reveal>
-          <p className="max-w-2xl text-steel leading-relaxed">
-            The previous site mentioned strong reviews. Until we have permission
-            to publish specific customer words, these slots stay clearly marked
-            as placeholders.
+      <section className="bg-paper">
+        <div className="site-shell max-w-3xl py-16 sm:py-20">
+          <p className="text-lg leading-relaxed text-steel">{pillars[0].body}</p>
+          <p className="mt-6 leading-relaxed text-steel">
+            Want a reference before you book? Call {site.phoneDisplay} or message on WhatsApp and ask.
+            This page does not invent testimonials.
           </p>
-        </Reveal>
-
-        <div className="mt-12 grid gap-6 md:grid-cols-3">
-          {reviewPlaceholders.map((slot) => (
-            <Reveal
-              key={slot.id}
-              as="article"
-              className="border border-dashed border-line bg-chalk/80 p-6"
-            >
-              <p className="condensed text-[0.68rem] text-signal-deep">
-                Placeholder
-              </p>
-              <h2 className="display mt-3 text-2xl">{slot.label}</h2>
-              <p className="mt-3 text-sm text-steel">{slot.note}</p>
-              <div className="mt-8 space-y-2" aria-hidden>
-                <div className="h-2 w-[80%] bg-mist" />
-                <div className="h-2 w-full bg-mist" />
-                <div className="h-2 w-[60%] bg-mist" />
-              </div>
-            </Reveal>
-          ))}
+          <a href={site.whatsapp} className="btn btn-signal mt-8">
+            Message on WhatsApp
+          </a>
         </div>
-
-        <Reveal className="mt-14 max-w-2xl border-t border-line pt-10">
-          <h2 className="display text-2xl sm:text-3xl">What we need from you</h2>
-          <ul className="mt-4 space-y-2 text-steel">
-            <li>3 to 6 approved review quotes, or a public Google review link</li>
-            <li>Permission to show first names / towns if included</li>
-            <li>Any reviews that must not be republished</li>
-          </ul>
-        </Reveal>
       </section>
 
-      <CtaBand title="Happy with a past move? Tell Dan" />
+      <CtaBand />
     </>
   );
 }

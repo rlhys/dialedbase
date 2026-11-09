@@ -21,6 +21,7 @@ export const contact = {
   mobileHref: "tel:+447596032301",
   email: "info@kimlogistics.co.uk",
   emailHref: "mailto:info@kimlogistics.co.uk",
+  facebook: "https://www.facebook.com/kimlogistics",
   hours: [
     { label: "Mon to Fri", value: "8am to 8pm" },
     { label: "Saturday", value: "9am to 6pm" },
@@ -106,24 +107,46 @@ export const areas = {
   ],
 } as const;
 
+/** Why-choose lines from the live Kim Logistics homepage. */
 export const whyUs = [
   {
-    title: "Local crew",
-    body: "Coventry operators who know the roads, access quirks, and how to keep a move moving.",
+    title: "Local experts",
+    body: "Local experts in Coventry removals.",
   },
   {
-    title: "Insured and careful",
-    body: "Licensed removals with the same attention on a studio flat as a full house clear.",
+    title: "Insured and licensed",
+    body: "Fully insured and licensed.",
   },
   {
-    title: "Straight quotes",
-    body: "Free, no-obligation quotes. Clear scope, no surprise extras after the day starts.",
+    title: "A proper team",
+    body: "Friendly, professional, and experienced.",
   },
   {
-    title: "Flexible packing",
-    body: "DIY packing, partial help, or full pack and unpack. Match the job to your time and budget.",
+    title: "Clear pricing",
+    body: "Competitive pricing with no hidden fees.",
+  },
+  {
+    title: "Free quotes",
+    body: "Free, no-obligation quotes.",
   },
 ] as const;
+
+export const process = [
+  { step: "01", title: "Planning" },
+  { step: "02", title: "Packing" },
+  { step: "03", title: "Moving" },
+  { step: "04", title: "Unpacking" },
+] as const;
+
+export const about = {
+  family:
+    "We are a family run removals company in Coventry and we offer our services to the West Midlands region.",
+  mission:
+    "It is our mission to go above and beyond for our customers and take the stress out of the moving process.",
+  team: "We have a reliable team of professional removal experts with many years of experience.",
+  guarantee:
+    "It is our promise that moving with us means no cutting corners, no hidden charges, and no unpleasant surprises.",
+} as const;
 
 /** Existing testimonial from the live site. Do not invent additional reviews. */
 export const reviews = [
@@ -171,15 +194,16 @@ export const faqs = [
 ] as const;
 
 export const homeCopy = {
-  heroHeadline: "Moves handled with care, not chaos.",
+  heroKicker: "Keep it moving",
+  heroHeadline: "Removals Coventry",
   heroSupport:
-    "Home, office, packing, and man-and-van support from a Coventry crew that shows up on time and looks after what matters.",
+    "Kim Logistics. Providing removals services for the West Midlands. Home moves, office relocations, packing, man and van, long-distance work, and storage partners.",
   servicesIntro:
-    "From a single-item lift to a full house clear, pick the service that matches the job.",
+    "No two moves are the same. Services are tailored to the job, from a local relocation to a full load.",
   areasIntro:
-    "Based in Coventry, working across the West Midlands and further when the job needs it.",
-  reviewIntro: "A word from a recent Coventry move.",
-  ctaTitle: "Get a free quote",
+    "Serving Coventry and surrounding areas: Leamington Spa, Rugby, Nuneaton, Kenilworth, Bedworth, and more.",
+  reviewIntro: "Tommy Hyde, Coventry",
+  ctaTitle: "Get your free quote",
   ctaSupport:
-    "Tell us where you are moving from and to. We aim to respond quickly with a clear, no-obligation figure.",
+    "Planning a move? Call us or send the form for a free, no-obligation quote. We always aim to respond as fast as possible.",
 } as const;

@@ -21,8 +21,8 @@ export function SectionHeading({
       {eyebrow ? (
         <p
           className={cx(
-            "text-xs font-semibold uppercase tracking-[0.22em]",
-            dark ? "text-signal" : "text-moss",
+            "text-sm font-semibold uppercase tracking-[0.18em]",
+            dark ? "text-signal" : "text-signal",
           )}
         >
           {eyebrow}
@@ -30,14 +30,14 @@ export function SectionHeading({
       ) : null}
       <h2
         className={cx(
-          "font-display mt-3 text-balance text-3xl leading-tight tracking-tight sm:text-4xl md:text-[2.75rem]",
+          "font-display mt-3 text-balance text-3xl leading-[1.05] tracking-[-0.03em] sm:text-4xl",
           dark ? "text-paper" : "text-ink",
         )}
       >
         {title}
       </h2>
       {support ? (
-        <p className={cx("mt-4 text-lg leading-relaxed", dark ? "text-paper/75" : "text-steel")}>
+        <p className={cx("mt-4 text-lg leading-relaxed", dark ? "text-paper/72" : "text-mute")}>
           {support}
         </p>
       ) : null}

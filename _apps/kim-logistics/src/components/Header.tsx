@@ -1,113 +1,78 @@
 "use client";
 
-import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import { BrandLogo } from "@/components/BrandLogo";
 import { brand, contact, nav } from "@/content/site";
-import { cx } from "@/lib/utils";
 
 export function Header() {
   const pathname = usePathname();
   const [open, setOpen] = useState(false);
 
+  useEffect(() => {
+    setOpen(false);
+  }, [pathname]);
+
   return (
-    <header className="sticky top-0 z-50 border-b border-[var(--line)] bg-[rgba(250,250,250,0.92)] backdrop-blur-md">
+    <header className="fixed inset-x-0 top-0 z-50 border-b-4 border-signal bg-paper">
       <div className="site-shell flex items-center justify-between gap-4 py-3">
-        <Link href="/" className="group flex min-w-0 items-center gap-3" onClick={() => setOpen(false)}>
-          <span className="relative hidden h-10 w-[9.5rem] shrink-0 sm:block">
-            <Image
-              src="/images/logo-wordmark.png"
-              alt={brand.name}
-              fill
-              className="object-contain object-left [filter:invert(1)]"
-              sizes="160px"
-              priority
-            />
-          </span>
-          <span className="min-w-0 sm:hidden">
-            <span className="font-display block text-[1.2rem] font-bold leading-none tracking-tight text-ink">
-              {brand.name}
-            </span>
-            <span className="mt-1 block text-[0.68rem] uppercase tracking-[0.18em] text-steel">
-              {brand.motto}
-            </span>
-          </span>
+        <Link href="/" aria-label={`${brand.name} home`} className="flex min-w-0 items-center">
+          <BrandLogo variant="ink" priority className="h-8 w-[8.25rem] sm:h-10 sm:w-[12rem]" sizes="192px" />
         </Link>
 
         <nav className="hidden items-center gap-1 lg:flex" aria-label="Primary">
-          {nav.map((item) => {
-            const active = pathname === item.href;
-            return (
-              <Link
-                key={item.href}
-                href={item.href}
-                className={cx(
-                  "rounded-md px-3 py-2 text-sm font-medium transition-colors",
-                  active
-                    ? "bg-ink text-paper"
-                    : "text-ink/80 hover:bg-field-deep/60 hover:text-ink",
-                )}
-              >
-                {item.label}
-              </Link>
-            );
-          })}
+          {nav
+            .filter((item) => item.href !== "/")
+            .map((item) => {
+              const active = pathname === item.href;
+              return (
+                <Link
+                  key={item.href}
+                  href={item.href}
+                  className={`px-3 py-2 text-sm font-semibold ${
+                    active ? "text-signal" : "text-ink hover:text-signal"
+                  }`}
+                >
+                  {item.label}
+                </Link>
+              );
+            })}
         </nav>
 
         <div className="flex items-center gap-2">
           <a
             href={contact.phoneHref}
-            className="hidden rounded-md border border-ink/15 px-3 py-2 text-sm font-semibold text-ink transition hover:border-ink/35 md:inline-flex"
+            className="hidden text-sm font-semibold text-ink md:inline"
           >
             {contact.phoneDisplay}
           </a>
-          <Link
-            href="/contact"
-            className="inline-flex rounded-md bg-signal px-3.5 py-2 text-sm font-semibold text-ink transition hover:bg-signal-deep hover:text-paper"
-          >
+          <Link href="/contact" className="btn-solid btn-signal px-3.5 py-2 text-sm">
             Free quote
           </Link>
           <button
             type="button"
-            className="inline-flex h-10 w-10 items-center justify-center rounded-md border border-ink/15 text-ink lg:hidden"
+            className="inline-flex h-10 items-center border border-ink/20 px-3 text-sm font-semibold lg:hidden"
             aria-expanded={open}
             aria-controls="mobile-nav"
-            onClick={() => setOpen((v) => !v)}
+            onClick={() => setOpen((value) => !value)}
           >
-            <span className="sr-only">{open ? "Close menu" : "Open menu"}</span>
-            <span aria-hidden className="flex flex-col gap-1.5">
-              <span className={cx("block h-0.5 w-5 bg-current transition", open && "translate-y-2 rotate-45")} />
-              <span className={cx("block h-0.5 w-5 bg-current transition", open && "opacity-0")} />
-              <span className={cx("block h-0.5 w-5 bg-current transition", open && "-translate-y-2 -rotate-45")} />
-            </span>
+            {open ? "Close" : "Menu"}
           </button>
         </div>
       </div>
 
-      <div
-        id="mobile-nav"
-        className={cx("border-t border-[var(--line)] bg-paper lg:hidden", open ? "block" : "hidden")}
-      >
-        <nav className="site-shell flex flex-col gap-1 py-3" aria-label="Mobile">
-          {nav.map((item) => {
-            const active = pathname === item.href;
-            return (
-              <Link
-                key={item.href}
-                href={item.href}
-                onClick={() => setOpen(false)}
-                className={cx(
-                  "rounded-md px-3 py-3 text-base font-medium",
-                  active ? "bg-ink text-paper" : "text-ink",
-                )}
-              >
+      {open ? (
+        <div id="mobile-nav" className="border-t border-[var(--line)] bg-paper lg:hidden">
+          <nav className="site-shell flex flex-col py-2" aria-label="Mobile">
+            {nav.map((item) => (
+              <Link key={item.href} href={item.href} className="py-3 text-base font-semibold text-ink">
                 {item.label}
               </Link>
-            );
-          })}
-        </nav>
-      </div>
+            ))}
+          </nav>
+        </div>
+      ) : null}
     </header>
   );
 }

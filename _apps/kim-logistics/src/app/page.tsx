@@ -1,16 +1,7 @@
-import Image from "next/image";
 import Link from "next/link";
 import { CtaBand } from "@/components/CtaBand";
 import { HeroStage } from "@/components/HeroStage";
-import { Reveal } from "@/components/Reveal";
-import { SectionHeading } from "@/components/SectionHeading";
-import {
-  areas,
-  homeCopy,
-  reviews,
-  services,
-  whyUs,
-} from "@/content/site";
+import { about, areas, contact, faqs, homeCopy, process, reviews, services, whyUs } from "@/content/site";
 
 export default function HomePage() {
   const review = reviews[0];
@@ -19,115 +10,106 @@ export default function HomePage() {
     <>
       <HeroStage />
 
-      <section className="site-shell atmosphere py-16 md:py-24">
-        <Reveal>
-          <SectionHeading
-            eyebrow="Why Kim Logistics"
-            title="A local operator built for calm moving days."
-            support="Friendly crews, clear communication, and careful handling from quote to unload."
-          />
-        </Reveal>
-        <div className="mt-10 grid gap-6 md:grid-cols-2 xl:grid-cols-4">
-          {whyUs.map((item, index) => (
-            <Reveal key={item.title} className="border-t border-ink/15 pt-5" as="article">
-              <p className="text-xs font-semibold uppercase tracking-[0.18em] text-moss">
-                0{index + 1}
-              </p>
-              <h3 className="font-display mt-3 text-2xl tracking-tight text-ink">{item.title}</h3>
-              <p className="mt-3 text-base leading-relaxed text-steel">{item.body}</p>
-            </Reveal>
+      <section className="border-b border-[var(--line)] bg-field">
+        <ol className="site-shell grid gap-6 py-8 sm:grid-cols-4">
+          {process.map((item) => (
+            <li key={item.step}>
+              <p className="font-display text-sm font-bold tracking-[0.16em] text-signal">{item.step}</p>
+              <p className="font-display mt-1 text-2xl text-ink">{item.title}</p>
+            </li>
           ))}
-        </div>
+        </ol>
       </section>
 
-      <section className="border-y border-[var(--line)] bg-field/70">
-        <div className="site-shell py-16 md:py-24">
-          <div className="flex flex-col gap-8 md:flex-row md:items-end md:justify-between">
-            <Reveal>
-              <SectionHeading eyebrow="Services" title="What we move" support={homeCopy.servicesIntro} />
-            </Reveal>
-            <Reveal>
-              <Link
-                href="/services"
-                className="inline-flex font-semibold text-ink underline decoration-signal decoration-2 underline-offset-4"
-              >
-                View all services
-              </Link>
-            </Reveal>
+      <section className="bg-paper">
+        <div className="site-shell grid gap-12 py-16 md:py-20 lg:grid-cols-[0.8fr_1.2fr]">
+          <div>
+            <h2 className="font-display text-4xl tracking-[-0.03em] text-ink">Our services</h2>
+            <p className="mt-4 leading-relaxed text-mute">{homeCopy.servicesIntro}</p>
+            <Link href="/services" className="mt-6 inline-flex font-semibold text-ink underline decoration-signal decoration-2 underline-offset-4">
+              See services
+            </Link>
           </div>
-          <div className="mt-10 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
+          <div className="divide-y divide-[var(--line)] border-y border-[var(--line)]">
             {services.map((service) => (
-              <Reveal
-                key={service.id}
-                as="article"
-                className="group border border-ink/10 bg-paper/80 p-6 transition hover:border-signal/50"
-              >
-                <h3 className="font-display text-2xl tracking-tight text-ink">{service.title}</h3>
-                <p className="mt-3 text-base leading-relaxed text-steel">{service.summary}</p>
-              </Reveal>
+              <article key={service.id} className="grid gap-1 py-5 sm:grid-cols-[11rem_1fr] sm:gap-6">
+                <h3 className="font-semibold text-ink">{service.title}</h3>
+                <p className="text-mute">{service.summary}</p>
+              </article>
             ))}
           </div>
         </div>
       </section>
 
-      <section className="site-shell py-16 md:py-24">
-        <div className="grid items-center gap-10 lg:grid-cols-[1.1fr_0.9fr]">
-          <Reveal>
-            <SectionHeading
-              eyebrow="Areas served"
-              title={`Rooted in ${areas.hub}`}
-              support={homeCopy.areasIntro}
-            />
-            <ul className="mt-8 flex flex-wrap gap-x-4 gap-y-3">
-              {areas.places.map((place) => (
-                <li key={place} className="text-lg font-medium text-ink">
-                  <span className="mr-2 inline-block h-1.5 w-1.5 rounded-full bg-signal align-middle" />
-                  {place}
-                </li>
-              ))}
-            </ul>
-            <Link
-              href="/areas"
-              className="mt-8 inline-flex font-semibold text-ink underline decoration-signal decoration-2 underline-offset-4"
-            >
-              See coverage details
-            </Link>
-          </Reveal>
-          <Reveal className="relative aspect-[4/3] overflow-hidden rounded-[1.25rem] bg-ink">
-            <Image
-              src="/images/fleet.jpg"
-              alt="Kim Logistics fleet on a residential job"
-              fill
-              className="object-cover object-center"
-              sizes="(max-width: 1024px) 100vw, 40vw"
-            />
-          </Reveal>
+      <section className="bg-ink text-paper">
+        <div className="site-shell grid gap-10 py-16 md:grid-cols-2 md:py-20">
+          <div>
+            <h2 className="font-display text-4xl tracking-[-0.03em]">What sets us apart</h2>
+            <p className="mt-4 max-w-md leading-relaxed text-paper/70">{about.team}</p>
+          </div>
+          <ul className="divide-y divide-paper/15 border-y border-paper/15">
+            {whyUs.map((item) => (
+              <li key={item.title} className="py-4 text-lg">
+                {item.body}
+              </li>
+            ))}
+          </ul>
         </div>
       </section>
 
-      <section className="bg-ink text-paper">
-        <div className="site-shell py-16 md:py-24">
-          <Reveal>
-            <SectionHeading tone="dark" eyebrow="Reviews" title={homeCopy.reviewIntro} />
-          </Reveal>
-          <Reveal as="blockquote" className="mt-10 max-w-3xl">
-            <p className="font-display text-2xl leading-snug tracking-tight sm:text-3xl md:text-4xl">
+      <section className="bg-paper">
+        <div className="site-shell grid gap-10 py-16 md:grid-cols-2 md:py-20">
+          <blockquote className="border-l-8 border-signal pl-6">
+            <p className="font-display text-2xl leading-snug tracking-[-0.02em] text-ink sm:text-3xl">
               “{review.quote}”
             </p>
-            <footer className="mt-8 text-base text-paper/70">
-              <cite className="not-italic font-semibold text-paper">{review.name}</cite>
+            <footer className="mt-5 text-mute">
+              <cite className="not-italic font-semibold text-ink">{review.name}</cite>
               {" · "}
               {review.place}
             </footer>
-          </Reveal>
-          <Reveal className="mt-8">
-            <Link
-              href="/reviews"
-              className="inline-flex font-semibold text-signal underline decoration-signal/40 underline-offset-4"
-            >
-              Read the review
-            </Link>
-          </Reveal>
+          </blockquote>
+          <div>
+            <h2 className="font-display text-3xl tracking-[-0.03em] text-ink">Our quality guarantee</h2>
+            <p className="mt-4 leading-relaxed text-mute">{about.guarantee}</p>
+            <p className="mt-6 text-sm font-semibold uppercase tracking-[0.14em] text-mute">Working hours</p>
+            <ul className="mt-3 space-y-1 text-ink">
+              {contact.hours.map((row) => (
+                <li key={row.label} className="flex justify-between gap-4 border-b border-[var(--line)] py-2">
+                  <span>{row.label}</span>
+                  <span>{row.value}</span>
+                </li>
+              ))}
+            </ul>
+          </div>
+        </div>
+      </section>
+
+      <section className="border-y border-[var(--line)] bg-field">
+        <div className="site-shell py-10">
+          <h2 className="font-display text-2xl text-ink">Areas</h2>
+          <p className="mt-3 max-w-3xl text-lg text-ink">{homeCopy.areasIntro}</p>
+          <p className="mt-4 text-mute">{areas.places.join(" · ")}</p>
+          <Link href="/areas" className="mt-4 inline-flex font-semibold underline decoration-signal decoration-2 underline-offset-4">
+            Coverage
+          </Link>
+        </div>
+      </section>
+
+      <section className="bg-paper">
+        <div className="site-shell py-16 md:py-20">
+          <h2 className="font-display text-4xl tracking-[-0.03em] text-ink">How much do removals cost?</h2>
+          <div className="mt-8 divide-y divide-[var(--line)] border-y border-[var(--line)]">
+            {faqs.slice(0, 3).map((item) => (
+              <article key={item.id} className="py-6">
+                <h3 className="font-display text-2xl text-ink">{item.question}</h3>
+                <p className="mt-2 max-w-3xl leading-relaxed text-mute">{item.answer}</p>
+              </article>
+            ))}
+          </div>
+          <Link href="/faq" className="mt-6 inline-flex font-semibold underline decoration-signal decoration-2 underline-offset-4">
+            All questions
+          </Link>
         </div>
       </section>
 
