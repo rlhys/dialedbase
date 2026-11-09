@@ -4,7 +4,6 @@ import { AnimatePresence, motion } from "framer-motion";
 import Navbar from "./components/Navbar";
 import Hero from "./components/Hero";
 import Services from "./components/Services";
-import SelectedWork from "./components/SelectedWork";
 import Keep from "./components/Keep";
 import Process from "./components/Process";
 import Globe from "./components/Globe";
@@ -35,7 +34,6 @@ const Home = () => (
   <>
     <Hero />
     <Services />
-    <SelectedWork />
     <Keep />
     <Process />
     <Globe />
