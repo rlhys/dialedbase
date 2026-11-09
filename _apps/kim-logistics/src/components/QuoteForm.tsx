@@ -5,7 +5,7 @@ import { contact, services } from "@/content/site";
 import { cx } from "@/lib/utils";
 
 const fieldClass =
-  "mt-1.5 w-full rounded-md border border-ink/15 bg-paper px-3.5 py-3 text-base text-ink outline-none transition focus:border-signal focus:ring-2 focus:ring-signal/30";
+  "mt-1.5 w-full border border-ink/15 bg-paper px-3.5 py-3 text-base text-ink outline-none transition focus:border-signal focus:ring-2 focus:ring-signal/25";
 
 export function QuoteForm({ compact = false }: { compact?: boolean }) {
   const [status, setStatus] = useState<"idle" | "sent">("idle");
@@ -34,9 +34,9 @@ export function QuoteForm({ compact = false }: { compact?: boolean }) {
 
   if (status === "sent") {
     return (
-      <div className="rounded-xl border border-ink/15 bg-field p-6" role="status" aria-live="polite">
+      <div className="border border-ink/15 bg-paper p-6" role="status" aria-live="polite">
         <p className="font-display text-2xl text-ink">Thanks. Your email draft should be open.</p>
-        <p className="mt-2 text-steel">
+        <p className="mt-2 text-mute">
           If nothing opened, email{" "}
           <a className="font-semibold text-ink underline" href={contact.emailHref}>
             {contact.email}
@@ -49,7 +49,7 @@ export function QuoteForm({ compact = false }: { compact?: boolean }) {
         </p>
         <button
           type="button"
-          className="mt-5 rounded-md bg-ink px-4 py-2.5 text-sm font-semibold text-paper"
+          className="mt-5 bg-ink px-4 py-2.5 text-sm font-semibold text-paper"
           onClick={() => setStatus("idle")}
         >
           Send another request
@@ -113,7 +113,7 @@ export function QuoteForm({ compact = false }: { compact?: boolean }) {
           compact ? "" : "md:col-span-2 md:flex-row md:items-center md:justify-between",
         )}
       >
-        <p className="text-sm text-steel">
+        <p className="text-sm text-mute">
           Free, no-obligation quote. Or call{" "}
           <a className="font-semibold text-ink underline" href={contact.phoneHref}>
             {contact.phoneDisplay}
@@ -122,7 +122,7 @@ export function QuoteForm({ compact = false }: { compact?: boolean }) {
         </p>
         <button
           type="submit"
-          className="inline-flex items-center justify-center rounded-md bg-signal px-5 py-3 text-base font-semibold text-ink transition hover:bg-signal-deep hover:text-paper"
+          className="inline-flex items-center justify-center bg-signal px-5 py-3 text-base font-semibold tracking-tight text-ink transition hover:bg-signal-deep hover:text-paper"
         >
           Request free quote
         </button>

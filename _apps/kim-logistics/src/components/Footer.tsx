@@ -1,35 +1,30 @@
-import Image from "next/image";
 import Link from "next/link";
+import { BrandLogo } from "@/components/BrandLogo";
+import { DialedbaseCredit } from "@/components/DialedbaseCredit";
+import { MotionHashes } from "@/components/MotionHashes";
 import { brand, contact, nav, areas } from "@/content/site";
 
 export function Footer() {
   return (
-    <footer className="mt-auto border-t border-[var(--line)] bg-ink text-paper">
-      <div className="site-shell grid gap-10 py-14 md:grid-cols-[1.3fr_1fr_1fr]">
+    <footer className="mt-auto bg-ink text-paper">
+      <div className="site-shell grid gap-12 py-16 md:grid-cols-[1.4fr_1fr_1fr]">
         <div>
-          <div className="relative h-11 w-56">
-            <Image
-              src="/images/logo-wordmark.png"
-              alt={brand.name}
-              fill
-              className="object-contain object-left"
-              sizes="224px"
-            />
+          <BrandLogo variant="chalk" className="h-12 w-60" sizes="240px" />
+          <div className="mt-6 flex items-center gap-3">
+            <span className="h-px w-10 bg-signal" />
+            <MotionHashes tone="signal" />
           </div>
-          <p className="mt-4 text-xs font-semibold uppercase tracking-[0.22em] text-signal">
-            {brand.motto}
-          </p>
-          <p className="mt-3 max-w-sm text-base leading-relaxed text-paper/75">{brand.tagline}</p>
-          <div className="mt-6 flex flex-wrap gap-3">
+          <p className="mt-5 max-w-sm text-base leading-relaxed text-paper/72">{brand.tagline}</p>
+          <div className="mt-7 flex flex-wrap gap-3">
             <a
               href={contact.phoneHref}
-              className="rounded-md bg-signal px-4 py-2.5 text-sm font-semibold text-ink transition hover:bg-signal-deep hover:text-paper"
+              className="bg-signal px-4 py-2.5 text-sm font-semibold tracking-tight text-ink transition hover:bg-signal-deep hover:text-paper"
             >
               Call {contact.phoneDisplay}
             </a>
             <a
               href={contact.emailHref}
-              className="rounded-md border border-paper/25 px-4 py-2.5 text-sm font-semibold text-paper transition hover:border-paper/60"
+              className="border border-white/30 px-4 py-2.5 text-sm font-semibold tracking-tight text-paper transition hover:border-paper/50"
             >
               Email us
             </a>
@@ -37,8 +32,8 @@ export function Footer() {
         </div>
 
         <div>
-          <p className="text-xs uppercase tracking-[0.2em] text-paper/55">Explore</p>
-          <ul className="mt-4 space-y-2">
+          <p className="text-[0.7rem] uppercase tracking-[0.24em] text-paper/45">Explore</p>
+          <ul className="mt-5 space-y-2.5">
             {nav.map((item) => (
               <li key={item.href}>
                 <Link href={item.href} className="text-paper/85 transition hover:text-signal">
@@ -50,8 +45,8 @@ export function Footer() {
         </div>
 
         <div>
-          <p className="text-xs uppercase tracking-[0.2em] text-paper/55">Contact</p>
-          <ul className="mt-4 space-y-2 text-paper/85">
+          <p className="text-[0.7rem] uppercase tracking-[0.24em] text-paper/45">Contact</p>
+          <ul className="mt-5 space-y-2.5 text-paper/85">
             <li>
               <a href={contact.phoneHref} className="hover:text-signal">
                 {contact.phoneDisplay}
@@ -68,15 +63,15 @@ export function Footer() {
               </a>
             </li>
           </ul>
-          <p className="mt-5 text-sm text-paper/55">
+          <p className="mt-6 text-sm leading-relaxed text-paper/50">
             Serving {areas.hub} and nearby towns including {areas.places.slice(1, 4).join(", ")}.
           </p>
         </div>
       </div>
       <div className="border-t border-paper/10">
-        <div className="site-shell flex flex-col gap-2 py-5 text-sm text-paper/50 sm:flex-row sm:items-center sm:justify-between">
+        <div className="site-shell flex flex-col gap-3 py-5 text-sm text-paper/45 sm:flex-row sm:items-center sm:justify-between">
           <p>© 2026 {brand.name}. All rights reserved.</p>
-          <p>Built by Dialedbase for Site Care readiness.</p>
+          <DialedbaseCredit />
         </div>
       </div>
     </footer>

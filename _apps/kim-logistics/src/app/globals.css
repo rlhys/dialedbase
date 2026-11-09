@@ -1,17 +1,17 @@
 @import "tailwindcss";
 
 :root {
-  --ink: #0b0b0b;
-  --ink-soft: #1a1a1a;
-  --field: #f3f3f1;
-  --field-deep: #e4e4e0;
-  --paper: #fafafa;
-  --moss: #3a3a3a;
+  --ink: #090909;
+  --ink-soft: #141414;
+  --paper: #ffffff;
+  --field: #f0f0f0;
+  --field-deep: #e6e6e6;
+  --chalk: #f7f7f7;
+  --mute: #6b6b6b;
   --signal: #ff6b1a;
-  --signal-deep: #d4550f;
-  --steel: #5c5c5c;
-  --line: rgba(11, 11, 11, 0.12);
-  --shadow: 0 24px 60px rgba(11, 11, 11, 0.16);
+  --signal-deep: #e0550f;
+  --line: rgba(9, 9, 9, 0.14);
+  --line-chalk: rgba(255, 255, 255, 0.16);
   --background: var(--paper);
   --foreground: var(--ink);
 }
@@ -21,15 +21,15 @@
   --color-foreground: var(--foreground);
   --color-ink: var(--ink);
   --color-ink-soft: var(--ink-soft);
+  --color-paper: var(--paper);
   --color-field: var(--field);
   --color-field-deep: var(--field-deep);
-  --color-paper: var(--paper);
-  --color-moss: var(--moss);
+  --color-chalk: var(--chalk);
+  --color-mute: var(--mute);
   --color-signal: var(--signal);
   --color-signal-deep: var(--signal-deep);
-  --color-steel: var(--steel);
-  --font-display: var(--font-syne);
-  --font-sans: var(--font-source-sans);
+  --font-display: var(--font-space-grotesk);
+  --font-sans: var(--font-ibm-plex);
 }
 
 * {
@@ -40,14 +40,17 @@ html {
   scroll-behavior: smooth;
 }
 
+html.lenis,
+html.lenis body {
+  height: auto;
+}
+
 body {
   margin: 0;
   min-height: 100%;
   color: var(--foreground);
-  background:
-    radial-gradient(1100px 520px at 90% -8%, rgba(255, 107, 26, 0.12), transparent 55%),
-    linear-gradient(180deg, #f7f7f5 0%, #efefec 45%, #fafafa 100%);
-  font-family: var(--font-sans), "Source Sans 3", sans-serif;
+  background: var(--paper);
+  font-family: var(--font-sans), "IBM Plex Sans", sans-serif;
   text-rendering: optimizeLegibility;
 }
 
@@ -67,7 +70,7 @@ img {
 }
 
 .font-display {
-  font-family: var(--font-display), Syne, sans-serif;
+  font-family: var(--font-display), "Space Grotesk", sans-serif;
 }
 
 .site-shell {
@@ -75,33 +78,45 @@ img {
   margin-inline: auto;
 }
 
-.atmosphere {
-  position: relative;
-  isolation: isolate;
-  overflow: hidden;
+.site-shell-wide {
+  width: min(1280px, calc(100% - 2rem));
+  margin-inline: auto;
 }
 
-.atmosphere::before {
+.rule-ink {
+  height: 1px;
+  background: var(--line);
+}
+
+.rule-chalk {
+  height: 1px;
+  background: var(--line-chalk);
+}
+
+.hash-track {
+  position: relative;
+}
+
+.hash-track::after {
   content: "";
   position: absolute;
-  inset: 0;
-  z-index: -1;
-  background:
-    linear-gradient(135deg, rgba(11, 11, 11, 0.03), transparent 40%),
-    repeating-linear-gradient(
-      -12deg,
-      transparent,
-      transparent 18px,
-      rgba(11, 11, 11, 0.02) 18px,
-      rgba(11, 11, 11, 0.02) 19px
-    );
-  pointer-events: none;
+  left: 0;
+  bottom: -1px;
+  width: 100%;
+  height: 1px;
+  background: currentColor;
+  opacity: 0.35;
 }
+
+/* Glass-lite for dark bands / secondary CTAs — geometric, not frosted marketing fluff */
+
+
+
 
 @keyframes rise-in {
   from {
     opacity: 0;
-    transform: translateY(28px);
+    transform: translateY(32px);
   }
   to {
     opacity: 1;
@@ -109,25 +124,15 @@ img {
   }
 }
 
-@keyframes drift {
+@keyframes hash-pulse {
   0%,
   100% {
-    transform: translate3d(0, 0, 0) scale(1);
-  }
-  50% {
-    transform: translate3d(-1.5%, 1.5%, 0) scale(1.04);
-  }
-}
-
-@keyframes pulse-line {
-  0%,
-  100% {
-    transform: scaleX(0.55);
     opacity: 0.45;
+    transform: translateX(0);
   }
   50% {
-    transform: scaleX(1);
     opacity: 1;
+    transform: translateX(4px);
   }
 }
 
@@ -136,44 +141,19 @@ img {
 }
 
 .animate-rise-delay-1 {
-  animation: rise-in 900ms cubic-bezier(0.22, 1, 0.36, 1) 120ms both;
+  animation: rise-in 900ms cubic-bezier(0.22, 1, 0.36, 1) 110ms both;
 }
 
 .animate-rise-delay-2 {
-  animation: rise-in 900ms cubic-bezier(0.22, 1, 0.36, 1) 240ms both;
+  animation: rise-in 900ms cubic-bezier(0.22, 1, 0.36, 1) 220ms both;
 }
 
 .animate-rise-delay-3 {
-  animation: rise-in 900ms cubic-bezier(0.22, 1, 0.36, 1) 360ms both;
+  animation: rise-in 900ms cubic-bezier(0.22, 1, 0.36, 1) 330ms both;
 }
 
-.hero-media-drift {
-  animation: drift 18s ease-in-out infinite;
-}
-
-.signal-underline {
-  transform-origin: left center;
-  animation: pulse-line 3.2s ease-in-out infinite;
-}
-
-.reveal {
-  opacity: 0;
-  transform: translateY(24px);
-  transition:
-    opacity 700ms cubic-bezier(0.22, 1, 0.36, 1),
-    transform 700ms cubic-bezier(0.22, 1, 0.36, 1);
-}
-
-.reveal.is-visible {
-  opacity: 1;
-  transform: translateY(0);
-}
-
-@media (scripting: none) {
-  .reveal {
-    opacity: 1;
-    transform: none;
-  }
+.hash-pulse {
+  animation: hash-pulse 2.8s ease-in-out infinite;
 }
 
 @media (prefers-reduced-motion: reduce) {
@@ -185,14 +165,9 @@ img {
   .animate-rise-delay-1,
   .animate-rise-delay-2,
   .animate-rise-delay-3,
-  .hero-media-drift,
-  .signal-underline {
+  .hash-pulse {
     animation: none !important;
   }
 
-  .reveal {
-    opacity: 1;
-    transform: none;
-    transition: none;
+  
   }
-}

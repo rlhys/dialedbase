@@ -1,15 +1,14 @@
 @import "tailwindcss";
 
 :root {
-  --ink: #0c1624;
-  --ink-soft: #1a2a3d;
-  --steel: #4a647a;
-  --mist: #e7ecf1;
-  --paper: #f7f8fa;
+  --ink: #101820;
+  --ink-soft: #243040;
+  --steel: #5a6b7b;
+  --mist: #e8eef4;
+  --paper: #f6f8fb;
   --chalk: #ffffff;
   --signal: #0073c5;
   --signal-deep: #005fa3;
-  --asphalt: #2a3340;
   --line: color-mix(in srgb, var(--ink) 12%, transparent);
   --background: var(--paper);
   --foreground: var(--ink);
@@ -26,11 +25,9 @@
   --color-chalk: var(--chalk);
   --color-signal: var(--signal);
   --color-signal-deep: var(--signal-deep);
-  --color-asphalt: var(--asphalt);
   --color-line: var(--line);
-  --font-sans: var(--font-body);
-  --font-display: var(--font-display);
-  --font-condensed: var(--font-condensed);
+  --font-sans: var(--font-mid-body);
+  --font-display: var(--font-mid-display);
 }
 
 * {
@@ -46,7 +43,7 @@ body {
   min-height: 100%;
   background: var(--background);
   color: var(--foreground);
-  font-family: var(--font-body), system-ui, sans-serif;
+  font-family: var(--font-mid-body), "Source Sans 3", system-ui, sans-serif;
   text-rendering: optimizeLegibility;
 }
 
@@ -61,96 +58,27 @@ a {
   text-underline-offset: 0.18em;
 }
 
-.atmosphere {
-  background-color: var(--paper);
-  background-image:
-    radial-gradient(ellipse 90% 60% at 10% -10%, color-mix(in srgb, var(--signal) 18%, transparent), transparent 55%),
-    radial-gradient(ellipse 70% 50% at 100% 0%, color-mix(in srgb, var(--steel) 16%, transparent), transparent 50%),
-    linear-gradient(180deg, #eef2f6 0%, var(--paper) 45%, #e9eef3 100%);
-}
-
-.grain::before {
-  content: "";
-  pointer-events: none;
-  position: absolute;
-  inset: 0;
-  opacity: 0.035;
-  mix-blend-mode: multiply;
-  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
-}
-
 .display {
-  font-family: var(--font-display), var(--font-body), sans-serif;
-  letter-spacing: -0.03em;
+  font-family: var(--font-mid-display), Outfit, sans-serif;
+  letter-spacing: -0.035em;
+  font-weight: 700;
 }
 
-.condensed {
-  font-family: var(--font-condensed), var(--font-body), sans-serif;
-  letter-spacing: 0.08em;
+.eyebrow {
+  font-family: var(--font-mid-display), Outfit, sans-serif;
+  font-size: 0.72rem;
+  font-weight: 600;
+  letter-spacing: 0.16em;
   text-transform: uppercase;
-}
-
-.reveal {
-  opacity: 0;
-  transform: translateY(1.25rem);
-  transition:
-    opacity 700ms cubic-bezier(0.22, 1, 0.36, 1),
-    transform 700ms cubic-bezier(0.22, 1, 0.36, 1);
-}
-
-.reveal.is-visible {
-  opacity: 1;
-  transform: none;
-}
-
-@keyframes rise-in {
-  from {
-    opacity: 0;
-    transform: translateY(1.5rem);
-  }
-  to {
-    opacity: 1;
-    transform: none;
-  }
-}
-
-@keyframes signal-pulse {
-  0%,
-  100% {
-    box-shadow: 0 0 0 0 color-mix(in srgb, var(--signal) 45%, transparent);
-  }
-  50% {
-    box-shadow: 0 0 0 10px transparent;
-  }
-}
-
-.hero-rise {
-  animation: rise-in 900ms cubic-bezier(0.22, 1, 0.36, 1) both;
-}
-
-.hero-rise-delay-1 {
-  animation-delay: 120ms;
-}
-
-.hero-rise-delay-2 {
-  animation-delay: 220ms;
-}
-
-.hero-rise-delay-3 {
-  animation-delay: 340ms;
-}
-
-.cta-pulse:focus-visible,
-.cta-pulse:hover {
-  animation: signal-pulse 1.4s ease-out infinite;
+  color: var(--signal-deep);
 }
 
 .field {
   width: 100%;
-  border-radius: 0.375rem;
-  border: 1px solid color-mix(in srgb, var(--ink) 16%, transparent);
+  border-radius: 0.5rem;
+  border: 1px solid color-mix(in srgb, var(--ink) 14%, transparent);
   background: var(--chalk);
-  padding: 0.75rem 0.85rem;
+  padding: 0.8rem 0.9rem;
   color: var(--ink);
   font: inherit;
 }
@@ -165,14 +93,6 @@ a {
     scroll-behavior: auto;
   }
 
-  .reveal,
-  .hero-rise,
-  .hero-rise-delay-1,
-  .hero-rise-delay-2,
-  .hero-rise-delay-3 {
-    animation: none !important;
-    opacity: 1 !important;
-    transform: none !important;
-    transition: none !important;
+  
+  
   }
-}

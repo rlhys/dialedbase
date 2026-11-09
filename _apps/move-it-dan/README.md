@@ -2,9 +2,9 @@
 
 Premium brand / marketing site rebuild for [moveitdan.co.uk](https://moveitdan.co.uk/), built by Dialedbase as a **Build → Site Care** engagement.
 
-Stack: Next.js (App Router), TypeScript, Tailwind CSS v4.
+Stack: Next.js (App Router), TypeScript, Tailwind CSS v4, Lenis, GSAP ScrollTrigger, Motion.
 
-Design lock: see `DESIGN.md`. Sacred logo at `public/logo.jpg` / `brand/logo.jpg`. Brand blue `#0073c5`.
+Design lock: see `DESIGN.md`. Sacred logo at `public/logo.png` (transparent; source `public/logo.jpg`). On-dark variant `public/logo-on-dark.png`. Brand blue `#0073c5`.
 
 ## Run locally
 
@@ -33,12 +33,12 @@ npm start
 
 Copy, phone, services, FAQ, and review slots live in `src/content/site.ts`.
 
-Photography:
+Brand assets:
 
-- Sacred logo: `public/logo.jpg` (also `brand/logo.jpg`)
+- Transparent logo: `public/logo.png` (also `brand/logo.jpg` source)
+- On-dark logo: `public/logo-on-dark.png`
+- O motif / favicon: `public/mark.png`, `public/favicon.png`
 - Job photos in `public/placeholders/` and `brand/`
-- Labelled figures remain so weaker shots can be swapped without redesign
-- Still welcome: sharper landscape hero crop, packing close-ups, unload day
 
 ## Quote form
 
