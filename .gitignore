@@ -90,3 +90,7 @@ frontend/node_modules/.cache/default-development/4.pack
 credentials.json
 *.key
 .credentials
+
+# Client preview apps (source only; publish from Cursor)
+_apps/**/node_modules/
+_apps/**/.next/

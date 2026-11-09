@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 500" fill="none" role="img" aria-label="Service imagery placeholder">
+  <rect width="800" height="500" fill="#0B0B0B"/>
+  <rect x="120" y="140" width="180" height="140" rx="10" fill="#F5F5F5" opacity="0.9"/>
+  <rect x="160" y="110" width="180" height="140" rx="10" fill="#CFCFCF" opacity="0.9"/>
+  <rect x="210" y="170" width="180" height="140" rx="10" fill="#FFFFFF" opacity="0.95"/>
+  <path d="M480 320 L620 220 L740 320 Z" fill="#FF6B1A" opacity="0.8"/>
+  <rect x="500" y="320" width="220" height="90" rx="8" fill="#2A2A2A"/>
+  <text x="40" y="460" fill="#F5F5F5" font-family="Arial, sans-serif" font-size="18" letter-spacing="4" opacity="0.45">CLIENT PHOTO TO FOLLOW</text>
+</svg>

@@ -1,0 +1,23 @@
+import Link from "next/link";
+import { site } from "@/content/site";
+
+export function MobileCtaBar() {
+  return (
+    <div className="fixed inset-x-0 bottom-0 z-50 border-t border-white/10 bg-ink/95 p-3 backdrop-blur-md lg:hidden">
+      <div className="mx-auto flex max-w-lg gap-2">
+        <a
+          href={`tel:${site.phoneTel}`}
+          className="cta-pulse flex-1 rounded-md bg-signal py-3 text-center text-sm font-semibold text-chalk no-underline"
+        >
+          Call now
+        </a>
+        <Link
+          href="/contact"
+          className="flex-1 rounded-md border border-white/25 py-3 text-center text-sm font-semibold text-chalk no-underline"
+        >
+          Get a quote
+        </Link>
+      </div>
+    </div>
+  );
+}
