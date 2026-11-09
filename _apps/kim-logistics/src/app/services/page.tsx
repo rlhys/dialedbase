@@ -11,6 +11,15 @@ export const metadata: Metadata = {
     "Home removals, office moves, packing, man and van, long-distance removals, and storage partners from Kim Logistics in Coventry.",
 };
 
+const SERVICE_IMAGES = [
+  "/images/fleet.jpg",
+  "/images/job-1.jpeg",
+  "/images/job-2.jpeg",
+  "/images/fleet.jpg",
+  "/images/job-1.jpeg",
+  "/images/job-2.jpeg",
+] as const;
+
 export default function ServicesPage() {
   return (
     <>
@@ -45,14 +54,10 @@ export default function ServicesPage() {
                   }`}
                 >
                   <Image
-                    src={index % 2 === 0 ? "/images/fleet.jpg" : "/images/service-placeholder.svg"}
-                    alt={
-                      index % 2 === 0
-                        ? `Kim Logistics fleet supporting ${service.title}`
-                        : `Placeholder image for ${service.title}`
-                    }
+                    src={SERVICE_IMAGES[index] ?? "/images/fleet.jpg"}
+                    alt={`Kim Logistics supporting ${service.title}`}
                     fill
-                    className="object-cover"
+                    className="object-cover transition-transform duration-500 hover:scale-[1.03]"
                     sizes="(max-width: 1024px) 100vw, 50vw"
                   />
                 </div>

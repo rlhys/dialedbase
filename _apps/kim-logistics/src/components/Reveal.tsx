@@ -16,7 +16,7 @@ export function Reveal({
   className = "",
   as: Tag = "div",
   delay = 0,
-  y = 42,
+  y = 36,
 }: RevealProps) {
   const ref = useRef<HTMLElement | null>(null);
 
@@ -33,13 +33,14 @@ export function Reveal({
 
       gsap.fromTo(
         node,
-        { opacity: 0, y },
+        { autoAlpha: 0, y },
         {
-          opacity: 1,
+          autoAlpha: 1,
           y: 0,
-          duration: 0.95,
+          duration: 0.9,
           delay,
           ease: "power3.out",
+          clearProps: "transform",
           scrollTrigger: {
             trigger: node,
             start: "top 88%",

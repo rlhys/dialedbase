@@ -10,24 +10,17 @@ import { cx } from "@/lib/utils";
 export function Header() {
   const pathname = usePathname();
   const [open, setOpen] = useState(false);
-  const [overDark, setOverDark] = useState(true);
-  const [scrolled, setScrolled] = useState(false);
+  const [overHero, setOverHero] = useState(true);
 
   useEffect(() => {
     const hero = document.getElementById("brand-hero");
 
     const update = () => {
-      const y = window.scrollY;
-      setScrolled(y > 18);
-
       if (hero) {
-        const bottom = hero.getBoundingClientRect().bottom;
-        setOverDark(bottom > 88);
+        setOverHero(hero.getBoundingClientRect().bottom > 72);
         return;
       }
-
-      // Interior pages without brand-hero fall back to ink once past the page hero band
-      setOverDark(y < 220);
+      setOverHero(window.scrollY < 160);
     };
 
     update();
@@ -39,18 +32,20 @@ export function Header() {
     };
   }, [pathname]);
 
-  const dark = overDark || open;
+  useEffect(() => {
+    setOpen(false);
+  }, [pathname]);
+
+  const dark = overHero || open;
   const logoVariant = dark ? "chalk" : "ink";
 
   return (
     <header
       className={cx(
-        "fixed inset-x-0 top-0 z-50 transition-[background-color,border-color,backdrop-filter,box-shadow] duration-300",
+        "fixed inset-x-0 top-0 z-50 border-b transition-[background-color,border-color] duration-200",
         dark
-          ? scrolled || open
-            ? "border-b border-white/10 bg-ink/92 backdrop-blur-md"
-            : "border-b border-transparent bg-ink/35 backdrop-blur-sm"
-          : "border-b border-[var(--line)] bg-paper/95 backdrop-blur-md shadow-[0_1px_0_rgba(9,9,9,0.04)]",
+          ? "border-white/10 bg-ink"
+          : "border-[var(--line)] bg-paper",
       )}
     >
       <div className="site-shell flex items-center justify-between gap-4 py-3.5">
@@ -106,10 +101,7 @@ export function Header() {
           >
             {contact.phoneDisplay}
           </a>
-          <Link
-            href="/contact"
-            className="inline-flex bg-signal px-3.5 py-2 text-sm font-semibold tracking-tight text-ink transition hover:bg-signal-deep hover:text-paper"
-          >
+          <Link href="/contact" className="btn-solid btn-signal px-3.5 py-2 text-sm">
             Free quote
           </Link>
           <button
@@ -132,7 +124,14 @@ export function Header() {
         </div>
       </div>
 
-      <div id="mobile-nav" className={cx("border-t lg:hidden", open ? "block" : "hidden", dark ? "border-white/10 bg-ink" : "border-[var(--line)] bg-paper")}>
+      <div
+        id="mobile-nav"
+        className={cx(
+          "border-t lg:hidden",
+          open ? "block" : "hidden",
+          dark ? "border-white/10 bg-ink" : "border-[var(--line)] bg-paper",
+        )}
+      >
         <nav className="site-shell flex flex-col gap-1 py-3" aria-label="Mobile">
           {nav.map((item) => {
             const active = pathname === item.href;
@@ -142,14 +141,14 @@ export function Header() {
                 href={item.href}
                 onClick={() => setOpen(false)}
                 className={cx(
-                  "px-3 py-3 text-base font-medium",
+                  "px-3 py-3 text-base font-medium transition-colors",
                   dark
                     ? active
                       ? "bg-paper text-ink"
-                      : "text-paper"
+                      : "text-paper hover:bg-paper/10"
                     : active
                       ? "bg-ink text-paper"
-                      : "text-ink",
+                      : "text-ink hover:bg-field",
                 )}
               >
                 {item.label}
