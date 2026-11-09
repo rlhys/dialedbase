@@ -3,11 +3,15 @@
 import Image from "next/image";
 import Link from "next/link";
 import { useRef } from "react";
-import { Magnetic } from "@/components/Magnetic";
+import { Magnetic } from "@/components/Motion";
 import { MotionHashes } from "@/components/MotionHashes";
 import { contact, homeCopy } from "@/content/site";
 import { gsap, registerGsap, useGSAP } from "@/lib/gsap";
 
+/**
+ * Brand-first hero: full-bleed fleet photo + headline + motion hashes.
+ * Logo lives only in the sticky header (and footer) — never repeated here.
+ */
 export function HeroStage() {
   const root = useRef<HTMLElement>(null);
   const media = useRef<HTMLDivElement>(null);
@@ -17,22 +21,34 @@ export function HeroStage() {
     () => {
       registerGsap();
       if (!root.current || !media.current || !copy.current) return;
-      if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
 
-      const tl = gsap.timeline({ defaults: { ease: "power3.out" } });
-      tl.fromTo(
-        media.current,
-        { scale: 1.14 },
-        { scale: 1.02, duration: 1.85 },
-        0,
-      ).from(
-        copy.current.querySelectorAll("[data-hero-line]"),
-        { y: 56, opacity: 0, duration: 1, stagger: 0.1 },
-        0.15,
-      );
+      const lines = copy.current.querySelectorAll<HTMLElement>("[data-hero-line]");
+      // Clear any leftover opacity from Strict Mode remounts / HMR.
+      gsap.set(lines, { clearProps: "opacity,visibility,transform,filter" });
+      gsap.set(media.current, { clearProps: "transform" });
+
+      if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
+        gsap.set(lines, { autoAlpha: 1, y: 0 });
+        return;
+      }
+
+      gsap
+        .timeline({ defaults: { ease: "power3.out" } })
+        .fromTo(media.current, { scale: 1.12 }, { scale: 1.02, duration: 1.7 }, 0)
+        .from(
+          lines,
+          {
+            y: 48,
+            autoAlpha: 0,
+            duration: 0.95,
+            stagger: 0.09,
+            clearProps: "transform",
+          },
+          0.12,
+        );
 
       gsap.to(media.current, {
-        yPercent: 14,
+        yPercent: 12,
         ease: "none",
         scrollTrigger: {
           trigger: root.current,
@@ -60,17 +76,25 @@ export function HeroStage() {
           className="object-cover object-[center_38%]"
           sizes="100vw"
         />
-        <div className="absolute inset-0 bg-[linear-gradient(105deg,rgba(9,9,9,0.92)_0%,rgba(9,9,9,0.72)_42%,rgba(9,9,9,0.28)_100%)]" />
-        <div className="absolute inset-0 bg-[linear-gradient(to_top,rgba(9,9,9,0.88)_0%,transparent_42%)]" />
+        <div className="absolute inset-0 bg-[linear-gradient(105deg,rgba(9,9,9,0.78)_0%,rgba(9,9,9,0.52)_48%,rgba(9,9,9,0.18)_100%)]" />
+        <div className="absolute inset-0 bg-[linear-gradient(to_top,rgba(9,9,9,0.72)_0%,transparent_48%)]" />
+        {/* Geometric industrial frame — not blue cinematic mist */}
+        <div
+          aria-hidden
+          className="pointer-events-none absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-signal/70 to-transparent"
+        />
       </div>
 
       <div
         ref={copy}
         className="site-shell relative flex min-h-[100svh] flex-col justify-end pb-14 pt-28 md:justify-center md:pb-20 md:pt-28"
       >
-        <div data-hero-line className="mt-8 flex items-center gap-4">
+        <div data-hero-line className="flex items-center gap-4">
           <span className="h-px w-16 bg-signal" />
           <MotionHashes className="hash-pulse" tone="signal" />
+          <p className="text-[0.7rem] font-semibold uppercase tracking-[0.28em] text-paper/55">
+            Keep it moving
+          </p>
         </div>
 
         <h1
@@ -87,11 +111,12 @@ export function HeroStage() {
           {homeCopy.heroSupport}
         </p>
 
-        <div data-hero-line className="mt-9 flex flex-col gap-3 sm:flex-row sm:items-center">
+        {/* CTAs outside GSAP opacity lines — prevents black blank buttons after HMR */}
+        <div className="mt-9 flex flex-col gap-3 sm:flex-row sm:items-center">
           <Magnetic>
             <Link
               href="/contact"
-              className="inline-flex items-center justify-center bg-signal px-6 py-3.5 text-base font-semibold tracking-tight text-ink transition hover:bg-signal-deep hover:text-paper"
+              className="btn-sheen inline-flex items-center justify-center rounded-md bg-[#ff5c1a] px-6 py-3.5 text-base font-semibold tracking-tight text-black transition hover:bg-[#d9480f] hover:text-white"
             >
               Get a free quote
             </Link>
@@ -99,7 +124,7 @@ export function HeroStage() {
           <Magnetic strength={0.18}>
             <a
               href={contact.phoneHref}
-              className="inline-flex items-center justify-center border border-paper/35 px-6 py-3.5 text-base font-semibold tracking-tight text-paper transition hover:border-paper"
+              className="glass-lite inline-flex items-center justify-center rounded-md border border-white/35 px-6 py-3.5 text-base font-semibold tracking-tight text-white transition hover:border-white"
             >
               Call {contact.phoneDisplay}
             </a>
