@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Outfit, Source_Sans_3 } from "next/font/google";
+import { Barlow_Condensed, Source_Sans_3 } from "next/font/google";
 import { Footer } from "@/components/Footer";
 import { Header } from "@/components/Header";
 import { MobileCtaBar } from "@/components/MobileCtaBar";
@@ -7,8 +7,8 @@ import { SmoothScroll } from "@/components/SmoothScroll";
 import { site } from "@/content/site";
 import "./globals.css";
 
-/** Light UK operator voice — distinct from Kim's Space Grotesk / dark geometric. */
-const display = Outfit({
+/** Condensed trade display - pairs with the MOVE IT DAN wordmark. */
+const display = Barlow_Condensed({
   variable: "--font-mid-display",
   subsets: ["latin"],
   weight: ["500", "600", "700", "800"],

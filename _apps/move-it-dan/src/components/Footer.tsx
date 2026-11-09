@@ -5,8 +5,8 @@ import { nav, site } from "@/content/site";
 
 export function Footer() {
   return (
-    <footer className="border-t border-line bg-ink text-white">
-      <div className="mx-auto grid max-w-6xl gap-10 px-5 py-14 sm:px-8 md:grid-cols-[1.4fr_1fr_1fr]">
+    <footer className="border-t border-ink bg-ink text-white">
+      <div className="site-shell grid gap-10 py-14 md:grid-cols-[1.4fr_1fr_1fr]">
         <div>
           <BrandLogo tone="chalk" height={34} />
           <p className="mt-4 max-w-sm text-sm leading-relaxed text-white/65">
@@ -14,11 +14,14 @@ export function Footer() {
           </p>
         </div>
         <div>
-          <p className="eyebrow text-signal">Explore</p>
+          <p className="eyebrow">Explore</p>
           <ul className="mt-4 space-y-2 text-sm">
             {nav.map((item) => (
               <li key={item.href}>
-                <Link href={item.href} className="text-white/75 no-underline hover:text-white">
+                <Link
+                  href={item.href}
+                  className="text-white/75 no-underline transition-colors hover:text-white"
+                >
                   {item.label}
                 </Link>
               </li>
@@ -26,23 +29,20 @@ export function Footer() {
           </ul>
         </div>
         <div>
-          <p className="eyebrow text-signal">Get in touch</p>
+          <p className="eyebrow">Get in touch</p>
           <a
             href={`tel:${site.phoneTel}`}
-            className="mt-4 block text-2xl font-semibold tracking-tight text-white no-underline"
+            className="display mt-4 block text-3xl tracking-tight text-white no-underline transition-colors hover:text-signal"
           >
             {site.phoneDisplay}
           </a>
-          <Link
-            href="/contact"
-            className="mt-5 inline-flex rounded-md bg-signal px-4 py-2.5 text-sm font-semibold text-white no-underline hover:bg-signal-deep"
-          >
+          <Link href="/contact" className="btn btn-signal mt-6">
             Request a quote
           </Link>
         </div>
       </div>
-      <div className="border-t border-white/10 px-5 py-5 sm:px-8">
-        <div className="mx-auto flex max-w-6xl flex-col items-center justify-between gap-3 sm:flex-row">
+      <div className="border-t border-white/10">
+        <div className="site-shell flex flex-col items-center justify-between gap-3 py-5 sm:flex-row">
           <p className="text-xs text-white/45">© 2026 {site.name}</p>
           <DialedbaseCredit />
         </div>

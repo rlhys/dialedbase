@@ -37,6 +37,8 @@ export const services = [
       "Furniture dismantle and reassemble when needed",
       "Stair, carpet, and floor protection",
     ],
+    image: "/images/crew.jpeg",
+    alt: "Move It Dan crew carrying boxes on a domestic move",
   },
   {
     slug: "commercial",
@@ -48,6 +50,8 @@ export const services = [
       "Clear labelling and load order",
       "Flexible start windows where possible",
     ],
+    image: "/images/van.jpeg",
+    alt: "Move It Dan van ready for a commercial or large domestic job",
   },
   {
     slug: "packing",
@@ -59,6 +63,8 @@ export const services = [
       "Wardrobe boxes so clothes stay on hangers",
       "Bubble wrap and specialised covers for fragiles",
     ],
+    image: "/images/care.jpeg",
+    alt: "Furniture wrapped in quilted protective covers",
   },
   {
     slug: "overseas",
@@ -70,6 +76,8 @@ export const services = [
       "Clear updates while goods are in transit",
       "Quote scoped to your destinations and volume",
     ],
+    image: "/images/unload.jpeg",
+    alt: "Careful unload at the destination",
   },
 ] as const;
 
@@ -131,25 +139,26 @@ export const reviewPlaceholders = [
   },
 ] as const;
 
-export const photoSlots = [
-  {
-    id: "hero",
-    label: "Client photo needed: loaded van or crew at a home",
-    hint: "Landscape, bright, real Move It Dan van preferred",
+/** Scraped job photos from moveitdan.co.uk. */
+export const photos = {
+  hero: {
+    src: "/images/hero.jpeg",
+    alt: "Move It Dan crew loading a removal van",
   },
-  {
-    id: "care",
-    label: "Client photo needed: furniture wrapping / protection in progress",
-    hint: "Close detail of quilted covers or floor runners",
+  care: {
+    src: "/images/care.jpeg",
+    alt: "Furniture protection and packing materials on a move",
   },
-  {
-    id: "crew",
-    label: "Client photo needed: team or Dan on a job",
-    hint: "Natural light, faces optional with permission",
+  crew: {
+    src: "/images/crew.jpeg",
+    alt: "Move It Dan crew carrying boxes",
   },
-  {
-    id: "unload",
-    label: "Client photo needed: unload or new-home arrival",
-    hint: "Shows the finish, not only the truck",
+  unload: {
+    src: "/images/unload.jpeg",
+    alt: "Unload at the new home",
   },
-] as const;
+  van: {
+    src: "/images/van.jpeg",
+    alt: "Move It Dan van outside a UK home",
+  },
+} as const;
