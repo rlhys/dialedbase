@@ -63,13 +63,29 @@ const Footer = () => {
         </div>
 
         <div className="relative my-6 select-none overflow-hidden px-2">
-          <div className="text-[clamp(2.75rem,7vw,5.75rem)] leading-[0.9] font-semibold tracking-[-0.05em] shine-text whitespace-nowrap text-center">
-            Dialedbase
-          </div>
+          <a href="https://dialedbase.com" className="block text-center no-underline group" aria-label="Dialedbase">
+            <div className="text-[clamp(2.75rem,7vw,5.75rem)] leading-[0.9] font-semibold tracking-[-0.05em] shine-text whitespace-nowrap transition group-hover:opacity-90">
+              Dialedbase
+            </div>
+          </a>
         </div>
 
-        <div className="flex flex-col sm:flex-row items-center justify-between gap-2 pt-5 border-t border-white/5 text-[11.5px] text-white/40">
-          <div>© {new Date().getFullYear()} Dialedbase. All rights reserved.</div>
+        <div className="flex flex-col sm:flex-row items-center justify-between gap-3 pt-5 border-t border-white/5 text-[11.5px] text-white/40">
+          <div className="flex items-center gap-2.5">
+            <a
+              href="https://dialedbase.com"
+              className="group inline-flex items-center gap-2 text-white/55 hover:text-white transition-colors"
+              aria-label="Dialedbase home"
+            >
+              <img
+                src="/images/dialedbase-mark.png"
+                alt="Dialedbase"
+                className="h-7 w-7 rounded-[0.5rem] object-cover shadow-[0_0_0_1px_rgba(255,255,255,0.1)]"
+              />
+              <span className="font-medium underline-offset-4 group-hover:underline">Dialedbase</span>
+            </a>
+            <span>· © {new Date().getFullYear()}</span>
+          </div>
           <div className="flex items-center gap-4">
             <a className="hover:text-white" href="#">Privacy</a>
             <a className="hover:text-white" href="#">Terms</a>

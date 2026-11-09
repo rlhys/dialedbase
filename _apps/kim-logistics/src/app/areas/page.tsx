@@ -19,33 +19,37 @@ export default function AreasPage() {
         support={areas.intro}
       />
 
-      <section className="site-shell py-16 md:py-24">
-        <Reveal>
-          <p className="max-w-2xl text-lg leading-relaxed text-steel">
-            Local SEO without stuffing: we serve people moving in and around these places, and we are
-            happy to discuss further afield when the route makes sense.
-          </p>
-        </Reveal>
+      <section className="bg-paper">
+        <div className="site-shell py-16 md:py-24">
+          <Reveal>
+            <p className="max-w-2xl text-lg leading-relaxed text-mute">
+              We serve people moving in and around these places, and we are happy to discuss further
+              afield when the route makes sense.
+            </p>
+          </Reveal>
 
-        <ul className="mt-12 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
-          {areas.places.map((place) => (
-            <Reveal key={place} as="li">
-              <div className="border border-ink/10 bg-paper/70 px-5 py-6">
-                <p className="font-display text-2xl tracking-tight text-ink">{place}</p>
-                <p className="mt-2 text-sm text-steel">
+          <ul className="mt-14 grid border-t border-ink/15 sm:grid-cols-2 lg:grid-cols-3">
+            {areas.places.map((place) => (
+              <Reveal
+                key={place}
+                as="li"
+                className="border-b border-ink/15 px-0 py-7 sm:border-r sm:px-6 sm:odd:pl-0 lg:[&:nth-child(3n)]:border-r-0 lg:[&:nth-child(3n+1)]:pl-0"
+              >
+                <p className="font-display text-2xl tracking-[-0.02em] text-ink">{place}</p>
+                <p className="mt-2 text-sm leading-relaxed text-mute">
                   Removals to and from {place}, quoted around your access and timing.
                 </p>
-              </div>
-            </Reveal>
-          ))}
-        </ul>
+              </Reveal>
+            ))}
+          </ul>
 
-        <Reveal className="mt-12 max-w-2xl">
-          <p className="text-base leading-relaxed text-steel">
-            Moving somewhere not listed? Ask anyway. Long-distance jobs are part of the service when
-            the route and timing work.
-          </p>
-        </Reveal>
+          <Reveal className="mt-14 max-w-2xl">
+            <p className="text-base leading-relaxed text-mute">
+              Moving somewhere not listed? Ask anyway. Long-distance jobs are part of the service when
+              the route and timing work.
+            </p>
+          </Reveal>
+        </div>
       </section>
 
       <CtaBand />

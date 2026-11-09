@@ -3,10 +3,15 @@
 import Image from "next/image";
 import Link from "next/link";
 import { useRef } from "react";
-import { Magnetic } from "@/components/Magnetic";
-import { brand, contact, homeCopy } from "@/content/site";
+import { Magnetic } from "@/components/Motion";
+import { MotionHashes } from "@/components/MotionHashes";
+import { contact, homeCopy } from "@/content/site";
 import { gsap, registerGsap, useGSAP } from "@/lib/gsap";
 
+/**
+ * Brand-first hero: full-bleed fleet photo + headline + motion hashes.
+ * Logo lives only in the sticky header (and footer) — never repeated here.
+ */
 export function HeroStage() {
   const root = useRef<HTMLElement>(null);
   const media = useRef<HTMLDivElement>(null);
@@ -16,22 +21,34 @@ export function HeroStage() {
     () => {
       registerGsap();
       if (!root.current || !media.current || !copy.current) return;
-      if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
 
-      const tl = gsap.timeline({ defaults: { ease: "power3.out" } });
-      tl.fromTo(
-        media.current,
-        { scale: 1.2, filter: "brightness(0.45) saturate(0.85)" },
-        { scale: 1.04, filter: "brightness(0.85) saturate(1)", duration: 1.7 },
-        0,
-      ).from(
-        copy.current.querySelectorAll("[data-hero-line]"),
-        { y: 64, opacity: 0, filter: "blur(10px)", duration: 1.05, stagger: 0.09 },
-        0.12,
-      );
+      const lines = copy.current.querySelectorAll<HTMLElement>("[data-hero-line]");
+      // Clear any leftover opacity from Strict Mode remounts / HMR.
+      gsap.set(lines, { clearProps: "opacity,visibility,transform,filter" });
+      gsap.set(media.current, { clearProps: "transform" });
+
+      if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
+        gsap.set(lines, { autoAlpha: 1, y: 0 });
+        return;
+      }
+
+      gsap
+        .timeline({ defaults: { ease: "power3.out" } })
+        .fromTo(media.current, { scale: 1.12 }, { scale: 1.02, duration: 1.7 }, 0)
+        .from(
+          lines,
+          {
+            y: 48,
+            autoAlpha: 0,
+            duration: 0.95,
+            stagger: 0.09,
+            clearProps: "transform",
+          },
+          0.12,
+        );
 
       gsap.to(media.current, {
-        yPercent: 16,
+        yPercent: 12,
         ease: "none",
         scrollTrigger: {
           trigger: root.current,
@@ -45,58 +62,61 @@ export function HeroStage() {
   );
 
   return (
-    <section ref={root} className="relative min-h-[100svh] overflow-hidden bg-ink text-paper">
+    <section
+      id="brand-hero"
+      ref={root}
+      className="relative min-h-[100svh] overflow-hidden bg-ink text-paper"
+    >
       <div ref={media} className="absolute inset-0 will-change-transform">
         <Image
           src="/images/fleet.jpg"
           alt="Kim Logistics removal vans ready for a move"
           fill
           priority
-          className="object-cover object-[center_35%]"
+          className="object-cover object-[center_38%]"
           sizes="100vw"
         />
-        <div className="absolute inset-0 bg-gradient-to-r from-ink via-ink/88 to-ink/45" />
-        <div className="absolute inset-0 bg-gradient-to-t from-ink via-ink/20 to-ink/55" />
+        <div className="absolute inset-0 bg-[linear-gradient(105deg,rgba(9,9,9,0.78)_0%,rgba(9,9,9,0.52)_48%,rgba(9,9,9,0.18)_100%)]" />
+        <div className="absolute inset-0 bg-[linear-gradient(to_top,rgba(9,9,9,0.72)_0%,transparent_48%)]" />
+        {/* Geometric industrial frame — not blue cinematic mist */}
+        <div
+          aria-hidden
+          className="pointer-events-none absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-signal/70 to-transparent"
+        />
       </div>
 
       <div
         ref={copy}
-        className="site-shell relative flex min-h-[100svh] flex-col justify-end pb-16 pt-28 md:justify-center md:pb-24 md:pt-24"
+        className="site-shell relative flex min-h-[100svh] flex-col justify-end pb-14 pt-28 md:justify-center md:pb-20 md:pt-28"
       >
-        <div data-hero-line className="relative h-12 w-[min(100%,18rem)] sm:h-14 sm:w-[22rem]">
-          <Image
-            src="/images/logo-wordmark.png"
-            alt={brand.name}
-            fill
-            className="object-contain object-left"
-            sizes="360px"
-            priority
-          />
+        <div data-hero-line className="flex items-center gap-4">
+          <span className="h-px w-16 bg-signal" />
+          <MotionHashes className="hash-pulse" tone="signal" />
+          <p className="text-[0.7rem] font-semibold uppercase tracking-[0.28em] text-paper/55">
+            Keep it moving
+          </p>
         </div>
-        <p
-          data-hero-line
-          className="mt-5 text-xs font-semibold uppercase tracking-[0.28em] text-signal"
-        >
-          {brand.motto}
-        </p>
-        <div data-hero-line className="mt-4 h-1 w-24 origin-left rounded-full bg-signal" />
+
         <h1
           data-hero-line
-          className="font-display mt-8 max-w-3xl text-balance text-3xl leading-[1.08] tracking-tight sm:text-4xl md:text-5xl lg:text-[3.4rem]"
+          className="font-display mt-7 max-w-3xl text-balance text-[2.15rem] leading-[1.05] tracking-[-0.03em] sm:text-5xl md:text-6xl lg:text-[4.1rem]"
         >
           {homeCopy.heroHeadline}
         </h1>
+
         <p
           data-hero-line
-          className="mt-5 max-w-xl text-lg leading-relaxed text-paper/80 md:text-xl"
+          className="mt-5 max-w-xl text-lg leading-relaxed text-paper/78 md:text-xl"
         >
           {homeCopy.heroSupport}
         </p>
-        <div data-hero-line className="mt-9 flex flex-col gap-3 sm:flex-row sm:items-center">
+
+        {/* CTAs outside GSAP opacity lines — prevents black blank buttons after HMR */}
+        <div className="mt-9 flex flex-col gap-3 sm:flex-row sm:items-center">
           <Magnetic>
             <Link
               href="/contact"
-              className="inline-flex items-center justify-center rounded-md bg-signal px-6 py-3.5 text-base font-semibold text-ink transition hover:bg-signal-deep hover:text-paper"
+              className="btn-sheen inline-flex items-center justify-center rounded-md bg-[#ff5c1a] px-6 py-3.5 text-base font-semibold tracking-tight text-black transition hover:bg-[#d9480f] hover:text-white"
             >
               Get a free quote
             </Link>
@@ -104,15 +124,16 @@ export function HeroStage() {
           <Magnetic strength={0.18}>
             <a
               href={contact.phoneHref}
-              className="inline-flex items-center justify-center rounded-md border border-paper/35 px-6 py-3.5 text-base font-semibold text-paper transition hover:border-paper"
+              className="glass-lite inline-flex items-center justify-center rounded-md border border-white/35 px-6 py-3.5 text-base font-semibold tracking-tight text-white transition hover:border-white"
             >
               Call {contact.phoneDisplay}
             </a>
           </Magnetic>
         </div>
+
         <p
           data-hero-line
-          className="mt-6 text-sm uppercase tracking-[0.18em] text-paper/55"
+          className="mt-8 text-[0.72rem] font-medium uppercase tracking-[0.28em] text-paper/50"
         >
           Coventry · West Midlands · Long-distance when needed
         </p>

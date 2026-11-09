@@ -1,10 +1,17 @@
 # Kim Logistics - design lock
 
-Sacred logos: `brand/logo-wordmark.png`, `brand/logo-on-black.jpg`, `public/logo.jpg`.
+Sacred logos:
+- `public/images/logo-wordmark.png` (source chalk / white wordmark)
+- `public/images/logo-wordmark-chalk.png` (white marks for dark surfaces)
+- `public/images/logo-wordmark-ink.png` (near-black marks for light surfaces)
 
+Rules:
 - Light KIM + bold LOGISTICS, tagline KEEP IT MOVING
 - House outline + four diagonal motion hashes on the baseline
-- Palette: black / white high contrast. At most one restrained CTA accent if required
-- Craft bar: portfolio-max extension of this logo. Expressive type (not Inter/Roboto/Arial). Full-bleed hero. Brand-first. Controlled negative space.
-- Motion stack: Lenis (smooth scroll) + GSAP ScrollTrigger (hero scrub / reveals) + Motion (magnetic CTAs)
-- Forbidden: new logo, purple gradients, Wix teal clutter, cream/terracotta AI look, keyword-spam copy
+- Chalk on dark. Ink on light. Never `filter: invert` on the logo.
+- Palette: black / white high contrast. One restrained CTA accent (`--signal`) only.
+- Header: dark glass over hero, solid ink or paper after scroll. Pairs with the correct logo variant.
+- Craft bar: premium Coventry operator. Geometric. Controlled negative space. Full-bleed brand-first hero.
+- Type: Space Grotesk (display) + IBM Plex Sans (body). Not Inter / Roboto / Arial.
+- Motion stack: Lenis + GSAP ScrollTrigger + Motion magnetic CTAs
+- Forbidden: new logo, purple gradients, Wix teal clutter, cream/terracotta AI look, keyword-spam copy, frosted white sticky headers that fight the brand
