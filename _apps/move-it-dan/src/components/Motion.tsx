@@ -2,14 +2,11 @@
 
 import {
   motion,
-  useMotionValue,
-  useSpring,
-  useTransform,
   type HTMLMotionProps,
 } from "motion/react";
-import { useRef, type ReactNode } from "react";
+import type { ReactNode } from "react";
 
-/** Dialedbase-style magnetic pull — spring follows cursor. */
+/** Calm scale press — no magnetic cursor chase. */
 export function Magnetic({
   children,
   strength = 0.28,
@@ -19,34 +16,19 @@ export function Magnetic({
   strength?: number;
   className?: string;
 }) {
-  const ref = useRef<HTMLDivElement>(null);
-  const x = useMotionValue(0);
-  const y = useMotionValue(0);
-  const sx = useSpring(x, { stiffness: 240, damping: 18, mass: 0.45 });
-  const sy = useSpring(y, { stiffness: 240, damping: 18, mass: 0.45 });
-
+  void strength;
   return (
     <motion.div
-      ref={ref}
       className={className}
-      style={{ x: sx, y: sy }}
-      onPointerMove={(e) => {
-        const node = ref.current;
-        if (!node) return;
-        if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
-        const rect = node.getBoundingClientRect();
-        x.set((e.clientX - (rect.left + rect.width / 2)) * strength);
-        y.set((e.clientY - (rect.top + rect.height / 2)) * strength);
-      }}
-      onPointerLeave={() => {
-        x.set(0);
-        y.set(0);
-      }}
+      whileHover={{ scale: 1.03 }}
+      whileTap={{ scale: 0.98 }}
+      transition={{ type: "spring", stiffness: 420, damping: 28, mass: 0.35 }}
     >
       {children}
     </motion.div>
   );
 }
+
 
 export function FadeIn({
   children,
@@ -140,42 +122,7 @@ export function Tilt({
   className?: string;
   max?: number;
 }) {
-  const ref = useRef<HTMLDivElement>(null);
-  const rx = useMotionValue(0);
-  const ry = useMotionValue(0);
-  const srx = useSpring(rx, { stiffness: 200, damping: 20 });
-  const sry = useSpring(ry, { stiffness: 200, damping: 20 });
-  const tRx = useTransform(srx, (v) => `${v}deg`);
-  const tRy = useTransform(sry, (v) => `${v}deg`);
-
-  return (
-    <motion.div
-      ref={ref}
-      className={`will-change-transform ${className}`}
-      style={{
-        rotateX: tRx,
-        rotateY: tRy,
-        transformPerspective: 1200,
-        transformStyle: "preserve-3d",
-      }}
-      onPointerMove={(e) => {
-        const el = ref.current;
-        if (!el) return;
-        if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
-        const rect = el.getBoundingClientRect();
-        const px = (e.clientX - rect.left) / rect.width;
-        const py = (e.clientY - rect.top) / rect.height;
-        rx.set((0.5 - py) * max);
-        ry.set((px - 0.5) * max);
-        el.style.setProperty("--mx", `${px * 100}%`);
-        el.style.setProperty("--my", `${py * 100}%`);
-      }}
-      onPointerLeave={() => {
-        rx.set(0);
-        ry.set(0);
-      }}
-    >
-      {children}
-    </motion.div>
-  );
+  void max;
+  return <div className={className}>{children}</div>;
 }
+

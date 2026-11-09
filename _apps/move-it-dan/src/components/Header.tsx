@@ -28,7 +28,7 @@ export function Header() {
     <header
       className={`fixed inset-x-0 top-0 z-50 transition-[background,border-color,box-shadow] duration-300 ${
         solid || open
-          ? "border-b border-line bg-paper/95 shadow-sm backdrop-blur-md"
+          ? "border-b border-line bg-paper shadow-sm "
           : "border-b border-transparent bg-transparent"
       }`}
     >

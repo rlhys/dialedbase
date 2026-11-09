@@ -68,13 +68,13 @@ export function HeroStage() {
           sizes="100vw"
         />
         <div className="absolute inset-0 bg-[linear-gradient(115deg,rgba(16,24,32,0.88)_0%,rgba(16,24,32,0.58)_48%,rgba(0,115,197,0.22)_100%)]" />
-        <div className="pointer-events-none absolute inset-0 signal-glow opacity-70" />
+        <div className="pointer-events-none absolute inset-0 hidden opacity-70" />
       </div>
 
       <div className="relative mx-auto flex min-h-[94svh] max-w-6xl flex-col justify-end px-5 pb-16 pt-28 sm:px-8 sm:pb-20 lg:justify-center">
         <div ref={copy} className="max-w-2xl">
           <div data-hero-line>
-            <span className="glass inline-flex items-center gap-2 rounded-full px-3 py-1.5 text-[11px] font-medium tracking-wide text-white/85">
+            <span className="border border-white/25 bg-black/45 inline-flex items-center gap-2 rounded-full px-3 py-1.5 text-[11px] font-medium tracking-wide text-white/85">
               <span className="relative flex h-1.5 w-1.5">
                 <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-emerald-400 opacity-75" />
                 <span className="relative inline-flex h-1.5 w-1.5 rounded-full bg-emerald-400" />
@@ -87,7 +87,7 @@ export function HeroStage() {
             data-hero-line
             className="display mt-6 text-[clamp(2.75rem,8.5vw,5rem)] leading-[0.94]"
           >
-            <span className="shine-text">{site.tagline}</span>
+            <span className="text-inherit">{site.tagline}</span>
           </h1>
 
           <p
@@ -102,7 +102,7 @@ export function HeroStage() {
             <Magnetic strength={0.25}>
               <Link
                 href="/contact"
-                className="btn-sheen inline-flex items-center justify-center rounded-full bg-signal px-6 py-3.5 text-sm font-semibold text-white no-underline shadow-[0_12px_40px_-16px_rgba(0,115,197,0.9)] hover:bg-signal-deep"
+                className="inline-flex items-center justify-center rounded-full bg-signal px-6 py-3.5 text-sm font-semibold text-white no-underline shadow-[0_12px_40px_-16px_rgba(0,115,197,0.9)] hover:bg-signal-deep"
               >
                 Get a free quote
               </Link>
@@ -110,7 +110,7 @@ export function HeroStage() {
             <Magnetic strength={0.16}>
               <a
                 href={`tel:${site.phoneTel}`}
-                className="glass glass-hover inline-flex items-center justify-center rounded-full px-5 py-3.5 text-sm font-semibold text-white no-underline hover:bg-white/10"
+                className="border border-white/25 bg-black/45 inline-flex items-center justify-center rounded-full px-5 py-3.5 text-sm font-semibold text-white no-underline hover:bg-white/10"
               >
                 Call {site.phoneDisplay}
               </a>

@@ -116,7 +116,7 @@ export function HeroStage() {
           <Magnetic>
             <Link
               href="/contact"
-              className="btn-sheen inline-flex items-center justify-center bg-signal px-6 py-3.5 text-base font-semibold tracking-tight text-ink transition hover:bg-signal-deep hover:text-paper"
+              className="inline-flex items-center justify-center bg-signal px-6 py-3.5 text-base font-semibold tracking-tight text-ink transition hover:bg-signal-deep hover:text-paper"
             >
               Get a free quote
             </Link>
@@ -124,7 +124,7 @@ export function HeroStage() {
           <Magnetic strength={0.18}>
             <a
               href={contact.phoneHref}
-              className="glass-lite inline-flex items-center justify-center px-6 py-3.5 text-base font-semibold tracking-tight text-paper transition hover:border-paper/55"
+              className="border border-white/30 inline-flex items-center justify-center px-6 py-3.5 text-base font-semibold tracking-tight text-paper transition hover:border-paper/55"
             >
               Call {contact.phoneDisplay}
             </a>

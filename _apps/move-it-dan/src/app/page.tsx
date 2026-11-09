@@ -10,7 +10,7 @@ export default function HomePage() {
     <>
       <HeroStage />
 
-      <section className="border-y border-line bg-chalk/80 backdrop-blur-sm">
+      <section className="border-y border-line bg-chalk">
         <div className="mx-auto flex max-w-6xl flex-wrap gap-x-8 gap-y-3 px-5 py-5 text-sm text-ink-soft sm:px-8">
           {trustPoints.map((point) => (
             <span key={point} className="inline-flex items-center gap-2">
@@ -66,14 +66,14 @@ export default function HomePage() {
       </section>
 
       <section className="relative overflow-hidden bg-ink py-20 text-white sm:py-28">
-        <div className="signal-glow pointer-events-none absolute inset-0 opacity-40" />
+        <div className="hidden pointer-events-none absolute inset-0 opacity-40" />
         <div className="relative mx-auto max-w-6xl px-5 sm:px-8">
           <FadeIn>
             <p className="text-[11px] font-semibold uppercase tracking-[0.22em] text-signal">
               Services
             </p>
             <h2 className="display mt-3 text-3xl sm:text-5xl">
-              <span className="shine-text">What we can handle</span>
+              <span className="text-inherit">What we can handle</span>
             </h2>
             <p className="mt-4 max-w-xl text-white/65">
               Domestic, commercial, packing, and overseas. One team, clear quotes.
@@ -82,7 +82,7 @@ export default function HomePage() {
           <Stagger gap={0.08} className="mt-12 grid gap-4 sm:grid-cols-2">
             {services.map((service) => (
               <StaggerItem key={service.slug}>
-                <article className="glass glass-hover h-full rounded-2xl p-6 transition hover:border-white/20">
+                <article className="border border-white/25 bg-black/45 h-full rounded-2xl p-6 transition hover:border-white/20">
                   <h3 className="display text-xl text-white">{service.title}</h3>
                   <p className="mt-3 text-sm leading-relaxed text-white/65">
                     {service.blurb}
@@ -113,7 +113,7 @@ export default function HomePage() {
           <Magnetic className="mt-8 inline-flex">
             <Link
               href="/coverage"
-              className="btn-sheen inline-flex items-center gap-2 rounded-full bg-ink py-1.5 pl-5 pr-1.5 text-sm font-semibold text-white no-underline"
+              className="inline-flex items-center gap-2 rounded-full bg-ink py-1.5 pl-5 pr-1.5 text-sm font-semibold text-white no-underline"
             >
               View coverage
               <span className="grid h-8 w-8 place-items-center rounded-full bg-signal">→</span>

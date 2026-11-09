@@ -48,9 +48,9 @@ export function Header() {
         "fixed inset-x-0 top-0 z-50 transition-[background-color,border-color,backdrop-filter,box-shadow] duration-300",
         dark
           ? scrolled || open
-            ? "border-b border-white/10 bg-ink/92 backdrop-blur-md"
-            : "border-b border-transparent bg-ink/35 backdrop-blur-sm"
-          : "border-b border-[var(--line)] bg-paper/95 backdrop-blur-md shadow-[0_1px_0_rgba(9,9,9,0.04)]",
+            ? "border-b border-white/10 bg-ink "
+            : "border-b border-transparent bg-ink/90 "
+          : "border-b border-[var(--line)] bg-paper  shadow-[0_1px_0_rgba(9,9,9,0.04)]",
       )}
     >
       <div className="site-shell flex items-center justify-between gap-4 py-3.5">

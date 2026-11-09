@@ -2,13 +2,11 @@
 
 import {
   motion,
-  useMotionValue,
-  useSpring,
   type HTMLMotionProps,
 } from "motion/react";
-import { useRef, type ReactNode } from "react";
+import type { ReactNode } from "react";
 
-/** Dialedbase-style magnetic pull — spring follows cursor. */
+/** Calm scale press — no magnetic cursor chase. */
 export function Magnetic({
   children,
   strength = 0.28,
@@ -18,34 +16,19 @@ export function Magnetic({
   strength?: number;
   className?: string;
 }) {
-  const ref = useRef<HTMLDivElement>(null);
-  const x = useMotionValue(0);
-  const y = useMotionValue(0);
-  const sx = useSpring(x, { stiffness: 280, damping: 20, mass: 0.35 });
-  const sy = useSpring(y, { stiffness: 280, damping: 20, mass: 0.35 });
-
+  void strength;
   return (
     <motion.div
-      ref={ref}
       className={className}
-      style={{ x: sx, y: sy }}
-      onPointerMove={(e) => {
-        const node = ref.current;
-        if (!node) return;
-        if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
-        const rect = node.getBoundingClientRect();
-        x.set((e.clientX - (rect.left + rect.width / 2)) * strength);
-        y.set((e.clientY - (rect.top + rect.height / 2)) * strength);
-      }}
-      onPointerLeave={() => {
-        x.set(0);
-        y.set(0);
-      }}
+      whileHover={{ scale: 1.03 }}
+      whileTap={{ scale: 0.98 }}
+      transition={{ type: "spring", stiffness: 420, damping: 28, mass: 0.35 }}
     >
       {children}
     </motion.div>
   );
 }
+
 
 export function FadeIn({
   children,

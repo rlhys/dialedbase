@@ -109,35 +109,9 @@ img {
 }
 
 /* Glass-lite for dark bands / secondary CTAs — geometric, not frosted marketing fluff */
-.glass-lite {
-  background: color-mix(in srgb, white 6%, transparent);
-  border: 1px solid color-mix(in srgb, white 18%, transparent);
-  backdrop-filter: blur(10px);
-  -webkit-backdrop-filter: blur(10px);
-}
 
-.btn-sheen {
-  position: relative;
-  overflow: hidden;
-}
 
-.btn-sheen::after {
-  content: "";
-  position: absolute;
-  inset: 0;
-  background: linear-gradient(
-    105deg,
-    transparent 30%,
-    rgba(255, 255, 255, 0.28) 50%,
-    transparent 70%
-  );
-  transform: translateX(-100%);
-  transition: transform 0.55s ease;
-}
 
-.btn-sheen:hover::after {
-  transform: translateX(100%);
-}
 
 @keyframes rise-in {
   from {
@@ -195,12 +169,5 @@ img {
     animation: none !important;
   }
 
-  .btn-sheen::after {
-    display: none;
+  
   }
-
-  .glass-lite {
-    backdrop-filter: none;
-    -webkit-backdrop-filter: none;
-  }
-}
