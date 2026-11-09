@@ -3,6 +3,7 @@ import Link from "next/link";
 import { CtaBand } from "@/components/CtaBand";
 import { HeroStage } from "@/components/HeroStage";
 import { Reveal } from "@/components/Reveal";
+import { SectionHeading } from "@/components/SectionHeading";
 import {
   areas,
   homeCopy,
@@ -18,112 +19,134 @@ export default function HomePage() {
     <>
       <HeroStage />
 
-      {/* Numbered manifesto strip — industrial, not photo-grid twin of MID */}
-      <section className="border-b border-ink/10 bg-ink text-paper">
-        <div className="site-shell grid gap-0 md:grid-cols-4">
-          {whyUs.map((item, index) => (
-            <Reveal
-              key={item.title}
-              as="article"
-              className="border-paper/10 px-0 py-10 md:border-r md:px-6 md:py-14 last:md:border-r-0"
-            >
-              <p className="font-display text-4xl text-signal">{String(index + 1).padStart(2, "0")}</p>
-              <h2 className="font-display mt-4 text-xl tracking-tight">{item.title}</h2>
-              <p className="mt-3 text-sm leading-relaxed text-paper/70">{item.body}</p>
-            </Reveal>
-          ))}
+      <section className="bg-paper">
+        <div className="site-shell py-20 md:py-28">
+          <Reveal>
+            <SectionHeading
+              eyebrow="Why Kim Logistics"
+              title="A local operator built for calm moving days."
+              support="Friendly crews, clear communication, and careful handling from quote to unload."
+            />
+          </Reveal>
+          <div className="mt-14 grid gap-0 border-t border-ink/15 md:grid-cols-2 xl:grid-cols-4">
+            {whyUs.map((item, index) => (
+              <Reveal
+                key={item.title}
+                className="border-b border-ink/15 px-0 py-8 md:border-b-0 md:border-r md:px-6 md:py-10 md:first:pl-0 md:last:border-r-0 md:last:pr-0"
+                as="article"
+              >
+                <p className="font-display text-sm font-semibold tracking-[0.18em] text-signal">
+                  0{index + 1}
+                </p>
+                <h3 className="font-display mt-4 text-2xl tracking-[-0.02em] text-ink">
+                  {item.title}
+                </h3>
+                <p className="mt-3 text-base leading-relaxed text-mute">{item.body}</p>
+              </Reveal>
+            ))}
+          </div>
         </div>
       </section>
 
-      <section className="site-shell atmosphere py-16 md:py-24">
-        <Reveal>
-          <p className="text-xs font-semibold uppercase tracking-[0.28em] text-signal">Services</p>
-          <h2 className="font-display mt-3 max-w-2xl text-4xl tracking-tight md:text-5xl">
-            What we move
-          </h2>
-          <p className="mt-4 max-w-xl text-lg text-steel">{homeCopy.servicesIntro}</p>
-        </Reveal>
-        <ul className="mt-12 divide-y divide-ink/15 border-y border-ink/15">
-          {services.map((service) => (
-            <Reveal key={service.id} as="li" className="group flex flex-col gap-2 py-7 sm:flex-row sm:items-baseline sm:justify-between sm:gap-10">
-              <h3 className="font-display text-2xl tracking-tight text-ink transition group-hover:text-signal sm:text-3xl">
-                {service.title}
-              </h3>
-              <p className="max-w-md text-base leading-relaxed text-steel sm:text-right">
-                {service.summary}
-              </p>
+      <section className="bg-ink text-paper">
+        <div className="site-shell py-20 md:py-28">
+          <div className="flex flex-col gap-8 md:flex-row md:items-end md:justify-between">
+            <Reveal>
+              <SectionHeading
+                tone="dark"
+                eyebrow="Services"
+                title="What we move"
+                support={homeCopy.servicesIntro}
+              />
             </Reveal>
-          ))}
-        </ul>
-        <Reveal className="mt-8">
-          <Link
-            href="/services"
-            className="inline-flex font-semibold text-ink underline decoration-signal decoration-2 underline-offset-4"
-          >
-            View all services
-          </Link>
-        </Reveal>
+            <Reveal>
+              <Link
+                href="/services"
+                className="inline-flex font-semibold text-paper underline decoration-signal decoration-2 underline-offset-4 transition hover:text-signal"
+              >
+                View all services
+              </Link>
+            </Reveal>
+          </div>
+          <div className="mt-12 grid gap-0 border-t border-paper/15 sm:grid-cols-2 lg:grid-cols-3">
+            {services.map((service) => (
+              <Reveal
+                key={service.id}
+                as="article"
+                className="border-b border-paper/15 p-6 transition hover:bg-paper/[0.03] sm:odd:border-r lg:[&:nth-child(3n)]:border-r-0 lg:border-r"
+              >
+                <h3 className="font-display text-2xl tracking-[-0.02em] text-paper">
+                  {service.title}
+                </h3>
+                <p className="mt-3 text-base leading-relaxed text-paper/65">{service.summary}</p>
+              </Reveal>
+            ))}
+          </div>
+        </div>
       </section>
 
-      <section className="bg-field-deep/50">
-        <div className="site-shell grid items-stretch gap-0 lg:grid-cols-2">
-          <Reveal className="relative min-h-[22rem] lg:min-h-[32rem]">
-            <Image
-              src="/images/fleet.jpg"
-              alt="Kim Logistics fleet on a residential job"
-              fill
-              className="object-cover object-center"
-              sizes="(max-width: 1024px) 100vw, 50vw"
-            />
+      <section className="bg-field">
+        <div className="site-shell py-20 md:py-28">
+          <div className="grid items-center gap-12 lg:grid-cols-[1.05fr_0.95fr]">
+            <Reveal>
+              <SectionHeading
+                eyebrow="Areas served"
+                title={`Rooted in ${areas.hub}`}
+                support={homeCopy.areasIntro}
+              />
+              <ul className="mt-10 grid gap-x-8 gap-y-4 sm:grid-cols-2">
+                {areas.places.map((place) => (
+                  <li key={place} className="flex items-center gap-3 border-b border-ink/10 pb-3 text-lg font-medium text-ink">
+                    <span className="h-1.5 w-1.5 shrink-0 bg-signal" />
+                    {place}
+                  </li>
+                ))}
+              </ul>
+              <Link
+                href="/areas"
+                className="mt-10 inline-flex font-semibold text-ink underline decoration-signal decoration-2 underline-offset-4"
+              >
+                See coverage details
+              </Link>
+            </Reveal>
+            <Reveal className="relative aspect-[4/3] overflow-hidden bg-ink">
+              <Image
+                src="/images/fleet.jpg"
+                alt="Kim Logistics fleet on a residential job"
+                fill
+                className="object-cover object-center"
+                sizes="(max-width: 1024px) 100vw, 40vw"
+              />
+              <div className="absolute inset-0 bg-gradient-to-t from-ink/50 to-transparent" />
+            </Reveal>
+          </div>
+        </div>
+      </section>
+
+      <section className="bg-ink text-paper">
+        <div className="site-shell py-20 md:py-28">
+          <Reveal>
+            <SectionHeading tone="dark" eyebrow="Reviews" title={homeCopy.reviewIntro} />
           </Reveal>
-          <Reveal className="flex flex-col justify-center px-0 py-14 lg:px-12 lg:py-20">
-            <p className="text-xs font-semibold uppercase tracking-[0.28em] text-signal">Areas</p>
-            <h2 className="font-display mt-3 text-4xl tracking-tight md:text-5xl">
-              Rooted in {areas.hub}
-            </h2>
-            <p className="mt-4 text-lg leading-relaxed text-steel">{homeCopy.areasIntro}</p>
-            <ul className="mt-8 grid grid-cols-2 gap-x-4 gap-y-2">
-              {areas.places.map((place) => (
-                <li key={place} className="font-display text-base text-ink">
-                  {place}
-                </li>
-              ))}
-            </ul>
+          <Reveal as="blockquote" className="mt-12 max-w-3xl">
+            <p className="font-display text-2xl leading-snug tracking-[-0.02em] sm:text-3xl md:text-4xl">
+              “{review.quote}”
+            </p>
+            <footer className="mt-8 text-base text-paper/65">
+              <cite className="not-italic font-semibold text-paper">{review.name}</cite>
+              {" · "}
+              {review.place}
+            </footer>
+          </Reveal>
+          <Reveal className="mt-8">
             <Link
-              href="/areas"
-              className="mt-8 inline-flex w-fit font-semibold text-ink underline decoration-signal decoration-2 underline-offset-4"
+              href="/reviews"
+              className="inline-flex font-semibold text-signal underline decoration-signal/40 underline-offset-4"
             >
-              See coverage details
+              Read the review
             </Link>
           </Reveal>
         </div>
-      </section>
-
-      <section className="site-shell py-16 md:py-24">
-        <Reveal>
-          <p className="text-xs font-semibold uppercase tracking-[0.28em] text-signal">Reviews</p>
-          <h2 className="font-display mt-3 max-w-3xl text-3xl tracking-tight md:text-4xl">
-            {homeCopy.reviewIntro}
-          </h2>
-        </Reveal>
-        <Reveal as="blockquote" className="mt-12 border-l-4 border-signal pl-6 md:pl-10">
-          <p className="font-display text-2xl leading-snug tracking-tight sm:text-3xl md:text-[2.35rem]">
-            “{review.quote}”
-          </p>
-          <footer className="mt-8 text-base text-steel">
-            <cite className="not-italic font-semibold text-ink">{review.name}</cite>
-            {" · "}
-            {review.place}
-          </footer>
-        </Reveal>
-        <Reveal className="mt-8">
-          <Link
-            href="/reviews"
-            className="inline-flex font-semibold text-ink underline decoration-signal decoration-2 underline-offset-4"
-          >
-            Read the review
-          </Link>
-        </Reveal>
       </section>
 
       <CtaBand />

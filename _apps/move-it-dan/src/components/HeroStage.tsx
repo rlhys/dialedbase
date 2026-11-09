@@ -3,6 +3,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import { useRef } from "react";
+import { BrandLogo } from "@/components/BrandLogo";
 import { Magnetic } from "@/components/Magnetic";
 import { site } from "@/content/site";
 import { gsap, registerGsap, useGSAP } from "@/lib/gsap";
@@ -16,25 +17,25 @@ export function HeroStage() {
     () => {
       registerGsap();
       if (!root.current || !media.current || !copy.current) return;
-      if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
 
-      const lines = copy.current.querySelectorAll<HTMLElement>("[data-hero-line]");
-      gsap.set(lines, { clearProps: "opacity,transform,filter,visibility" });
+      if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
+        return;
+      }
 
       const tl = gsap.timeline({ defaults: { ease: "power3.out" } });
       tl.fromTo(
         media.current,
-        { scale: 1.12 },
-        { scale: 1.02, duration: 1.8 },
+        { scale: 1.22, filter: "brightness(0.45)" },
+        { scale: 1.06, filter: "brightness(0.85)", duration: 1.8 },
         0,
       ).from(
-        lines,
-        { y: 32, autoAlpha: 0, duration: 0.85, stagger: 0.09, clearProps: "transform" },
+        copy.current.querySelectorAll("[data-hero-line]"),
+        { y: 64, opacity: 0, filter: "blur(10px)", duration: 1.05, stagger: 0.12 },
         0.2,
       );
 
       gsap.to(media.current, {
-        yPercent: 12,
+        yPercent: 16,
         ease: "none",
         scrollTrigger: {
           trigger: root.current,
@@ -48,65 +49,70 @@ export function HeroStage() {
   );
 
   return (
-    <section ref={root} className="relative min-h-[100svh] overflow-hidden bg-ink text-chalk">
-      {/* Full-bleed cinematic photo — Move It Dan identity */}
-      <div ref={media} className="absolute inset-0 will-change-transform" aria-hidden>
+    <section
+      ref={root}
+      className="relative min-h-[100svh] overflow-hidden bg-black text-white"
+    >
+      <div
+        ref={media}
+        className="absolute inset-0 will-change-transform"
+        aria-hidden
+      >
         <Image
-          src="/placeholders/crew-boxes.jpg"
+          src="/placeholders/asset-6.jpg"
           alt=""
           fill
           priority
-          className="object-cover object-[center_30%]"
+          className="object-cover object-[center_32%]"
           sizes="100vw"
         />
-        <div className="absolute inset-0 bg-[linear-gradient(100deg,rgba(7,16,24,0.78)_0%,rgba(12,22,36,0.55)_42%,rgba(12,22,36,0.28)_100%)]" />
+        <div className="absolute inset-0 bg-[linear-gradient(180deg,rgba(0,0,0,0.72)_0%,rgba(0,0,0,0.42)_42%,rgba(0,0,0,0.78)_100%)]" />
         <div
           className="absolute inset-0"
           style={{
             backgroundImage:
-              "radial-gradient(ellipse 55% 45% at 72% 40%, color-mix(in srgb, var(--signal) 28%, transparent), transparent 62%)",
+              "radial-gradient(ellipse 55% 45% at 70% 40%, color-mix(in srgb, var(--signal) 22%, transparent), transparent 70%)",
           }}
         />
       </div>
 
-      <div className="relative mx-auto flex min-h-[100svh] max-w-6xl flex-col justify-end px-5 pb-16 pt-28 sm:px-8 sm:pb-20 lg:justify-end lg:pb-24">
+      <div className="relative mx-auto flex min-h-[100svh] max-w-6xl flex-col justify-end px-5 pb-20 pt-28 sm:px-8 sm:pb-24 lg:justify-center lg:pb-28">
         <div ref={copy} className="max-w-3xl">
-          <div data-hero-line className="relative h-[clamp(3rem,9.5vw,5.6rem)] w-[min(100%,34rem)] drop-shadow-[0_8px_28px_rgba(0,0,0,0.45)]">
-            <Image
-              src="/logo-chalk.png"
-              alt={site.name}
-              fill
-              priority
-              className="object-contain object-left"
-              sizes="(max-width: 768px) 90vw, 544px"
-            />
+          <div data-hero-line className="mb-8 sm:mb-10">
+            <BrandLogo tone="chalk" height={72} href={null} priority className="hero-logo" />
           </div>
+
           <h1
             data-hero-line
-            className="mt-6 max-w-xl text-3xl font-semibold tracking-tight text-white sm:text-4xl lg:text-[2.75rem] lg:leading-[1.1]"
+            className="display max-w-xl text-[clamp(2.1rem,6.5vw,4.25rem)] leading-[0.95] tracking-[-0.03em] text-white"
           >
             {site.tagline}
           </h1>
+
           <p
             data-hero-line
-            className="mt-4 max-w-lg text-base leading-relaxed text-white/80 sm:text-lg"
+            className="mt-5 max-w-md text-base leading-relaxed text-white/72 sm:text-lg"
           >
             Careful domestic and commercial moves across the UK and overseas,
             with packing support and clear updates from quote to unload.
           </p>
-          <div data-hero-line className="mt-8 flex flex-col gap-3 sm:flex-row sm:items-center">
+
+          <div
+            data-hero-line
+            className="mt-9 flex flex-col gap-3 sm:flex-row sm:items-center"
+          >
             <Magnetic>
               <Link
                 href="/contact"
-                className="cta-pulse inline-flex items-center justify-center rounded-md bg-signal px-5 py-3.5 text-sm font-semibold text-chalk no-underline hover:bg-signal-deep"
+                className="cta-pulse inline-flex items-center justify-center rounded-sm bg-signal px-6 py-3.5 text-sm font-semibold tracking-wide text-white no-underline hover:bg-signal-deep"
               >
                 Get a free quote
               </Link>
             </Magnetic>
-            <Magnetic strength={0.18}>
+            <Magnetic strength={0.16}>
               <a
                 href={`tel:${site.phoneTel}`}
-                className="inline-flex items-center justify-center rounded-md border border-white/30 bg-white/5 px-5 py-3.5 text-sm font-semibold text-chalk no-underline backdrop-blur-sm hover:bg-white/10"
+                className="inline-flex items-center justify-center rounded-sm border border-white/30 px-6 py-3.5 text-sm font-semibold text-white no-underline hover:bg-white/8"
               >
                 Call {site.phoneDisplay}
               </a>

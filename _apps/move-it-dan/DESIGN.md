@@ -1,25 +1,14 @@
 # Move It Dan - design lock
 
-Sacred logos: `public/logo-chalk.png` (dark surfaces), `public/logo-ink.png` (light surfaces). Never CSS-invert.
+Sacred logo: `public/logo.png` (transparent; derived from `public/logo.jpg`).
 
-## Brand
-- MOVE IT = black/white, DAN = blue `#0073c5`
-- Neutrals: ink `#0c1624`, chalk, mist. Signal blue only for CTAs
-- Mark: house + upward arrow inside the O - reuse for favicon/motif, do not redraw
-
-## Art direction (distinct from Kim Logistics)
-- **Cinema / photographic.** Full-bleed dark hero, logo as hero brand, blue signal glow
-- Type: **Archivo** (display) + **Manrope** (body) + **Barlow Condensed** (eyebrows)
-- Layout rhythm: left-anchored copy over photo, trust strip, photo+copy grids
-- Footer credit: Dialedbase mark + wordmark linking to https://dialedbase.com
-
-## Craft stack (Awwwards-class imports)
-- `next` App Router + `next/font/google`
-- `lenis` — inertia smooth scroll synced to GSAP ticker
-- `gsap` + `@gsap/react` + ScrollTrigger — hero scrub, section reveals
-- `motion` (`motion/react`) — magnetic CTAs / spring interactions
-- Tailwind CSS v4
-
-## Forbidden
-- Sharing Kim’s Space Grotesk / IBM Plex / split light hero
-- Purple gradients, cream/terracotta AI look, white boxes behind logos, inventing a new mark
+- On light surfaces: `logo.png` (black MOVE IT + blue DAN)
+- On dark surfaces: `logo-on-dark.png` (white MOVE IT + blue DAN) - never CSS invert
+- Favicon / sparse motif: `mark.png` (house/arrow O only)
+- MOVE IT = black (or white on dark), DAN = blue `#0073c5`
+- Neutrals: `#000000`, `#ffffff`, soft grays only as needed
+- Mark: house + upward arrow inside the O - reuse sparingly for favicon/bullets, do not redraw a new logo
+- Never replace the logo with plain text "Move It Dan" as the brand mark
+- Craft bar: portfolio-max. Expressive type (Oswald + Sora, not Inter/Roboto/Arial). Full-bleed hero. Brand-first first viewport.
+- Motion stack: Lenis (smooth scroll) + GSAP ScrollTrigger (hero scrub / reveals) + Motion (magnetic CTAs, header)
+- Forbidden: purple gradients, cream/terracotta AI look, generic template cards in the hero, inventing a new mark, fake reviews

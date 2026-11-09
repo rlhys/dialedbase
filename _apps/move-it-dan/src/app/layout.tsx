@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Archivo, Barlow_Condensed, Manrope } from "next/font/google";
+import { Barlow_Condensed, Oswald, Sora } from "next/font/google";
 import { Footer } from "@/components/Footer";
 import { Header } from "@/components/Header";
 import { MobileCtaBar } from "@/components/MobileCtaBar";
@@ -7,21 +7,20 @@ import { SmoothScroll } from "@/components/SmoothScroll";
 import { site } from "@/content/site";
 import "./globals.css";
 
-/** Cinematic mover voice: condensed industrial display + warm geometric body. Distinct from Kim. */
-const display = Archivo({
-  variable: "--font-mid-display",
+const display = Oswald({
+  variable: "--font-display",
   subsets: ["latin"],
-  weight: ["600", "700", "800"],
+  weight: ["500", "600", "700"],
 });
 
-const body = Manrope({
-  variable: "--font-mid-body",
+const body = Sora({
+  variable: "--font-body",
   subsets: ["latin"],
-  weight: ["400", "500", "600", "700", "800"],
+  weight: ["400", "500", "600", "700"],
 });
 
 const condensed = Barlow_Condensed({
-  variable: "--font-mid-condensed",
+  variable: "--font-condensed",
   subsets: ["latin"],
   weight: ["500", "600", "700"],
 });
@@ -40,6 +39,14 @@ export const metadata: Metadata = {
     siteName: site.name,
     locale: "en_GB",
     type: "website",
+    images: [{ url: "/logo.png" }],
+  },
+  icons: {
+    icon: [
+      { url: "/favicon.png", type: "image/png" },
+      { url: "/favicon-32.png", sizes: "32x32", type: "image/png" },
+    ],
+    apple: [{ url: "/apple-touch-icon.png", sizes: "180x180" }],
   },
 };
 

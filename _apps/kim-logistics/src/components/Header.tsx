@@ -1,36 +1,74 @@
 "use client";
 
-import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import { BrandLogo } from "@/components/BrandLogo";
 import { brand, contact, nav } from "@/content/site";
 import { cx } from "@/lib/utils";
 
 export function Header() {
   const pathname = usePathname();
   const [open, setOpen] = useState(false);
+  const [overDark, setOverDark] = useState(true);
+  const [scrolled, setScrolled] = useState(false);
+
+  useEffect(() => {
+    const hero = document.getElementById("brand-hero");
+
+    const update = () => {
+      const y = window.scrollY;
+      setScrolled(y > 18);
+
+      if (hero) {
+        const bottom = hero.getBoundingClientRect().bottom;
+        setOverDark(bottom > 88);
+        return;
+      }
+
+      // Interior pages without brand-hero fall back to ink once past the page hero band
+      setOverDark(y < 220);
+    };
+
+    update();
+    window.addEventListener("scroll", update, { passive: true });
+    window.addEventListener("resize", update);
+    return () => {
+      window.removeEventListener("scroll", update);
+      window.removeEventListener("resize", update);
+    };
+  }, [pathname]);
+
+  const dark = overDark || open;
+  const logoVariant = dark ? "chalk" : "ink";
 
   return (
-    <header className="sticky top-0 z-50 border-b border-[var(--line)] bg-[rgba(250,250,250,0.92)] backdrop-blur-md">
-      <div className="site-shell flex items-center justify-between gap-4 py-3">
+    <header
+      className={cx(
+        "fixed inset-x-0 top-0 z-50 transition-[background-color,border-color,backdrop-filter,box-shadow] duration-300",
+        dark
+          ? scrolled || open
+            ? "border-b border-white/10 bg-ink/92 backdrop-blur-md"
+            : "border-b border-transparent bg-ink/35 backdrop-blur-sm"
+          : "border-b border-[var(--line)] bg-paper/95 backdrop-blur-md shadow-[0_1px_0_rgba(9,9,9,0.04)]",
+      )}
+    >
+      <div className="site-shell flex items-center justify-between gap-4 py-3.5">
         <Link
           href="/"
-          className="relative block h-10 w-[11.5rem] shrink-0 sm:h-11 sm:w-[14rem]"
+          className="group flex min-w-0 items-center"
           onClick={() => setOpen(false)}
-          aria-label={brand.name}
+          aria-label={`${brand.name} home`}
         >
-          <Image
-            src="/images/logo-wordmark-ink.png"
-            alt={brand.name}
-            fill
-            className="object-contain object-left"
-            sizes="224px"
+          <BrandLogo
+            variant={logoVariant}
             priority
+            className="h-9 w-[9.75rem] sm:h-10 sm:w-[11.5rem]"
+            sizes="184px"
           />
         </Link>
 
-        <nav className="hidden items-center gap-1 lg:flex" aria-label="Primary">
+        <nav className="hidden items-center gap-0.5 lg:flex" aria-label="Primary">
           {nav
             .filter((item) => item.href !== "/")
             .map((item) => {
@@ -40,10 +78,14 @@ export function Header() {
                   key={item.href}
                   href={item.href}
                   className={cx(
-                    "rounded-md px-3 py-2 text-sm font-medium transition-colors",
-                    active
-                      ? "bg-ink text-white"
-                      : "text-ink/80 hover:bg-field-deep/60 hover:text-ink",
+                    "px-3 py-2 text-[0.92rem] font-medium tracking-tight transition-colors",
+                    dark
+                      ? active
+                        ? "text-paper"
+                        : "text-paper/70 hover:text-paper"
+                      : active
+                        ? "text-ink"
+                        : "text-ink/65 hover:text-ink",
                   )}
                 >
                   {item.label}
@@ -55,19 +97,27 @@ export function Header() {
         <div className="flex items-center gap-2">
           <a
             href={contact.phoneHref}
-            className="hidden rounded-md border border-ink/15 px-3 py-2 text-sm font-semibold text-ink transition hover:border-ink/35 md:inline-flex"
+            className={cx(
+              "hidden px-3 py-2 text-sm font-semibold tracking-tight transition md:inline-flex",
+              dark
+                ? "border border-paper/25 text-paper hover:border-paper/60"
+                : "border border-ink/15 text-ink hover:border-ink/40",
+            )}
           >
             {contact.phoneDisplay}
           </a>
           <Link
             href="/contact"
-            className="inline-flex rounded-md bg-signal px-3.5 py-2 text-sm font-semibold text-ink transition hover:bg-signal-deep hover:text-paper"
+            className="inline-flex bg-signal px-3.5 py-2 text-sm font-semibold tracking-tight text-ink transition hover:bg-signal-deep hover:text-paper"
           >
             Free quote
           </Link>
           <button
             type="button"
-            className="inline-flex h-10 w-10 items-center justify-center rounded-md border border-ink/15 text-ink lg:hidden"
+            className={cx(
+              "inline-flex h-10 w-10 items-center justify-center border lg:hidden",
+              dark ? "border-paper/25 text-paper" : "border-ink/15 text-ink",
+            )}
             aria-expanded={open}
             aria-controls="mobile-nav"
             onClick={() => setOpen((v) => !v)}
@@ -82,10 +132,7 @@ export function Header() {
         </div>
       </div>
 
-      <div
-        id="mobile-nav"
-        className={cx("border-t border-[var(--line)] bg-paper lg:hidden", open ? "block" : "hidden")}
-      >
+      <div id="mobile-nav" className={cx("border-t lg:hidden", open ? "block" : "hidden", dark ? "border-white/10 bg-ink" : "border-[var(--line)] bg-paper")}>
         <nav className="site-shell flex flex-col gap-1 py-3" aria-label="Mobile">
           {nav.map((item) => {
             const active = pathname === item.href;
@@ -95,8 +142,14 @@ export function Header() {
                 href={item.href}
                 onClick={() => setOpen(false)}
                 className={cx(
-                  "rounded-md px-3 py-3 text-base font-medium",
-                  active ? "bg-ink text-paper" : "text-ink",
+                  "px-3 py-3 text-base font-medium",
+                  dark
+                    ? active
+                      ? "bg-paper text-ink"
+                      : "text-paper"
+                    : active
+                      ? "bg-ink text-paper"
+                      : "text-ink",
                 )}
               >
                 {item.label}

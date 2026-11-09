@@ -19,6 +19,10 @@ export function SmoothScroll({ children }: { children: React.ReactNode }) {
     });
 
     lenis.on("scroll", ScrollTrigger.update);
+    // Keep window scroll listeners (header chrome) in sync with Lenis.
+    lenis.on("scroll", () => {
+      window.dispatchEvent(new Event("scroll"));
+    });
 
     const ticker = (time: number) => {
       lenis.raf(time * 1000);

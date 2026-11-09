@@ -1,25 +1,17 @@
 # Kim Logistics - design lock
 
-Sacred logos: `public/images/logo-wordmark-chalk.png` (dark), `logo-wordmark-ink.png` (light). Never CSS-invert.
+Sacred logos:
+- `public/images/logo-wordmark.png` (source chalk / white wordmark)
+- `public/images/logo-wordmark-chalk.png` (white marks for dark surfaces)
+- `public/images/logo-wordmark-ink.png` (near-black marks for light surfaces)
 
-## Brand
+Rules:
 - Light KIM + bold LOGISTICS, tagline KEEP IT MOVING
-- House outline + diagonal motion hashes on the baseline
-- Palette: black / white high contrast + restrained signal orange `#ff6b1a`
-
-## Art direction (distinct from Move It Dan)
-- **Geometric / split-field.** Light paper hero + vertical photo panel, ink CTAs, orange accents, motion-hash motif
-- Type: **Space Grotesk** (display) + **IBM Plex Sans** (body)
-- Layout rhythm: numbered why-us, bordered service tiles, dark review band
-- Footer credit: Dialedbase mark + wordmark linking to https://dialedbase.com
-
-## Craft stack (Awwwards-class imports)
-- `next` App Router + `next/font/google`
-- `lenis` — smooth scroll
-- `gsap` + `@gsap/react` + ScrollTrigger — clip reveals, section choreography
-- `motion` (`motion/react`) — magnetic CTAs
-- Tailwind CSS v4
-
-## Forbidden
-- Sharing Move It Dan’s Archivo / Manrope / full-bleed blue cinema hero
-- New logo, purple gradients, Wix teal clutter, cream/terracotta AI look, keyword-spam copy
+- House outline + four diagonal motion hashes on the baseline
+- Chalk on dark. Ink on light. Never `filter: invert` on the logo.
+- Palette: black / white high contrast. One restrained CTA accent (`--signal`) only.
+- Header: dark glass over hero, solid ink or paper after scroll. Pairs with the correct logo variant.
+- Craft bar: premium Coventry operator. Geometric. Controlled negative space. Full-bleed brand-first hero.
+- Type: Space Grotesk (display) + IBM Plex Sans (body). Not Inter / Roboto / Arial.
+- Motion stack: Lenis + GSAP ScrollTrigger + Motion magnetic CTAs
+- Forbidden: new logo, purple gradients, Wix teal clutter, cream/terracotta AI look, keyword-spam copy, frosted white sticky headers that fight the brand
