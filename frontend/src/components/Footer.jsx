@@ -21,7 +21,7 @@ const Footer = () => {
               </div>
             </Link>
             <p className="mt-4 text-white/55 max-w-sm text-[13.5px] leading-relaxed">
-              Websites, apps and AI systems engineered to compound your brand's growth.
+              Premium websites and operator products — then Dialedbase stays on Keep so they keep compounding.
             </p>
           </div>
 
@@ -35,19 +35,24 @@ const Footer = () => {
             </ul>
           </div>
           <div className="md:col-span-2">
-            <div className="text-[10.5px] text-white/40 tracking-[0.2em] uppercase mb-3">Capabilities</div>
+            <div className="text-[10.5px] text-white/40 tracking-[0.2em] uppercase mb-3">Offers</div>
             <ul className="space-y-1.5 text-[13px] text-white/70">
-              <li>Websites</li>
-              <li>Mobile & Web Apps</li>
-              <li>AI Systems</li>
-              <li>Brand & Motion</li>
+              <li>Product systems</li>
+              <li>Brand sites</li>
+              <li><a href="#keep" className="hover:text-white">Product Keep</a></li>
+              <li><a href="#keep" className="hover:text-white">Site Care</a></li>
             </ul>
           </div>
           <div className="md:col-span-3">
             <div className="text-[10.5px] text-white/40 tracking-[0.2em] uppercase mb-3">Get in touch</div>
             <a href="#contact" onClick={handleContact} className="inline-flex items-center gap-1.5 text-[13.5px] hover:text-white text-white/85">
-              Book a call <ArrowUpRight className="w-3.5 h-3.5" />
+              Book a strategy call <ArrowUpRight className="w-3.5 h-3.5" />
             </a>
+            <div className="mt-3">
+              <a href="mailto:hello@dialedbase.com" className="text-[13px] text-white/70 hover:text-white">
+                hello@dialedbase.com
+              </a>
+            </div>
             <div className="mt-4 flex items-center gap-2">
               <a href="https://instagram.com/dialedbase" target="_blank" rel="noreferrer" className="inline-flex items-center gap-2 rounded-full glass hover:bg-white/10 px-3 py-2 text-[12.5px] text-white/80 transition-colors">
                 <Instagram className="w-3.5 h-3.5" />

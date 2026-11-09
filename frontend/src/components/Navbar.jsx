@@ -82,7 +82,7 @@ const Navbar = () => {
                 onClick={handleContact}
                 className="btn-sheen group inline-flex items-center gap-1.5 bg-white text-black rounded-full pl-3.5 pr-1 py-1 text-[13px] font-medium hover:bg-white/90 transition-colors"
               >
-                Get In Touch
+                Book a call
                 <span className="w-6 h-6 rounded-full bg-black text-white flex items-center justify-center group-hover:rotate-45 transition-transform duration-300">
                   <ArrowUpRight className="w-3 h-3" />
                 </span>
@@ -145,7 +145,7 @@ const Navbar = () => {
                   onClick={handleContact}
                   className="w-full inline-flex items-center justify-center gap-1.5 bg-white text-black rounded-full px-4 py-2.5 text-[14px] font-medium"
                 >
-                  Get In Touch
+                  Book a call
                   <ArrowUpRight className="w-3.5 h-3.5" />
                 </a>
               </div>

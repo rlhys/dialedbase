@@ -67,14 +67,14 @@ const Founder = () => {
                   </div>
                   <div className="mt-1 text-white/55 text-[13px]">{rhys.role} · Dialedbase</div>
                   <p className="mt-5 text-white/75 leading-relaxed text-[13.5px] sm:text-[14.5px] max-w-xl">
-                    Rhys is a designer and engineer building beautiful, fast, AI‑native products for ambitious brands. From luxury hospitality to high‑growth SaaS, he leads every Dialedbase project end‑to‑end.
+                    Designer and engineer. Rhys leads every Dialedbase engagement end‑to‑end — from premium brand sites to operator products — then stays on Keep so you are not orphaned after launch.
                   </p>
 
                   <div className="mt-6 grid grid-cols-3 gap-2.5 max-w-md">
                     {[
-                      { k: "Years", v: "6+" },
-                      { k: "Clients", v: "40+" },
-                      { k: "Countries", v: "12" },
+                      { k: "Model", v: "Founder‑led" },
+                      { k: "Bases", v: "MB · LDN" },
+                      { k: "Path", v: "Build→Keep" },
                     ].map((s, i) => (
                       <motion.div
                         key={s.k}
@@ -84,7 +84,7 @@ const Founder = () => {
                         transition={{ delay: 0.2 + i * 0.08, duration: 0.7 }}
                         className="glass rounded-xl p-3"
                       >
-                        <div className="shine-text text-xl sm:text-2xl font-semibold tracking-tight">{s.v}</div>
+                        <div className="shine-text text-[15px] sm:text-lg font-semibold tracking-tight leading-tight">{s.v}</div>
                         <div className="text-[10px] text-white/50 mt-0.5 tracking-[0.18em] uppercase">{s.k}</div>
                       </motion.div>
                     ))}
@@ -94,12 +94,15 @@ const Founder = () => {
                 <div className="flex flex-wrap items-center gap-2.5">
                   <Magnetic strength={0.25}>
                     <button onClick={onBook} className="btn-sheen group inline-flex items-center gap-2 bg-white text-black rounded-full pl-4 pr-1 py-1 text-[13px] font-medium">
-                      Work with Rhys
+                      Book a strategy call
                       <span className="w-7 h-7 rounded-full bg-black text-white flex items-center justify-center group-hover:rotate-45 transition-transform duration-300">
                         <ArrowUpRight className="w-3.5 h-3.5" />
                       </span>
                     </button>
                   </Magnetic>
+                  <a href="mailto:hello@dialedbase.com" className="inline-flex items-center gap-1.5 glass glass-hover rounded-full px-3 py-1.5 text-[12.5px] text-white/85 hover:bg-white/10 transition-colors">
+                    hello@dialedbase.com
+                  </a>
                   <a href="https://instagram.com/rhysgbp" target="_blank" rel="noreferrer" className="inline-flex items-center gap-1.5 glass glass-hover rounded-full px-3 py-1.5 text-[12.5px] text-white/85 hover:bg-white/10 transition-colors">
                     <Instagram className="w-3.5 h-3.5" /> @rhysgbp
                   </a>

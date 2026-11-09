@@ -35,13 +35,13 @@ const Work = () => {
           <FadeIn delay={0.05}>
             <h1 className="font-semibold tracking-[-0.03em] leading-[1.02] text-[32px] sm:text-[46px] md:text-[60px] lg:text-[72px] max-w-[18ch]">
               <span className="shine-text">What we ship. </span>
-              <span className="serif text-white">Tech that feels premium.</span>
+              <span className="serif text-white">Then we Keep.</span>
             </h1>
           </FadeIn>
 
           <FadeIn delay={0.15}>
             <p className="mt-5 text-white/55 text-[14.5px] sm:text-[16px] max-w-2xl leading-relaxed">
-              From marketing sites to AI agents, mobile apps to brand systems — here's the full stack of work we deliver, all under one studio.
+              Two primary paths — product systems and brand sites — with AI, motion, and integrations available when the build needs them. Every engagement is designed to land on Keep.
             </p>
           </FadeIn>
         </div>
@@ -125,20 +125,25 @@ const Work = () => {
         <div className="max-w-3xl mx-auto px-4 sm:px-6 text-center">
           <FadeIn>
             <h3 className="font-semibold tracking-[-0.03em] leading-[1.05] text-[28px] sm:text-[38px] md:text-[46px]">
-              <span className="shine-text">Have a project </span>
-              <span className="serif text-white">in mind?</span>
+              <span className="shine-text">Ready to build </span>
+              <span className="serif text-white">and Keep?</span>
             </h3>
           </FadeIn>
           <FadeIn delay={0.1}>
-            <p className="mt-3 text-white/55 text-[14px] sm:text-[15.5px]">Let's talk about how we can help. We typically respond within a few hours.</p>
+            <p className="mt-3 text-white/55 text-[14px] sm:text-[15.5px]">Book a strategy call — or email hello@dialedbase.com if you already know the seat you need.</p>
           </FadeIn>
           <FadeIn delay={0.18}>
-            <button onClick={open} className="mt-6 btn-sheen group inline-flex items-center gap-2 bg-white text-black rounded-full pl-1 pr-5 py-1 text-[14px] font-medium">
-              <span className="w-8 h-8 rounded-full bg-black text-white grid place-items-center group-hover:rotate-45 transition-transform duration-300">
-                <ArrowUpRight className="w-3.5 h-3.5" />
-              </span>
-              Start a project
-            </button>
+            <div className="mt-6 flex flex-wrap items-center justify-center gap-2.5">
+              <button onClick={open} className="btn-sheen group inline-flex items-center gap-2 bg-white text-black rounded-full pl-1 pr-5 py-1 text-[14px] font-medium">
+                <span className="w-8 h-8 rounded-full bg-black text-white grid place-items-center group-hover:rotate-45 transition-transform duration-300">
+                  <ArrowUpRight className="w-3.5 h-3.5" />
+                </span>
+                Book a strategy call
+              </button>
+              <a href="mailto:hello@dialedbase.com" className="inline-flex items-center gap-1.5 glass glass-hover rounded-full px-3.5 py-2 text-[13px] text-white/85 hover:bg-white/10 transition-colors">
+                hello@dialedbase.com
+              </a>
+            </div>
           </FadeIn>
         </div>
       </section>

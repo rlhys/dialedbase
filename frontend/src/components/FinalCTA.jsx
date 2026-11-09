@@ -94,27 +94,35 @@ const FinalCTA = () => {
                 <div className="max-w-md">
                   <FadeIn>
                     <h2 className="font-semibold tracking-[-0.04em] leading-[0.98]">
-                      <span className="shine-text block text-[20px] xs:text-[22px] sm:text-[26px] md:text-[30px] font-medium tracking-tight">Lead in Your</span>
-                      <span className="serif text-white block text-[42px] xs:text-[48px] sm:text-[60px] md:text-[72px]">Industry.</span>
+                      <span className="shine-text block text-[20px] xs:text-[22px] sm:text-[26px] md:text-[30px] font-medium tracking-tight">Build once.</span>
+                      <span className="serif text-white block text-[42px] xs:text-[48px] sm:text-[60px] md:text-[72px]">Keep.</span>
                     </h2>
                   </FadeIn>
                   <FadeIn delay={0.1}>
                     <p className="mt-4 text-white/55 text-[13px] sm:text-[14px] leading-relaxed">
-                      Ready to stand out from the competition? Let's build something extraordinary together and take your brand to the next level.
+                      Book a strategy call to scope a build with Product Keep or Site Care attached — or email if you already know the seat you need.
                     </p>
                   </FadeIn>
                   <FadeIn delay={0.18}>
-                    <Magnetic strength={0.25}>
-                      <button
-                        onClick={onBook}
-                        className="mt-6 btn-sheen group inline-flex items-center gap-2 bg-white text-black rounded-full pl-1 pr-4 py-1 text-[13px] font-medium"
+                    <div className="mt-6 flex flex-wrap items-center justify-center gap-2.5">
+                      <Magnetic strength={0.25}>
+                        <button
+                          onClick={onBook}
+                          className="btn-sheen group inline-flex items-center gap-2 bg-white text-black rounded-full pl-1 pr-4 py-1 text-[13px] font-medium"
+                        >
+                          <span className="w-7 h-7 rounded-full bg-black text-white flex items-center justify-center group-hover:rotate-45 transition-transform duration-300">
+                            <ArrowUpRight className="w-3.5 h-3.5" />
+                          </span>
+                          Book a strategy call
+                        </button>
+                      </Magnetic>
+                      <a
+                        href="mailto:hello@dialedbase.com"
+                        className="inline-flex items-center gap-1.5 glass glass-hover rounded-full px-3.5 py-2 text-[12.5px] text-white/85 hover:bg-white/10 transition-colors"
                       >
-                        <span className="w-7 h-7 rounded-full bg-black text-white flex items-center justify-center group-hover:rotate-45 transition-transform duration-300">
-                          <ArrowUpRight className="w-3.5 h-3.5" />
-                        </span>
-                        Book a call
-                      </button>
-                    </Magnetic>
+                        hello@dialedbase.com
+                      </a>
+                    </div>
                   </FadeIn>
                 </div>
               </div>

@@ -1,6 +1,6 @@
 import React from "react";
 import { motion } from "framer-motion";
-import { Compass, Pencil, Code2, Rocket } from "lucide-react";
+import { Compass, Pencil, Code2, RefreshCw } from "lucide-react";
 import { FadeIn, Stagger, StaggerItem } from "./Motion";
 
 const STEPS = [
@@ -8,15 +8,15 @@ const STEPS = [
     id: "discover",
     num: "01",
     title: "Discover",
-    desc: "30‑minute strategy call. We map your goals, audience and constraints — then scope a tight plan with clear outcomes.",
+    desc: "30‑minute strategy call. We map goals, audience and constraints — then scope a tight plan that always includes a Keep option.",
     icon: Compass,
-    tags: ["Strategy", "Scope", "Roadmap"],
+    tags: ["Strategy", "Scope", "Keep option"],
   },
   {
     id: "design",
     num: "02",
     title: "Design",
-    desc: "Brand direction, UX flows, motion language. We design in high fidelity from day one — no static mood boards, no guesswork.",
+    desc: "Brand direction, UX flows, motion language. High fidelity from day one — no static mood boards, no guesswork.",
     icon: Pencil,
     tags: ["Brand", "UX/UI", "Motion"],
   },
@@ -24,17 +24,17 @@ const STEPS = [
     id: "build",
     num: "03",
     title: "Build",
-    desc: "Production engineering. React, Next, Stripe, OpenAI, realtime infra — wired in cleanly and ready to scale on launch day.",
+    desc: "Production engineering. React, Next, Stripe, auth, realtime infra — wired cleanly and ready to scale on launch day.",
     icon: Code2,
-    tags: ["Web & App", "AI", "Infra"],
+    tags: ["Web & App", "Infra", "Ship milestone"],
   },
   {
-    id: "ship",
+    id: "keep",
     num: "04",
-    title: "Ship",
-    desc: "Launch with confidence. We measure what matters, iterate fast, and stay on the ground post‑launch to compound your growth.",
-    icon: Rocket,
-    tags: ["Launch", "Analytics", "Iterate"],
+    title: "Keep",
+    desc: "The end-state. Product Keep or Site Care — monthly roadmap, priority fixes, and senior craft so the product keeps compounding.",
+    icon: RefreshCw,
+    tags: ["Retainer", "Roadmap", "Compound"],
   },
 ];
 
@@ -51,22 +51,21 @@ const Process = () => {
           <FadeIn delay={0.05}>
             <h2 className="font-semibold tracking-[-0.03em] leading-[1.05] text-[28px] xs:text-[32px] sm:text-[42px] md:text-[52px]">
               <span className="shine-text">A tight process </span>
-              <span className="serif text-white">that ships.</span>
+              <span className="serif text-white">that keeps.</span>
             </h2>
           </FadeIn>
           <FadeIn delay={0.1}>
             <p className="mt-4 text-white/55 max-w-xl mx-auto text-[13.5px] sm:text-[14.5px] px-2">
-              Four steps, zero bloat. From first call to live launch — usually in weeks, not months.
+              Discover → Design → Build → Keep. Launch is a milestone inside Keep — not the end of the engagement.
             </p>
           </FadeIn>
         </div>
 
-        {/* Connector line behind cards (desktop only) */}
         <div className="relative">
           <div className="hidden lg:block absolute top-[58px] left-[8%] right-[8%] h-px bg-gradient-to-r from-transparent via-white/15 to-transparent" />
 
           <Stagger gap={0.09} className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-4">
-            {STEPS.map((s, i) => {
+            {STEPS.map((s) => {
               const Icon = s.icon;
               return (
                 <StaggerItem key={s.id}>
@@ -79,7 +78,6 @@ const Process = () => {
                     <div className="absolute -top-20 -right-20 w-52 h-52 rounded-full bg-sky-400/10 blur-3xl opacity-0 group-hover:opacity-100 transition-opacity duration-700" />
 
                     <div className="relative">
-                      {/* Step number + icon row */}
                       <div className="flex items-center justify-between mb-5">
                         <motion.div
                           whileHover={{ rotate: 8 }}
@@ -109,18 +107,17 @@ const Process = () => {
           </Stagger>
         </div>
 
-        {/* Sub-footer copy */}
         <FadeIn delay={0.3}>
           <div className="mt-10 sm:mt-12 flex flex-col sm:flex-row items-center justify-center gap-4 text-center">
-            <div className="text-white/45 text-[12.5px] tracking-[0.15em] uppercase">Typical timeline</div>
+            <div className="text-white/45 text-[12.5px] tracking-[0.15em] uppercase">Typical build → keep</div>
             <div className="flex items-center gap-2 sm:gap-3 flex-wrap justify-center">
               <Pill label="Discover" sub="Day 1" />
               <Dot />
               <Pill label="Design" sub="Week 1" />
               <Dot />
-              <Pill label="Build" sub="Week 2–3" />
+              <Pill label="Build" sub="Week 2–6" />
               <Dot />
-              <Pill label="Ship" sub="Week 3+" />
+              <Pill label="Keep" sub="Month 1+" />
             </div>
           </div>
         </FadeIn>

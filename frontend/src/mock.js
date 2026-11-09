@@ -3,7 +3,7 @@
 export const ASSETS = {
   logoBlack: "https://customer-assets.emergentagent.com/job_1c9e6057-134b-4c93-b3e6-eea3f8361ee1/artifacts/7bbm5r0b_image.png",
   logoGlass: "https://customer-assets.emergentagent.com/job_1c9e6057-134b-4c93-b3e6-eea3f8361ee1/artifacts/h8a0iokb_image.png",
-  rhys: "https://customer-assets.emergentagent.com/job_1c9e6057-134b-4c93-b3e6-eea3f8361ee1/artifacts/89uv7qh0_image.png",
+  rhys: "/images/rhys-evans.jpg",
   bloom: "https://images.unsplash.com/photo-1650900007350-5f589c5fd1ca",
   bloomAlt: "https://images.pexels.com/photos/12495671/pexels-photo-12495671.jpeg",
   planetVideo: "https://customer-assets.emergentagent.com/job_tech-crafted/artifacts/zsllwdgs_planet4.mp4",
@@ -56,39 +56,21 @@ export const PROJECTS = [
 
 export const SERVICES = [
   {
-    id: "web",
-    title: "Websites",
-    desc: "Hand‑crafted marketing sites, brand experiences and motion‑driven landing pages built to convert.",
-    points: ["Framer‑grade motion", "SEO foundations", "CMS integrations"],
-    icon: "Globe",
-  },
-  {
-    id: "apps",
-    title: "Apps",
-    desc: "Full‑stack web & mobile products engineered with a design‑first mindset and obsessive attention to detail.",
-    points: ["iOS · Android · Web", "Stripe, Auth, Realtime", "Scalable infra"],
+    id: "products",
+    title: "Product systems",
+    desc: "Booking platforms, owner dashboards, and full‑stack apps that operators run the business on — built to become Product Keep.",
+    points: ["Bookings · dashboards · ops", "Stripe, Auth, Realtime", "Designed for Product Keep"],
     icon: "Smartphone",
+    keep: "Product Keep",
   },
   {
-    id: "ai",
-    title: "AI Systems",
-    desc: "Custom AI agents, automations and copilots wired directly into your business operations and product.",
-    points: ["LLM Agents & RAG", "Workflow automations", "Voice & vision"],
-    icon: "Sparkles",
+    id: "sites",
+    title: "Brand sites",
+    desc: "Premium marketing sites and motion‑driven landing pages for DTC, lifestyle, and hospitality brands — built to become Site Care.",
+    points: ["Conversion‑led craft", "CMS & SEO foundations", "Designed for Site Care"],
+    icon: "Globe",
+    keep: "Site Care",
   },
-  {
-    id: "brand",
-    title: "Brand & Motion",
-    desc: "Identity systems, 3D visuals and cinematic motion that make your product feel inevitable.",
-    points: ["Brand identity", "3D & motion", "Design systems"],
-    icon: "Wand2",
-  },
-];
-
-export const KPIS = [
-  { id: "views", value: "5B+", label: "views", sub: "driven through our tailored solutions and growth strategies.", icon: "BarChart3" },
-  { id: "visitors", value: "10M", label: "unique visitors", sub: "engaging with the websites and apps we build every month.", icon: "Globe" },
-  { id: "projects", value: "100+", label: "projects", sub: "successfully delivered across multiple industries worldwide.", icon: "Briefcase" },
 ];
 
 export const TESTIMONIALS = [
@@ -147,7 +129,7 @@ export const TEAM = [
     id: "rhys",
     name: "Rhys Evans",
     role: "CEO / Builder",
-    img: "https://customer-assets.emergentagent.com/job_1c9e6057-134b-4c93-b3e6-eea3f8361ee1/artifacts/89uv7qh0_image.png",
+    img: "/images/rhys-evans.jpg",
     socials: { instagram: "https://instagram.com/dialedbase" },
     bio: "Designer, engineer and founder. Obsessed with building beautiful, fast, AI‑native products that move the needle.",
   },

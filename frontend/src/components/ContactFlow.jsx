@@ -12,21 +12,21 @@ export const useContact = () => useContext(ContactCtx);
 const STEPS = [
   {
     id: "service",
-    title: "What do you need built?",
+    title: "What are you looking for?",
     subtitle: "Pick the closest match — we'll calibrate on the call.",
     type: "single",
     options: [
-      { v: "Website", desc: "Marketing site, brand experience, motion-driven landing" },
-      { v: "Web / Mobile App", desc: "Full-stack product, dashboard, SaaS, iOS / Android" },
-      { v: "AI System", desc: "Custom agents, automations, RAG, copilots" },
-      { v: "Brand & Motion", desc: "Identity, 3D, motion, design system" },
-      { v: "Not sure yet", desc: "Let's scope it together" },
+      { v: "Brand site", desc: "Marketing site or landing pages → often Site Care" },
+      { v: "Product system", desc: "Booking, dashboard, or operator app → often Product Keep" },
+      { v: "Product Keep", desc: "Monthly retainer for a live app / ops product" },
+      { v: "Site Care", desc: "Monthly retainer for an existing brand site" },
+      { v: "Not sure yet", desc: "Let's scope Build → Keep together" },
     ],
   },
   {
     id: "timeline",
-    title: "When do you want to launch?",
-    subtitle: "We're booking July · August projects.",
+    title: "When do you want to start?",
+    subtitle: "Strategy calls book into the next open slots.",
     type: "single",
     options: [
       { v: "ASAP (this month)" },
@@ -153,7 +153,7 @@ const ContactModal = ({ onClose }) => {
               <div className="flex items-center gap-2.5 mb-5">
                 <img src={ASSETS.logoBlack} className="w-7 h-7 rounded-md" alt="" />
                 <div>
-                  <div className="text-[14px] font-medium tracking-tight">Start a project</div>
+                  <div className="text-[14px] font-medium tracking-tight">Book a strategy call</div>
                   <div className="text-[11.5px] text-white/45">Step {step + 1} of {total} — about 60 seconds</div>
                 </div>
               </div>

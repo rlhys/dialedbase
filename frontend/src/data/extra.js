@@ -6,7 +6,7 @@ export const TEAM_MEMBERS = [
     name: "Rhys Evans",
     role: "CEO / Founder",
     bio: "Designer & engineer leading every Dialedbase project end‑to‑end.",
-    img: "https://customer-assets.emergentagent.com/job_1c9e6057-134b-4c93-b3e6-eea3f8361ee1/artifacts/89uv7qh0_image.png",
+    img: "/images/rhys-evans.jpg",
     social: "https://instagram.com/dialedbase",
     palette: "from-amber-400/30 to-orange-700/50",
   },
@@ -63,4 +63,4 @@ export const WORKS = [
   { id: "borg", name: "Borg", tag: "AI", mockup: "https://images.unsplash.com/photo-1620712943543-26fc76d3a4d5?crop=entropy&cs=srgb&fm=jpg&q=85" },
 ];
 
-export const MANIFESTO = "At Dialedbase, we embody the studio mindset. Dynamic, founder‑led, and hungry to make a difference. We don't just ship beautiful work — we partner with our clients to compound their growth through AI‑native digital experiences. From redefining brand engagement to boosting conversions, every project is a chance to challenge the norm, deliver excellence, and leave an impact people remember.";
+export const MANIFESTO = "At Dialedbase, we embody the studio mindset. Founder‑led and hungry to make a difference. We don't just ship beautiful work — we build premium websites and operator products, then stay on Keep so they keep compounding. Every project is scoped with that end‑state in mind.";

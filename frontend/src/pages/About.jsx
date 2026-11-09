@@ -36,7 +36,7 @@ const About = () => {
 
           <FadeIn delay={0.15}>
             <p className="mt-5 text-white/55 text-[14.5px] sm:text-[16px] max-w-2xl leading-relaxed">
-              Dialedbase is a small, founder‑led studio shipping beautiful, AI‑native products for ambitious brands. No middlemen, no agency hand‑offs — just a tight squad obsessed with craft, speed and outcomes.
+              Dialedbase is a founder‑led studio that builds premium websites and operator products — then stays on Keep so they keep compounding. No middlemen, no agency hand‑offs.
             </p>
           </FadeIn>
         </div>
@@ -83,17 +83,17 @@ const About = () => {
                       </div>
                       <div className="mt-1 text-white/55 text-[13px]">{m.role} · Dialedbase</div>
                       <p className="mt-4 text-white/75 leading-relaxed text-[13.5px] sm:text-[14.5px] max-w-xl">
-                        {m.bio} Six years of shipping production design and code for brands across luxury hospitality, SaaS, and AI.
+                        {m.bio} Based Marbella · London — shipping production design and code for operator products and premium brands.
                       </p>
 
                       <div className="mt-6 grid grid-cols-3 gap-2.5 max-w-md">
                         {[
-                          { k: "Years", v: "6+" },
-                          { k: "Clients", v: "40+" },
-                          { k: "Countries", v: "12" },
+                          { k: "Model", v: "Founder‑led" },
+                          { k: "Bases", v: "MB · LDN" },
+                          { k: "Path", v: "Build→Keep" },
                         ].map((s) => (
                           <div key={s.k} className="glass rounded-xl p-3">
-                            <div className="shine-text text-xl sm:text-2xl font-semibold tracking-tight">{s.v}</div>
+                            <div className="shine-text text-[15px] sm:text-lg font-semibold tracking-tight leading-tight">{s.v}</div>
                             <div className="text-[10px] text-white/50 mt-0.5 tracking-[0.18em] uppercase">{s.k}</div>
                           </div>
                         ))}
