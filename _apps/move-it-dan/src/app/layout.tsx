@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Barlow_Condensed, DM_Sans, Syne } from "next/font/google";
+import { Archivo, Barlow_Condensed, Manrope } from "next/font/google";
 import { Footer } from "@/components/Footer";
 import { Header } from "@/components/Header";
 import { MobileCtaBar } from "@/components/MobileCtaBar";
@@ -7,20 +7,21 @@ import { SmoothScroll } from "@/components/SmoothScroll";
 import { site } from "@/content/site";
 import "./globals.css";
 
-const display = Syne({
-  variable: "--font-display",
+/** Cinematic mover voice: condensed industrial display + warm geometric body. Distinct from Kim. */
+const display = Archivo({
+  variable: "--font-mid-display",
   subsets: ["latin"],
   weight: ["600", "700", "800"],
 });
 
-const body = DM_Sans({
-  variable: "--font-body",
+const body = Manrope({
+  variable: "--font-mid-body",
   subsets: ["latin"],
-  weight: ["400", "500", "600", "700"],
+  weight: ["400", "500", "600", "700", "800"],
 });
 
 const condensed = Barlow_Condensed({
-  variable: "--font-condensed",
+  variable: "--font-mid-condensed",
   subsets: ["latin"],
   weight: ["500", "600", "700"],
 });

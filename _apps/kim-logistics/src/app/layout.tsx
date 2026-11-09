@@ -1,19 +1,20 @@
 import type { Metadata } from "next";
-import { Source_Sans_3, Syne } from "next/font/google";
+import { IBM_Plex_Sans, Space_Grotesk } from "next/font/google";
 import { Footer } from "@/components/Footer";
 import { Header } from "@/components/Header";
 import { SmoothScroll } from "@/components/SmoothScroll";
 import { brand } from "@/content/site";
 import "./globals.css";
 
-const syne = Syne({
-  variable: "--font-syne",
+/** Geometric operator voice: Space Grotesk display + IBM Plex body. Distinct from Move It Dan. */
+const display = Space_Grotesk({
+  variable: "--font-kim-display",
   subsets: ["latin"],
-  weight: ["500", "600", "700", "800"],
+  weight: ["500", "600", "700"],
 });
 
-const sourceSans = Source_Sans_3({
-  variable: "--font-source-sans",
+const body = IBM_Plex_Sans({
+  variable: "--font-kim-body",
   subsets: ["latin"],
   weight: ["400", "500", "600", "700"],
 });
@@ -38,7 +39,7 @@ export const metadata: Metadata = {
 
 export default function RootLayout({ children }: LayoutProps<"/">) {
   return (
-    <html lang="en-GB" className={`${syne.variable} ${sourceSans.variable} h-full antialiased`}>
+    <html lang="en-GB" className={`${display.variable} ${body.variable} h-full antialiased`}>
       <body className="flex min-h-full flex-col font-sans text-ink">
         <SmoothScroll>
           <a

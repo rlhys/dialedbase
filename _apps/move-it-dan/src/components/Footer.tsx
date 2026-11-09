@@ -1,5 +1,6 @@
 import Image from "next/image";
 import Link from "next/link";
+import { DialedbaseCredit } from "@/components/DialedbaseCredit";
 import { nav, site } from "@/content/site";
 
 export function Footer() {
@@ -51,8 +52,11 @@ export function Footer() {
           </Link>
         </div>
       </div>
-      <div className="border-t border-white/10 px-5 py-5 text-center text-xs text-white/45 sm:px-8">
-        © 2026 {site.name}. Site by Dialedbase.
+      <div className="border-t border-white/10 px-5 py-5 sm:px-8">
+        <div className="mx-auto flex max-w-6xl flex-col items-center justify-between gap-3 sm:flex-row">
+          <p className="text-xs text-white/45">© 2026 {site.name}</p>
+          <DialedbaseCredit />
+        </div>
       </div>
     </footer>
   );

@@ -1,10 +1,25 @@
 # Move It Dan - design lock
 
-Sacred logo: `brand/logo.jpg` / `public/logo.jpg` (current live wordmark).
+Sacred logos: `public/logo-chalk.png` (dark surfaces), `public/logo-ink.png` (light surfaces). Never CSS-invert.
 
-- MOVE IT = black, DAN = blue `#0073c5` (sampled from logo; exact neighbors `#0073c4` / `#0172c2`)
-- Neutrals: `#000000`, `#ffffff`, soft grays only as needed
-- Mark: house + upward arrow inside the O - reuse for favicon/motif, do not redraw a new logo
-- Craft bar: portfolio-max. Expressive type (not Inter/Roboto/Arial). Full-bleed hero. Brand-first first viewport.
-- Motion stack: Lenis (smooth scroll) + GSAP ScrollTrigger (hero scrub / reveals) + Motion (magnetic CTAs)
-- Forbidden: purple gradients, cream/terracotta AI look, generic template cards in the hero, inventing a new mark
+## Brand
+- MOVE IT = black/white, DAN = blue `#0073c5`
+- Neutrals: ink `#0c1624`, chalk, mist. Signal blue only for CTAs
+- Mark: house + upward arrow inside the O - reuse for favicon/motif, do not redraw
+
+## Art direction (distinct from Kim Logistics)
+- **Cinema / photographic.** Full-bleed dark hero, logo as hero brand, blue signal glow
+- Type: **Archivo** (display) + **Manrope** (body) + **Barlow Condensed** (eyebrows)
+- Layout rhythm: left-anchored copy over photo, trust strip, photo+copy grids
+- Footer credit: Dialedbase mark + wordmark linking to https://dialedbase.com
+
+## Craft stack (Awwwards-class imports)
+- `next` App Router + `next/font/google`
+- `lenis` — inertia smooth scroll synced to GSAP ticker
+- `gsap` + `@gsap/react` + ScrollTrigger — hero scrub, section reveals
+- `motion` (`motion/react`) — magnetic CTAs / spring interactions
+- Tailwind CSS v4
+
+## Forbidden
+- Sharing Kim’s Space Grotesk / IBM Plex / split light hero
+- Purple gradients, cream/terracotta AI look, white boxes behind logos, inventing a new mark

@@ -28,8 +28,8 @@
   --color-signal: var(--signal);
   --color-signal-deep: var(--signal-deep);
   --color-steel: var(--steel);
-  --font-display: var(--font-syne);
-  --font-sans: var(--font-source-sans);
+  --font-display: var(--font-kim-display);
+  --font-sans: var(--font-kim-body);
 }
 
 * {
@@ -47,7 +47,7 @@ body {
   background:
     radial-gradient(1100px 520px at 90% -8%, rgba(255, 107, 26, 0.12), transparent 55%),
     linear-gradient(180deg, #f7f7f5 0%, #efefec 45%, #fafafa 100%);
-  font-family: var(--font-sans), "Source Sans 3", sans-serif;
+  font-family: var(--font-kim-body), "IBM Plex Sans", sans-serif;
   text-rendering: optimizeLegibility;
 }
 
@@ -67,7 +67,8 @@ img {
 }
 
 .font-display {
-  font-family: var(--font-display), Syne, sans-serif;
+  font-family: var(--font-kim-display), "Space Grotesk", sans-serif;
+  letter-spacing: -0.035em;
 }
 
 .site-shell {

@@ -1,5 +1,6 @@
 import Image from "next/image";
 import Link from "next/link";
+import { DialedbaseCredit } from "@/components/DialedbaseCredit";
 import { brand, contact, nav, areas } from "@/content/site";
 
 export function Footer() {
@@ -74,9 +75,9 @@ export function Footer() {
         </div>
       </div>
       <div className="border-t border-paper/10">
-        <div className="site-shell flex flex-col gap-2 py-5 text-sm text-paper/50 sm:flex-row sm:items-center sm:justify-between">
-          <p>© 2026 {brand.name}. All rights reserved.</p>
-          <p>Built by Dialedbase for Site Care readiness.</p>
+        <div className="site-shell flex flex-col gap-3 py-5 sm:flex-row sm:items-center sm:justify-between">
+          <p className="text-sm text-paper/50">© 2026 {brand.name}. All rights reserved.</p>
+          <DialedbaseCredit />
         </div>
       </div>
     </footer>
