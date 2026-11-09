@@ -14,25 +14,20 @@ export function Header() {
   return (
     <header className="sticky top-0 z-50 border-b border-[var(--line)] bg-[rgba(250,250,250,0.92)] backdrop-blur-md">
       <div className="site-shell flex items-center justify-between gap-4 py-3">
-        <Link href="/" className="group flex min-w-0 items-center gap-3" onClick={() => setOpen(false)}>
-          <span className="relative hidden h-10 w-[9.5rem] shrink-0 sm:block">
-            <Image
-              src="/images/logo-wordmark.png"
-              alt={brand.name}
-              fill
-              className="object-contain object-left [filter:invert(1)]"
-              sizes="160px"
-              priority
-            />
-          </span>
-          <span className="min-w-0 sm:hidden">
-            <span className="font-display block text-[1.2rem] font-bold leading-none tracking-tight text-ink">
-              {brand.name}
-            </span>
-            <span className="mt-1 block text-[0.68rem] uppercase tracking-[0.18em] text-steel">
-              {brand.motto}
-            </span>
-          </span>
+        <Link
+          href="/"
+          className="relative block h-10 w-[11.5rem] shrink-0 sm:h-11 sm:w-[14rem]"
+          onClick={() => setOpen(false)}
+          aria-label={brand.name}
+        >
+          <Image
+            src="/images/logo-wordmark-ink.png"
+            alt={brand.name}
+            fill
+            className="object-contain object-left"
+            sizes="224px"
+            priority
+          />
         </Link>
 
         <nav className="hidden items-center gap-1 lg:flex" aria-label="Primary">

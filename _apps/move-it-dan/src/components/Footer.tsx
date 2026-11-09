@@ -7,13 +7,13 @@ export function Footer() {
     <footer className="border-t border-line bg-ink text-chalk">
       <div className="mx-auto grid max-w-6xl gap-10 px-5 py-14 sm:px-8 md:grid-cols-[1.4fr_1fr_1fr]">
         <div>
-          <div className="inline-flex rounded-sm bg-chalk px-3 py-2">
+          <div className="relative h-10 w-52">
             <Image
-              src="/logo.jpg"
+              src="/logo-chalk.png"
               alt={site.name}
-              width={220}
-              height={58}
-              className="h-10 w-auto"
+              fill
+              className="object-contain object-left"
+              sizes="208px"
             />
           </div>
           <p className="mt-4 max-w-sm text-sm leading-relaxed text-white/70">

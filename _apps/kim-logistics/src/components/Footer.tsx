@@ -9,7 +9,7 @@ export function Footer() {
         <div>
           <div className="relative h-11 w-56">
             <Image
-              src="/images/logo-wordmark.png"
+              src="/images/logo-wordmark-chalk.png"
               alt={brand.name}
               fill
               className="object-contain object-left"

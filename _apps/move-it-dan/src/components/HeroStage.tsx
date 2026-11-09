@@ -69,16 +69,20 @@ export function HeroStage() {
       </div>
 
       <div className="relative mx-auto flex min-h-[100svh] max-w-6xl flex-col justify-end px-5 pb-16 pt-32 sm:px-8 sm:pb-20 lg:justify-center">
-        <div ref={copy} className="max-w-2xl">
-          <p
-            data-hero-line
-            className="display text-[clamp(3rem,10vw,6.2rem)] leading-[0.9] tracking-[-0.04em]"
-          >
-            {site.name}
-          </p>
+        <div ref={copy} className="max-w-3xl">
+          <div data-hero-line className="relative h-[clamp(3.4rem,11vw,6.4rem)] w-[min(100%,36rem)]">
+            <Image
+              src="/logo-chalk.png"
+              alt={site.name}
+              fill
+              priority
+              className="object-contain object-left"
+              sizes="(max-width: 768px) 90vw, 576px"
+            />
+          </div>
           <h1
             data-hero-line
-            className="mt-5 text-2xl font-medium tracking-tight text-white/95 sm:text-3xl"
+            className="mt-6 text-2xl font-medium tracking-tight text-white/95 sm:text-3xl"
           >
             {site.tagline}
           </h1>

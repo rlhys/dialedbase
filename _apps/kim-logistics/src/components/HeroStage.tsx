@@ -65,7 +65,7 @@ export function HeroStage() {
       >
         <div data-hero-line className="relative h-12 w-[min(100%,18rem)] sm:h-14 sm:w-[22rem]">
           <Image
-            src="/images/logo-wordmark.png"
+            src="/images/logo-wordmark-chalk.png"
             alt={brand.name}
             fill
             className="object-contain object-left"

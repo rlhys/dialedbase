@@ -1,5 +1,6 @@
 "use client";
 
+import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useState } from "react";
@@ -14,10 +15,18 @@ export function Header() {
       <div className="mx-auto flex max-w-6xl items-center justify-between gap-4 px-5 py-5 sm:px-8">
         <Link
           href="/"
-          className="display text-xl tracking-tight text-white no-underline drop-shadow-sm sm:text-2xl"
+          className="relative block h-9 w-[11.5rem] shrink-0 sm:h-10 sm:w-[14rem]"
           onClick={() => setOpen(false)}
+          aria-label={site.name}
         >
-          {site.name}
+          <Image
+            src="/logo-chalk.png"
+            alt={site.name}
+            fill
+            priority
+            className="object-contain object-left"
+            sizes="224px"
+          />
         </Link>
 
         <nav className="hidden items-center gap-1 lg:flex" aria-label="Primary">
