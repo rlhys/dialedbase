@@ -3,6 +3,7 @@ import { Barlow_Condensed, DM_Sans, Syne } from "next/font/google";
 import { Footer } from "@/components/Footer";
 import { Header } from "@/components/Header";
 import { MobileCtaBar } from "@/components/MobileCtaBar";
+import { SmoothScroll } from "@/components/SmoothScroll";
 import { site } from "@/content/site";
 import "./globals.css";
 
@@ -48,10 +49,12 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
       className={`${display.variable} ${body.variable} ${condensed.variable} h-full antialiased`}
     >
       <body className="atmosphere relative flex min-h-full flex-col font-sans text-ink">
-        <Header />
-        <main className="flex-1 pb-24 lg:pb-0">{children}</main>
-        <Footer />
-        <MobileCtaBar />
+        <SmoothScroll>
+          <Header />
+          <main className="flex-1 pb-24 lg:pb-0">{children}</main>
+          <Footer />
+          <MobileCtaBar />
+        </SmoothScroll>
       </body>
     </html>
   );

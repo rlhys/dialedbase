@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Source_Sans_3, Syne } from "next/font/google";
 import { Footer } from "@/components/Footer";
 import { Header } from "@/components/Header";
+import { SmoothScroll } from "@/components/SmoothScroll";
 import { brand } from "@/content/site";
 import "./globals.css";
 
@@ -39,17 +40,19 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
   return (
     <html lang="en-GB" className={`${syne.variable} ${sourceSans.variable} h-full antialiased`}>
       <body className="flex min-h-full flex-col font-sans text-ink">
-        <a
-          href="#main"
-          className="sr-only focus:not-sr-only focus:absolute focus:left-4 focus:top-4 focus:z-[100] focus:rounded-md focus:bg-signal focus:px-4 focus:py-2 focus:text-ink"
-        >
-          Skip to content
-        </a>
-        <Header />
-        <main id="main" className="flex-1">
-          {children}
-        </main>
-        <Footer />
+        <SmoothScroll>
+          <a
+            href="#main"
+            className="sr-only focus:not-sr-only focus:absolute focus:left-4 focus:top-4 focus:z-[100] focus:rounded-md focus:bg-signal focus:px-4 focus:py-2 focus:text-ink"
+          >
+            Skip to content
+          </a>
+          <Header />
+          <main id="main" className="flex-1">
+            {children}
+          </main>
+          <Footer />
+        </SmoothScroll>
       </body>
     </html>
   );

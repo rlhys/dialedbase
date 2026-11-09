@@ -1,54 +1,59 @@
 "use client";
 
-import { useEffect, useRef } from "react";
-import { cx } from "@/lib/utils";
+import { useRef, type ReactNode } from "react";
+import { gsap, registerGsap, useGSAP } from "@/lib/gsap";
 
 type RevealProps = {
-  children: React.ReactNode;
+  children: ReactNode;
   className?: string;
-  as?: "div" | "section" | "article" | "li" | "blockquote";
+  as?: "div" | "section" | "li" | "article" | "blockquote";
+  delay?: number;
+  y?: number;
 };
 
-export function Reveal({ children, className, as = "div" }: RevealProps) {
+export function Reveal({
+  children,
+  className = "",
+  as: Tag = "div",
+  delay = 0,
+  y = 42,
+}: RevealProps) {
   const ref = useRef<HTMLElement | null>(null);
-  const Tag = as;
 
-  useEffect(() => {
-    const node = ref.current;
-    if (!node) return;
+  useGSAP(
+    () => {
+      registerGsap();
+      const node = ref.current;
+      if (!node) return;
 
-    const show = () => node.classList.add("is-visible");
+      if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
+        gsap.set(node, { clearProps: "all", opacity: 1, y: 0 });
+        return;
+      }
 
-    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
-      show();
-      return;
-    }
-
-    const rect = node.getBoundingClientRect();
-    const alreadyInView = rect.top < window.innerHeight * 0.92 && rect.bottom > 0;
-    if (alreadyInView) {
-      show();
-      return;
-    }
-
-    const observer = new IntersectionObserver(
-      (entries) => {
-        for (const entry of entries) {
-          if (entry.isIntersecting) {
-            entry.target.classList.add("is-visible");
-            observer.unobserve(entry.target);
-          }
-        }
-      },
-      { threshold: 0.12, rootMargin: "0px 0px -6% 0px" },
-    );
-
-    observer.observe(node);
-    return () => observer.disconnect();
-  }, []);
+      gsap.fromTo(
+        node,
+        { opacity: 0, y, filter: "blur(6px)" },
+        {
+          opacity: 1,
+          y: 0,
+          filter: "blur(0px)",
+          duration: 1.05,
+          delay,
+          ease: "power3.out",
+          scrollTrigger: {
+            trigger: node,
+            start: "top 88%",
+            once: true,
+          },
+        },
+      );
+    },
+    { dependencies: [delay, y] },
+  );
 
   return (
-    <Tag ref={ref as never} className={cx("reveal", className)}>
+    <Tag ref={ref as never} className={className}>
       {children}
     </Tag>
   );

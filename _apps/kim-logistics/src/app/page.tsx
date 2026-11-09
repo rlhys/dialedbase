@@ -1,12 +1,11 @@
 import Image from "next/image";
 import Link from "next/link";
 import { CtaBand } from "@/components/CtaBand";
+import { HeroStage } from "@/components/HeroStage";
 import { Reveal } from "@/components/Reveal";
 import { SectionHeading } from "@/components/SectionHeading";
 import {
   areas,
-  brand,
-  contact,
   homeCopy,
   reviews,
   services,
@@ -18,60 +17,7 @@ export default function HomePage() {
 
   return (
     <>
-      <section className="relative min-h-[100svh] overflow-hidden bg-ink text-paper">
-        <div className="absolute inset-0">
-          <Image
-            src="/images/fleet.jpg"
-            alt="Kim Logistics removal vans ready for a move"
-            fill
-            priority
-            className="hero-media-drift object-cover object-[center_35%]"
-            sizes="100vw"
-          />
-          <div className="absolute inset-0 bg-gradient-to-r from-ink via-ink/88 to-ink/45" />
-          <div className="absolute inset-0 bg-gradient-to-t from-ink via-ink/20 to-ink/55" />
-        </div>
-
-        <div className="site-shell relative flex min-h-[100svh] flex-col justify-end pb-16 pt-28 md:justify-center md:pb-24 md:pt-24">
-          <div className="animate-rise relative h-12 w-[min(100%,18rem)] sm:h-14 sm:w-[22rem]">
-            <Image
-              src="/images/logo-wordmark.png"
-              alt={brand.name}
-              fill
-              className="object-contain object-left"
-              sizes="360px"
-              priority
-            />
-          </div>
-          <p className="animate-rise-delay-1 mt-5 text-xs font-semibold uppercase tracking-[0.28em] text-signal">
-            {brand.motto}
-          </p>
-          <div className="mt-4 h-1 w-24 rounded-full bg-signal signal-underline" />
-          <h1 className="font-display animate-rise-delay-2 mt-8 max-w-3xl text-balance text-3xl leading-[1.08] tracking-tight sm:text-4xl md:text-5xl lg:text-[3.4rem]">
-            {homeCopy.heroHeadline}
-          </h1>
-          <p className="animate-rise-delay-3 mt-5 max-w-xl text-lg leading-relaxed text-paper/80 md:text-xl">
-            {homeCopy.heroSupport}
-          </p>
-          <div className="animate-rise-delay-3 mt-9 flex flex-col gap-3 sm:flex-row sm:items-center">
-            <Link
-              href="/contact"
-              className="inline-flex items-center justify-center rounded-md bg-signal px-6 py-3.5 text-base font-semibold text-ink transition hover:bg-signal-deep hover:text-paper"
-            >
-              Get a free quote
-            </Link>
-            <a
-              href={contact.phoneHref}
-              className="inline-flex items-center justify-center rounded-md border border-paper/35 px-6 py-3.5 text-base font-semibold text-paper transition hover:border-paper"
-            >
-              Call {contact.phoneDisplay}
-            </a>
-          </div>
-          <p className="animate-rise-delay-3 mt-6 text-sm uppercase tracking-[0.18em] text-paper/55">
-            Coventry · West Midlands · Long-distance when needed
-          </p>
-        </div>
-      </section>
+      <HeroStage />
 
       <section className="site-shell atmosphere py-16 md:py-24">
         <Reveal>
