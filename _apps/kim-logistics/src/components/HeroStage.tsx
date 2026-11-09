@@ -3,7 +3,6 @@
 import Image from "next/image";
 import Link from "next/link";
 import { useRef } from "react";
-import { BrandLogo } from "@/components/BrandLogo";
 import { Magnetic } from "@/components/Magnetic";
 import { MotionHashes } from "@/components/MotionHashes";
 import { contact, homeCopy } from "@/content/site";
@@ -69,15 +68,6 @@ export function HeroStage() {
         ref={copy}
         className="site-shell relative flex min-h-[100svh] flex-col justify-end pb-14 pt-28 md:justify-center md:pb-20 md:pt-28"
       >
-        <div data-hero-line className="max-w-xl">
-          <BrandLogo
-            variant="chalk"
-            priority
-            className="h-14 w-[min(100%,20rem)] sm:h-16 sm:w-[24rem] md:h-[4.75rem] md:w-[28rem]"
-            sizes="(max-width: 640px) 80vw, 448px"
-          />
-        </div>
-
         <div data-hero-line className="mt-8 flex items-center gap-4">
           <span className="h-px w-16 bg-signal" />
           <MotionHashes className="hash-pulse" tone="signal" />

@@ -1,7 +1,6 @@
 import type { Metadata } from "next";
 import Image from "next/image";
 import { CtaBand } from "@/components/CtaBand";
-import { Motif } from "@/components/Motif";
 import { PageHero } from "@/components/PageHero";
 import { Reveal } from "@/components/Reveal";
 import { coverage } from "@/content/site";
@@ -24,9 +23,8 @@ export default function CoveragePage() {
         <div className="mx-auto max-w-6xl px-5 py-16 sm:px-8 sm:py-20">
           <div className="grid gap-12 lg:grid-cols-2 lg:gap-16">
             <Reveal as="article" className="border-t border-line pt-8">
-              <p className="condensed flex items-center gap-2 text-[0.7rem] text-signal">
-                <Motif size={14} />
-                United Kingdom
+              <p className="eyebrow text-[0.7rem] text-signal">
+United Kingdom
               </p>
               <h2 className="display mt-3 text-3xl">{coverage.uk.title}</h2>
               <p className="mt-4 text-steel leading-relaxed">
@@ -48,9 +46,8 @@ export default function CoveragePage() {
               </ul>
             </Reveal>
             <Reveal as="article" className="border-t border-line pt-8">
-              <p className="condensed flex items-center gap-2 text-[0.7rem] text-signal">
-                <Motif size={14} />
-                International
+              <p className="eyebrow text-[0.7rem] text-signal">
+International
               </p>
               <h2 className="display mt-3 text-3xl">
                 {coverage.overseas.title}
@@ -98,7 +95,7 @@ export default function CoveragePage() {
         </div>
       </section>
 
-      <CtaBand title="Ask about your route" />
+      <CtaBand />
     </>
   );
 }

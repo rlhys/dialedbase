@@ -1,5 +1,4 @@
 import type { Metadata } from "next";
-import { Motif } from "@/components/Motif";
 import { PageHero } from "@/components/PageHero";
 import { QuoteForm } from "@/components/QuoteForm";
 import { Reveal } from "@/components/Reveal";
@@ -23,9 +22,8 @@ export default function ContactPage() {
       <section className="bg-paper">
         <div className="mx-auto grid max-w-6xl gap-12 px-5 py-16 sm:px-8 sm:py-20 lg:grid-cols-[0.85fr_1.15fr]">
           <Reveal>
-            <p className="condensed flex items-center gap-2 text-[0.7rem] text-signal">
-              <Motif size={14} />
-              Call
+            <p className="eyebrow text-[0.7rem] text-signal">
+Call
             </p>
             <a
               href={`tel:${site.phoneTel}`}

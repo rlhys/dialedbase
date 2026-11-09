@@ -1,6 +1,5 @@
 import type { Metadata } from "next";
 import { CtaBand } from "@/components/CtaBand";
-import { Motif } from "@/components/Motif";
 import { PageHero } from "@/components/PageHero";
 import { Reveal } from "@/components/Reveal";
 import { faqs } from "@/content/site";
@@ -26,8 +25,7 @@ export default function FaqPage() {
             {faqs.map((faq, index) => (
               <Reveal key={faq.question} className="py-8">
                 <p className="condensed mb-3 flex items-center gap-2 text-[0.65rem] text-signal">
-                  <Motif size={12} />
-                  {String(index + 1).padStart(2, "0")}
+{String(index + 1).padStart(2, "0")}
                 </p>
                 <h2 className="display text-xl sm:text-2xl">{faq.question}</h2>
                 <p className="mt-3 text-steel leading-relaxed">{faq.answer}</p>
@@ -37,7 +35,7 @@ export default function FaqPage() {
         </div>
       </section>
 
-      <CtaBand title="Still unsure? Ask us directly" />
+      <CtaBand />
     </>
   );
 }

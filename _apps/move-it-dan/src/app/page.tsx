@@ -2,8 +2,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { CtaBand } from "@/components/CtaBand";
 import { HeroStage } from "@/components/HeroStage";
-import { Motif } from "@/components/Motif";
-import { Reveal } from "@/components/Reveal";
+import { FadeIn, Magnetic, Stagger, StaggerItem, Tilt } from "@/components/Motion";
 import { faqs, services, trustPoints } from "@/content/site";
 
 export default function HomePage() {
@@ -11,201 +10,171 @@ export default function HomePage() {
     <>
       <HeroStage />
 
-      <section className="bg-black text-white">
-        <div className="mx-auto flex max-w-6xl flex-wrap items-center gap-x-8 gap-y-3 px-5 py-5 sm:px-8">
+      <section className="border-y border-line bg-chalk/80 backdrop-blur-sm">
+        <div className="mx-auto flex max-w-6xl flex-wrap gap-x-8 gap-y-3 px-5 py-5 text-sm text-ink-soft sm:px-8">
           {trustPoints.map((point) => (
-            <span
-              key={point}
-              className="inline-flex items-center gap-2.5 text-sm text-white/70"
-            >
-              <span
-                className="h-1 w-1 shrink-0 rounded-full bg-signal"
-                aria-hidden
-              />
+            <span key={point} className="inline-flex items-center gap-2">
+              <span className="h-1.5 w-1.5 rounded-full bg-signal" aria-hidden />
               {point}
             </span>
           ))}
         </div>
       </section>
 
-      <section className="relative overflow-hidden bg-paper">
-        <div className="mx-auto grid max-w-6xl gap-0 lg:grid-cols-[1.05fr_0.95fr]">
-          <Reveal className="relative min-h-[28rem] lg:min-h-[36rem]">
-            <Image
-              src="/placeholders/asset-4.jpg"
-              alt="Sofas wrapped in quilted protective covers during a Move It Dan job"
-              fill
-              className="object-cover"
-              sizes="(max-width: 1024px) 100vw, 55vw"
-            />
-          </Reveal>
-          <Reveal className="flex flex-col justify-center px-5 py-16 sm:px-10 sm:py-20 lg:px-14">
-            <p className="condensed flex items-center gap-2 text-[0.72rem] text-signal">
-              <Motif size={14} />
-              Why us
-            </p>
-            <h2 className="display mt-4 text-3xl leading-tight sm:text-4xl md:text-5xl">
-              Moving with care, not chaos
-            </h2>
-            <p className="mt-5 max-w-md text-base leading-relaxed text-steel sm:text-lg">
-              We treat your goods as if they were our own. Proper protection for
-              furniture, fragiles, floors, and stairs, plus straight updates
-              until the unload is done.
-            </p>
-            <div className="mt-10 space-y-6 border-t border-line pt-8">
-              <div>
-                <h3 className="display text-xl sm:text-2xl">
-                  Reliable and experienced
-                </h3>
-                <p className="mt-2 text-sm leading-relaxed text-steel sm:text-base">
-                  Built on careful jobs and clear communication. Ask for recent
-                  references when you get in touch.
-                </p>
-              </div>
-              <div>
-                <h3 className="display text-xl sm:text-2xl">
-                  Protection that shows
-                </h3>
-                <p className="mt-2 text-sm leading-relaxed text-steel sm:text-base">
-                  Quilted covers, TV wraps, stair runners, and wardrobe boxes so
-                  clothes stay on hangers and rooms stay protected.
-                </p>
-              </div>
-            </div>
-          </Reveal>
+      <section className="mx-auto max-w-6xl px-5 py-20 sm:px-8 sm:py-28">
+        <FadeIn>
+          <p className="eyebrow">Why us</p>
+          <h2 className="display mt-3 max-w-2xl text-3xl leading-tight sm:text-5xl">
+            Moving with care,{" "}
+            <span className="text-signal">not chaos</span>
+          </h2>
+          <p className="mt-5 max-w-2xl text-base leading-relaxed text-steel sm:text-lg">
+            We treat your goods as if they were our own. Proper protection for
+            furniture, fragiles, floors, and stairs.
+          </p>
+        </FadeIn>
+
+        <div className="mt-14 grid gap-8 lg:grid-cols-2 lg:items-center">
+          <FadeIn>
+            <Tilt className="relative min-h-[22rem] overflow-hidden rounded-3xl bg-mist sm:min-h-[28rem]">
+              <Image
+                src="/placeholders/asset-4.jpg"
+                alt="Sofas wrapped in quilted protective covers during a Move It Dan job"
+                fill
+                className="object-cover"
+                sizes="(max-width: 1024px) 100vw, 50vw"
+              />
+            </Tilt>
+          </FadeIn>
+          <Stagger gap={0.12} className="space-y-8">
+            <StaggerItem>
+              <h3 className="display text-2xl sm:text-3xl">Reliable and experienced</h3>
+              <p className="mt-3 leading-relaxed text-steel">
+                Built on careful jobs and clear communication until the move is
+                done. Ask for recent references when you get in touch.
+              </p>
+            </StaggerItem>
+            <StaggerItem>
+              <h3 className="display text-2xl sm:text-3xl">Protection that shows</h3>
+              <p className="mt-3 leading-relaxed text-steel">
+                Quilted covers, TV wraps, stair runners, and wardrobe boxes so
+                clothes stay on hangers and rooms stay protected.
+              </p>
+            </StaggerItem>
+          </Stagger>
         </div>
       </section>
 
-      <section className="bg-ink text-white">
-        <div className="mx-auto max-w-6xl px-5 py-20 sm:px-8 sm:py-28">
-          <Reveal>
-            <p className="condensed flex items-center gap-2 text-[0.72rem] text-signal">
-              <Motif tone="chalk" size={14} />
+      <section className="relative overflow-hidden bg-ink py-20 text-white sm:py-28">
+        <div className="signal-glow pointer-events-none absolute inset-0 opacity-40" />
+        <div className="relative mx-auto max-w-6xl px-5 sm:px-8">
+          <FadeIn>
+            <p className="text-[11px] font-semibold uppercase tracking-[0.22em] text-signal">
               Services
             </p>
-            <h2 className="display mt-4 max-w-xl text-3xl sm:text-4xl md:text-5xl">
-              What we can handle
+            <h2 className="display mt-3 text-3xl sm:text-5xl">
+              <span className="shine-text">What we can handle</span>
             </h2>
-            <p className="mt-4 max-w-lg text-white/60">
-              Domestic, commercial, packing, and overseas. One team, clear
-              quotes, hard CTAs when you are ready.
+            <p className="mt-4 max-w-xl text-white/65">
+              Domestic, commercial, packing, and overseas. One team, clear quotes.
             </p>
-          </Reveal>
-
-          <div className="mt-14 divide-y divide-white/12 border-y border-white/12">
-            {services.map((service, index) => (
-              <Reveal
-                key={service.slug}
-                as="article"
-                className="grid gap-4 py-8 sm:grid-cols-[5rem_1fr_auto] sm:items-baseline sm:gap-8"
-              >
-                <p className="condensed text-[0.7rem] text-signal">
-                  {String(index + 1).padStart(2, "0")}
-                </p>
-                <div>
-                  <h3 className="display text-2xl sm:text-3xl">
-                    {service.title}
-                  </h3>
-                  <p className="mt-2 max-w-2xl text-sm leading-relaxed text-white/60 sm:text-base">
+          </FadeIn>
+          <Stagger gap={0.08} className="mt-12 grid gap-4 sm:grid-cols-2">
+            {services.map((service) => (
+              <StaggerItem key={service.slug}>
+                <article className="glass glass-hover h-full rounded-2xl p-6 transition hover:border-white/20">
+                  <h3 className="display text-xl text-white">{service.title}</h3>
+                  <p className="mt-3 text-sm leading-relaxed text-white/65">
                     {service.blurb}
                   </p>
-                </div>
-                <Link
-                  href="/services"
-                  className="text-sm font-semibold text-white underline-offset-4 hover:underline sm:justify-self-end"
-                >
-                  Details
-                </Link>
-              </Reveal>
+                </article>
+              </StaggerItem>
             ))}
-          </div>
+          </Stagger>
+          <FadeIn delay={0.15} className="mt-8">
+            <Link
+              href="/services"
+              className="text-sm font-semibold text-signal no-underline hover:underline"
+            >
+              See full services →
+            </Link>
+          </FadeIn>
         </div>
       </section>
 
-      <section className="relative min-h-[70svh] overflow-hidden bg-black text-white">
-        <Image
-          src="/placeholders/van-house.jpg"
-          alt="Move It Dan van outside a UK home"
-          fill
-          className="object-cover object-center"
-          sizes="100vw"
-        />
-        <div className="absolute inset-0 bg-[linear-gradient(90deg,rgba(0,0,0,0.82)_0%,rgba(0,0,0,0.55)_48%,rgba(0,0,0,0.35)_100%)]" />
-        <div className="relative mx-auto flex min-h-[70svh] max-w-6xl items-end px-5 py-16 sm:px-8 sm:py-20">
-          <Reveal className="max-w-lg">
-            <p className="condensed flex items-center gap-2 text-[0.72rem] text-signal">
-              <Motif tone="chalk" size={14} />
-              Coverage
-            </p>
-            <h2 className="display mt-4 text-3xl sm:text-4xl md:text-5xl">
-              UK-wide and overseas
-            </h2>
-            <p className="mt-4 text-base leading-relaxed text-white/70">
-              Local street moves, long UK hauls, and international removals. If
-              you can name the destination, ask for a quote.
-            </p>
+      <section className="mx-auto grid max-w-6xl gap-10 px-5 py-20 sm:px-8 sm:py-28 lg:grid-cols-2 lg:items-center">
+        <FadeIn>
+          <p className="eyebrow">Coverage</p>
+          <h2 className="display mt-3 text-3xl sm:text-5xl">UK-wide and overseas</h2>
+          <p className="mt-4 leading-relaxed text-steel">
+            Local street moves, long UK hauls, and international removals. If you
+            can name the destination, ask for a quote.
+          </p>
+          <Magnetic className="mt-8 inline-flex">
             <Link
               href="/coverage"
-              className="mt-7 inline-flex rounded-sm border border-white/30 px-5 py-3 text-sm font-semibold text-white no-underline hover:bg-white/8"
+              className="btn-sheen inline-flex items-center gap-2 rounded-full bg-ink py-1.5 pl-5 pr-1.5 text-sm font-semibold text-white no-underline"
             >
               View coverage
+              <span className="grid h-8 w-8 place-items-center rounded-full bg-signal">→</span>
             </Link>
-          </Reveal>
-        </div>
+          </Magnetic>
+        </FadeIn>
+        <FadeIn delay={0.1}>
+          <Tilt className="relative min-h-[22rem] overflow-hidden rounded-3xl bg-mist">
+            <Image
+              src="/placeholders/asset-5.jpg"
+              alt="Move It Dan vans parked outside a UK home"
+              fill
+              className="object-cover"
+              sizes="(max-width: 1024px) 100vw, 50vw"
+            />
+          </Tilt>
+        </FadeIn>
       </section>
 
-      <section className="bg-paper">
-        <div className="mx-auto max-w-6xl px-5 py-20 sm:px-8 sm:py-24">
-          <Reveal>
-            <p className="condensed flex items-center gap-2 text-[0.72rem] text-signal">
-              <Motif size={14} />
-              FAQ
-            </p>
-            <h2 className="display mt-4 text-3xl sm:text-4xl">Quick answers</h2>
-          </Reveal>
-          <div className="mt-10 divide-y divide-line border-y border-line">
+      <section className="border-y border-line bg-chalk py-20 sm:py-28">
+        <div className="mx-auto max-w-6xl px-5 sm:px-8">
+          <FadeIn>
+            <p className="eyebrow">FAQ</p>
+            <h2 className="display mt-3 text-3xl sm:text-5xl">Quick answers</h2>
+          </FadeIn>
+          <Stagger gap={0.07} className="mt-10 divide-y divide-line">
             {faqs.slice(0, 3).map((faq) => (
-              <Reveal key={faq.question} className="py-7">
-                <h3 className="display text-xl sm:text-2xl">{faq.question}</h3>
-                <p className="mt-3 max-w-3xl text-steel leading-relaxed">
-                  {faq.answer}
-                </p>
-              </Reveal>
+              <StaggerItem key={faq.question} className="py-6">
+                <h3 className="text-lg font-semibold tracking-tight">{faq.question}</h3>
+                <p className="mt-2 max-w-3xl leading-relaxed text-steel">{faq.answer}</p>
+              </StaggerItem>
             ))}
-          </div>
-          <Reveal className="mt-8">
+          </Stagger>
+          <FadeIn className="mt-4">
             <Link
               href="/faq"
-              className="text-sm font-semibold text-ink underline-offset-4 hover:underline"
+              className="text-sm font-semibold text-signal no-underline hover:underline"
             >
-              Read all FAQs
+              Read all FAQs →
             </Link>
-          </Reveal>
+          </FadeIn>
         </div>
       </section>
 
-      <section className="bg-ink text-white">
-        <div className="mx-auto max-w-6xl px-5 py-20 sm:px-8 sm:py-24">
-          <Reveal>
-            <p className="condensed flex items-center gap-2 text-[0.72rem] text-signal">
-              <Motif tone="chalk" size={14} />
-              Reviews
-            </p>
-            <h2 className="display mt-4 max-w-2xl text-3xl sm:text-4xl">
-              Customer words, when approved
-            </h2>
-            <p className="mt-5 max-w-2xl text-white/60 leading-relaxed">
-              This rebuild does not invent star ratings or fake testimonials.
-              Approved review text and permissions go here next.
-            </p>
-            <Link
-              href="/reviews"
-              className="mt-8 inline-flex text-sm font-semibold text-white underline-offset-4 hover:underline"
-            >
-              See review structure
-            </Link>
-          </Reveal>
-        </div>
+      <section className="mx-auto max-w-6xl px-5 py-20 sm:px-8 sm:py-28">
+        <FadeIn>
+          <p className="eyebrow">Reviews</p>
+          <h2 className="display mt-3 text-3xl sm:text-5xl">
+            Customer words, when approved
+          </h2>
+          <p className="mt-4 max-w-2xl leading-relaxed text-steel">
+            This rebuild does not invent star ratings or fake testimonials.
+            Approved review text goes here next.
+          </p>
+          <Link
+            href="/reviews"
+            className="mt-6 inline-flex text-sm font-semibold text-signal no-underline hover:underline"
+          >
+            See review structure →
+          </Link>
+        </FadeIn>
       </section>
 
       <CtaBand />

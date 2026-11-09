@@ -1,6 +1,5 @@
 import type { Metadata } from "next";
 import { CtaBand } from "@/components/CtaBand";
-import { Motif } from "@/components/Motif";
 import { PageHero } from "@/components/PageHero";
 import { Reveal } from "@/components/Reveal";
 
@@ -22,9 +21,8 @@ export default function ReviewsPage() {
       <section className="bg-paper">
         <div className="mx-auto max-w-3xl px-5 py-16 sm:px-8 sm:py-20">
           <Reveal>
-            <p className="condensed flex items-center gap-2 text-[0.7rem] text-signal">
-              <Motif size={14} />
-              Holding space
+            <p className="eyebrow text-[0.7rem] text-signal">
+Holding space
             </p>
             <p className="mt-5 text-lg leading-relaxed text-steel sm:text-xl">
               The previous site mentioned strong reviews. Until we have
@@ -53,7 +51,7 @@ export default function ReviewsPage() {
         </div>
       </section>
 
-      <CtaBand title="Happy with a past move? Tell Dan" />
+      <CtaBand />
     </>
   );
 }

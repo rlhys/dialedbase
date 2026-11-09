@@ -1,7 +1,6 @@
 import type { Metadata } from "next";
 import Image from "next/image";
 import { CtaBand } from "@/components/CtaBand";
-import { Motif } from "@/components/Motif";
 import { PageHero } from "@/components/PageHero";
 import { Reveal } from "@/components/Reveal";
 import { services } from "@/content/site";
@@ -66,9 +65,8 @@ export default function ServicesPage() {
                     </div>
                   ) : null}
                   <div>
-                    <p className="condensed flex items-center gap-2 text-[0.7rem] text-signal">
-                      <Motif size={14} />
-                      {String(index + 1).padStart(2, "0")}
+                    <p className="eyebrow text-[0.7rem] text-signal">
+{String(index + 1).padStart(2, "0")}
                     </p>
                     <h2 className="display mt-3 text-3xl sm:text-4xl">
                       {service.title}
@@ -122,7 +120,7 @@ export default function ServicesPage() {
         </div>
       </section>
 
-      <CtaBand title="Tell us what you are moving" />
+      <CtaBand />
     </>
   );
 }
