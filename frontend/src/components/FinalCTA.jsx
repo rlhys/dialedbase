@@ -100,7 +100,7 @@ const FinalCTA = () => {
                   </FadeIn>
                   <FadeIn delay={0.1}>
                     <p className="mt-4 text-white/55 text-[13px] sm:text-[14px] leading-relaxed">
-                      Book a strategy call to scope a build with Product Keep or Site Care attached - or email if you already know the seat you need.
+                      Book a strategy call to scope the Build first, with Product Keep or Site Care attached from day one - or email if you already know the seat you need.
                     </p>
                   </FadeIn>
                   <FadeIn delay={0.18}>

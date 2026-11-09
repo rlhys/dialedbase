@@ -8,29 +8,33 @@ const OFFERS = [
   {
     id: "product-keep",
     title: "Product Keep",
-    eyebrow: "For apps · dashboards · booking platforms",
-    price: "From £2.5k / mo",
-    desc: "Stay on as the senior builder after launch - feature velocity, bugfix, Stripe/auth edge cases, and a monthly roadmap call so the product keeps compounding.",
+    path: "Build the product → then stay on monthly",
+    eyebrow: "Apps · dashboards · booking platforms",
+    price: "Scoped build first · then from £2.5k / mo",
+    desc: "We ship the operator product as a fixed Build, then Rhys stays on as Product Keep: feature velocity, bugfix, Stripe/auth edge cases, and a monthly roadmap call.",
     points: [
-      "Priority fixes & ops hygiene",
+      "Starts with a scoped product Build",
+      "Priority fixes & ops hygiene after launch",
       "Scoped feature days each month",
-      "Monthly roadmap with Rhys",
-      "3‑month minimum",
+      "3-month Keep minimum",
     ],
+    cta: "Scope a product Build + Keep",
     icon: Smartphone,
   },
   {
     id: "site-care",
     title: "Site Care",
-    eyebrow: "For brand · marketing sites",
-    price: "From £1.5k / mo",
-    desc: "Ongoing craft for the surface that sells you - new landing sections, CMS updates, CRO tweaks, performance/SEO hygiene, and design polish when the brand moves.",
+    path: "Build the site → then stay on monthly",
+    eyebrow: "Brand · marketing sites",
+    price: "Scoped build first · then from £1.5k / mo",
+    desc: "We ship the brand site as a fixed Build, then stay on as Site Care: new landing sections, CMS updates, CRO tweaks, performance/SEO hygiene, and design polish when the brand moves.",
     points: [
-      "Content & CMS updates",
+      "Starts with a scoped brand-site Build",
+      "Content & CMS updates after launch",
       "Landing pages & conversion tweaks",
-      "Performance & SEO hygiene",
-      "3‑month minimum",
+      "3-month Care minimum",
     ],
+    cta: "Scope a site Build + Care",
     icon: Layers,
   },
 ];
@@ -49,14 +53,21 @@ const Keep = () => {
           </FadeIn>
           <FadeIn delay={0.05}>
             <h2 className="font-semibold tracking-[-0.03em] leading-[1.05] text-[28px] xs:text-[32px] sm:text-[42px] md:text-[52px]">
-              <span className="shine-text">Launch is the start. </span>
-              <span className="serif text-white">Keep is the product.</span>
+              <span className="shine-text">You start with a Build. </span>
+              <span className="serif text-white">Then you Keep.</span>
             </h2>
           </FadeIn>
           <FadeIn delay={0.1}>
             <p className="mt-4 text-white/55 max-w-xl mx-auto text-[13.5px] sm:text-[14.5px] px-2">
-              Every build ships with a Keep proposal on the table - so you are not blocked on every Stripe edge case, owner request, or landing-page change.
+              Dialedbase scopes a fixed project first, then attaches a monthly seat so launch is not the end. Product Keep for operator apps. Site Care for brand sites.
             </p>
+          </FadeIn>
+          <FadeIn delay={0.12}>
+            <div className="mt-6 inline-flex flex-wrap items-center justify-center gap-2 text-[12px] text-white/70">
+              <span className="glass rounded-full px-3 py-1">1 · Scoped Build</span>
+              <span className="text-white/30">→</span>
+              <span className="glass rounded-full px-3 py-1">2 · Monthly Keep</span>
+            </div>
           </FadeIn>
         </div>
 
@@ -85,7 +96,8 @@ const Keep = () => {
                         <span className="text-[10.5px] text-white/45 tracking-wide uppercase pt-1">{o.eyebrow}</span>
                       </div>
                       <h3 className="mt-4 text-[19px] sm:text-[22px] font-semibold tracking-[-0.015em]">{o.title}</h3>
-                      <div className="mt-1.5 text-[13px] sm:text-[14px] text-white/85 font-medium tracking-tight">{o.price}</div>
+                      <div className="mt-1 text-[12px] text-emerald-300/90 tracking-tight">{o.path}</div>
+                      <div className="mt-2 text-[13px] sm:text-[14px] text-white/85 font-medium tracking-tight">{o.price}</div>
                       <p className="mt-2 text-white/55 leading-relaxed text-[13px] sm:text-[13.5px]">{o.desc}</p>
                       <ul className="mt-4 space-y-1.5">
                         {o.points.map((pt) => (
@@ -101,7 +113,7 @@ const Keep = () => {
                           onClick={onBook}
                           className="btn-sheen group inline-flex items-center gap-2 bg-white text-black rounded-full pl-4 pr-1 py-1 text-[13px] font-medium"
                         >
-                          Ask about {o.title}
+                          {o.cta}
                           <span className="w-7 h-7 rounded-full bg-black text-white flex items-center justify-center group-hover:rotate-45 transition-transform duration-300">
                             <ArrowUpRight className="w-3.5 h-3.5" />
                           </span>
@@ -118,7 +130,7 @@ const Keep = () => {
         <FadeIn delay={0.2}>
           <div className="mt-8 sm:mt-10 flex flex-col sm:flex-row items-center justify-center gap-3 text-center">
             <p className="text-white/45 text-[12.5px] sm:text-[13px] max-w-md">
-              Final scope set on the strategy call. One founder face - no junior bench.
+              Already live and only need the monthly seat? Say so on the call. One founder face - no junior bench.
             </p>
             <a
               href="mailto:hello@dialedbase.com"

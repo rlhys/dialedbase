@@ -26,7 +26,7 @@ const Services = () => {
           </FadeIn>
           <FadeIn delay={0.1}>
             <p className="mt-4 text-white/55 max-w-xl mx-auto text-[13.5px] sm:text-[14.5px] px-2">
-              Projects seed retainers. Every build is scoped with a Keep path - Product Keep for operator apps, Site Care for brand surfaces.
+              Two kinds of Build. Both are scoped to continue as a monthly seat: Product Keep for operator apps, Site Care for brand sites.
             </p>
           </FadeIn>
           <FadeIn delay={0.15}>
@@ -82,7 +82,7 @@ const Services = () => {
                         href="#keep"
                         className="inline-flex items-center gap-1 text-[12.5px] text-white/70 hover:text-white transition-colors"
                       >
-                        Leads to {s.keep} <ArrowUpRight className="w-3.5 h-3.5" />
+                        Build first, then {s.keep} <ArrowUpRight className="w-3.5 h-3.5" />
                       </a>
                     </div>
                   </motion.div>

@@ -32,9 +32,9 @@ const STEPS = [
     id: "keep",
     num: "04",
     title: "Keep",
-    desc: "The end-state. Product Keep or Site Care - monthly roadmap, priority fixes, and senior craft so the product keeps compounding.",
+    desc: "After the Build ships. Product Keep or Site Care: monthly roadmap, priority fixes, and senior craft so the product keeps compounding.",
     icon: RefreshCw,
-    tags: ["Retainer", "Roadmap", "Compound"],
+    tags: ["After Build", "Retainer", "Roadmap"],
   },
 ];
 

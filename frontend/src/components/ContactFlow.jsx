@@ -16,11 +16,11 @@ const STEPS = [
     subtitle: "Pick the closest match - we'll calibrate on the call.",
     type: "single",
     options: [
-      { v: "Brand site", desc: "Marketing site or landing pages → often Site Care" },
-      { v: "Product system", desc: "Booking, dashboard, or operator app → often Product Keep" },
-      { v: "Product Keep", desc: "Monthly retainer for a live app / ops product" },
-      { v: "Site Care", desc: "Monthly retainer for an existing brand site" },
-      { v: "Not sure yet", desc: "Let's scope Build → Keep together" },
+      { v: "Brand site Build", desc: "New marketing site, then Site Care monthly" },
+      { v: "Product Build", desc: "New booking / dashboard / ops app, then Product Keep" },
+      { v: "Product Keep only", desc: "Already live - monthly retainer for the app" },
+      { v: "Site Care only", desc: "Already live - monthly retainer for the brand site" },
+      { v: "Not sure yet", desc: "Scope Build → Keep together on the call" },
     ],
   },
   {
