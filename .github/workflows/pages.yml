@@ -1,0 +1,53 @@
+name: Deploy GitHub Pages
+
+# Fallback host for dialedbase.com if Vercel stays disconnected.
+# Enable in repo Settings → Pages → Source: GitHub Actions after first green run.
+# Then point DNS (Namecheap) away from Vercel:
+#   www  CNAME  <user-or-org>.github.io
+#   @    A      185.199.108.153 / .109.153 / .110.153 / .111.153
+#   @    AAAA   2606:50c0:8000::153 / ::819 / ::1df / ::1ce
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: pages
+  cancel-in-progress: true
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: frontend
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+          cache: yarn
+          cache-dependency-path: frontend/yarn.lock
+      - run: yarn install --frozen-lockfile
+      - run: yarn build
+      - name: Add CNAME for custom domain
+        run: echo 'dialedbase.com' > build/CNAME
+      - uses: actions/upload-pages-artifact@v3
+        with:
+          path: frontend/build
+
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - id: deployment
+        uses: actions/deploy-pages@v4
