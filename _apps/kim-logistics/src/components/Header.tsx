@@ -31,23 +31,25 @@ export function Header() {
         </Link>
 
         <nav className="hidden items-center gap-1 lg:flex" aria-label="Primary">
-          {nav.map((item) => {
-            const active = pathname === item.href;
-            return (
-              <Link
-                key={item.href}
-                href={item.href}
-                className={cx(
-                  "rounded-md px-3 py-2 text-sm font-medium transition-colors",
-                  active
-                    ? "bg-ink text-paper"
-                    : "text-ink/80 hover:bg-field-deep/60 hover:text-ink",
-                )}
-              >
-                {item.label}
-              </Link>
-            );
-          })}
+          {nav
+            .filter((item) => item.href !== "/")
+            .map((item) => {
+              const active = pathname === item.href;
+              return (
+                <Link
+                  key={item.href}
+                  href={item.href}
+                  className={cx(
+                    "rounded-md px-3 py-2 text-sm font-medium transition-colors",
+                    active
+                      ? "bg-ink text-white"
+                      : "text-ink/80 hover:bg-field-deep/60 hover:text-ink",
+                  )}
+                >
+                  {item.label}
+                </Link>
+              );
+            })}
         </nav>
 
         <div className="flex items-center gap-2">

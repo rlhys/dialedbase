@@ -19,19 +19,24 @@ export function HeroStage() {
       if (!root.current || !media.current || !copy.current) return;
       if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
 
+      const lines = copy.current.querySelectorAll<HTMLElement>("[data-hero-line]");
+      // Never leave opacity stuck after HMR — reset first.
+      gsap.set(lines, { clearProps: "opacity,transform,filter" });
+
       const tl = gsap.timeline({ defaults: { ease: "power3.out" } });
-      tl.from(copy.current.querySelectorAll("[data-hero-line]"), {
-        y: 36,
-        opacity: 0,
-        duration: 0.85,
-        stagger: 0.08,
+      tl.from(lines, {
+        y: 28,
+        autoAlpha: 0,
+        duration: 0.75,
+        stagger: 0.07,
+        clearProps: "transform",
       }).from(
         media.current,
-        { clipPath: "inset(0 0 100% 0)", duration: 1.15, ease: "power4.out" },
-        0.15,
+        { clipPath: "inset(0 0 100% 0)", duration: 1.05, ease: "power4.out" },
+        0.12,
       );
     },
-    { scope: root },
+    { scope: root, dependencies: [] },
   );
 
   return (
@@ -79,7 +84,7 @@ export function HeroStage() {
             <Magnetic>
               <Link
                 href="/contact"
-                className="inline-flex items-center justify-center rounded-md bg-ink px-6 py-3.5 text-base font-semibold text-paper transition hover:bg-signal hover:text-ink"
+                className="inline-flex items-center justify-center rounded-md bg-ink px-6 py-3.5 text-base font-semibold text-white transition hover:bg-signal hover:text-ink"
               >
                 Get a free quote
               </Link>
@@ -103,8 +108,7 @@ export function HeroStage() {
 
         <div
           ref={media}
-          className="relative min-h-[22rem] overflow-hidden bg-ink lg:min-h-full"
-          style={{ clipPath: "inset(0 0 0 0)" }}
+          className="relative min-h-[22rem] overflow-hidden bg-[#111] lg:min-h-full"
         >
           <Image
             src="/images/fleet.jpg"
@@ -114,16 +118,13 @@ export function HeroStage() {
             className="object-cover object-[center_35%] grayscale-[0.15]"
             sizes="(max-width: 1024px) 100vw, 48vw"
           />
-          <div className="absolute inset-0 bg-gradient-to-t from-ink/50 via-transparent to-ink/20" />
+          <div className="absolute inset-0 bg-gradient-to-t from-black/50 via-transparent to-black/15" />
           <div className="absolute bottom-0 left-0 right-0 p-6 sm:p-8">
             <div className="flex items-end justify-between gap-4">
-              <p className="max-w-[14rem] text-sm font-medium uppercase tracking-[0.16em] text-paper/85">
+              <p className="max-w-[14rem] text-sm font-medium uppercase tracking-[0.16em] text-white/90">
                 Keep it moving
               </p>
-              <span
-                aria-hidden
-                className="mb-1 flex gap-1"
-              >
+              <span aria-hidden className="mb-1 flex gap-1">
                 {[0, 1, 2, 3, 4].map((i) => (
                   <span
                     key={i}

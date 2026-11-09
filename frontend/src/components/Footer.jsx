@@ -78,11 +78,11 @@ const Footer = () => {
               aria-label="Dialedbase home"
             >
               <img
-                src="/images/dialedbase-mark-chalk.png"
-                alt=""
-                className="h-6 w-6 rounded-md object-contain opacity-80 group-hover:opacity-100"
+                src="/images/dialedbase-mark.png"
+                alt="Dialedbase"
+                className="h-7 w-7 rounded-[0.5rem] object-cover shadow-[0_0_0_1px_rgba(255,255,255,0.1)]"
               />
-              <span className="font-medium underline-offset-2 group-hover:underline">Dialedbase</span>
+              <span className="font-medium underline-offset-4 group-hover:underline">Dialedbase</span>
             </a>
             <span>· © {new Date().getFullYear()}</span>
           </div>

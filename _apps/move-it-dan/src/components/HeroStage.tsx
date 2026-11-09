@@ -18,6 +18,9 @@ export function HeroStage() {
       if (!root.current || !media.current || !copy.current) return;
       if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
 
+      const lines = copy.current.querySelectorAll<HTMLElement>("[data-hero-line]");
+      gsap.set(lines, { clearProps: "opacity,transform,filter,visibility" });
+
       const tl = gsap.timeline({ defaults: { ease: "power3.out" } });
       tl.fromTo(
         media.current,
@@ -25,8 +28,8 @@ export function HeroStage() {
         { scale: 1.02, duration: 1.8 },
         0,
       ).from(
-        copy.current.querySelectorAll("[data-hero-line]"),
-        { y: 40, opacity: 0, duration: 0.9, stagger: 0.1 },
+        lines,
+        { y: 32, autoAlpha: 0, duration: 0.85, stagger: 0.09, clearProps: "transform" },
         0.2,
       );
 
