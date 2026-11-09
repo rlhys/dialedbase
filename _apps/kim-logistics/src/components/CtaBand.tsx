@@ -1,13 +1,13 @@
 import Link from "next/link";
-import { contact, homeCopy } from "@/content/site";
 import { MotionHashes } from "@/components/MotionHashes";
 import { Reveal } from "@/components/Reveal";
+import { contact, homeCopy } from "@/content/site";
 
 export function CtaBand() {
   return (
     <section className="bg-paper">
       <div className="site-shell py-16 md:py-20">
-        <Reveal className="relative overflow-hidden bg-ink px-6 py-12 text-paper sm:px-10 md:px-14 md:py-16">
+        <Reveal className="bg-ink px-6 py-12 text-paper sm:px-10 md:px-14 md:py-16">
           <div className="relative grid gap-8 md:grid-cols-[1.45fr_auto] md:items-end">
             <div>
               <div className="flex items-center gap-3">
@@ -24,16 +24,10 @@ export function CtaBand() {
               </p>
             </div>
             <div className="flex flex-col gap-3 sm:flex-row md:flex-col">
-              <Link
-                href="/contact"
-                className="inline-flex items-center justify-center bg-signal px-5 py-3 text-base font-semibold tracking-tight text-ink transition hover:bg-signal-deep hover:text-paper"
-              >
+              <Link href="/contact" className="btn-solid btn-signal px-5 py-3">
                 Start your quote
               </Link>
-              <a
-                href={contact.phoneHref}
-                className="inline-flex items-center justify-center border border-paper/30 px-5 py-3 text-base font-semibold tracking-tight text-paper transition hover:border-paper"
-              >
+              <a href={contact.phoneHref} className="btn-solid btn-ghost-chalk px-5 py-3">
                 Call {contact.phoneDisplay}
               </a>
             </div>

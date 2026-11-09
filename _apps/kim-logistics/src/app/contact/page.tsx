@@ -27,7 +27,10 @@ export default function ContactPage() {
               <div className="border-b border-ink/10 pb-5">
                 <dt className="text-[0.7rem] uppercase tracking-[0.28em] text-mute">Phone</dt>
                 <dd className="mt-2">
-                  <a className="text-xl font-semibold text-ink transition hover:text-signal" href={contact.phoneHref}>
+                  <a
+                    className="text-xl font-semibold text-ink transition-colors hover:text-signal"
+                    href={contact.phoneHref}
+                  >
                     {contact.phoneDisplay}
                   </a>
                 </dd>
@@ -35,7 +38,10 @@ export default function ContactPage() {
               <div className="border-b border-ink/10 pb-5">
                 <dt className="text-[0.7rem] uppercase tracking-[0.28em] text-mute">Mobile</dt>
                 <dd className="mt-2">
-                  <a className="text-xl font-semibold text-ink transition hover:text-signal" href={contact.mobileHref}>
+                  <a
+                    className="text-xl font-semibold text-ink transition-colors hover:text-signal"
+                    href={contact.mobileHref}
+                  >
                     {contact.mobileDisplay}
                   </a>
                 </dd>
@@ -43,7 +49,10 @@ export default function ContactPage() {
               <div className="border-b border-ink/10 pb-5">
                 <dt className="text-[0.7rem] uppercase tracking-[0.28em] text-mute">Email</dt>
                 <dd className="mt-2">
-                  <a className="text-xl font-semibold text-ink transition hover:text-signal" href={contact.emailHref}>
+                  <a
+                    className="text-xl font-semibold text-ink transition-colors hover:text-signal"
+                    href={contact.emailHref}
+                  >
                     {contact.email}
                   </a>
                 </dd>
@@ -61,7 +70,7 @@ export default function ContactPage() {
             </dl>
           </Reveal>
 
-          <Reveal className="border border-ink/12 bg-field/50 p-6 md:p-8">
+          <Reveal className="border border-ink/12 bg-field p-6 md:p-8">
             <h2 className="font-display text-3xl tracking-[-0.03em] text-ink">Free quote form</h2>
             <p className="mt-2 text-mute">
               Accessible, mobile-first form. Until a backend is wired, submit opens an email draft to

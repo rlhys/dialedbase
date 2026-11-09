@@ -4,13 +4,7 @@ import { CtaBand } from "@/components/CtaBand";
 import { HeroStage } from "@/components/HeroStage";
 import { Reveal } from "@/components/Reveal";
 import { SectionHeading } from "@/components/SectionHeading";
-import {
-  areas,
-  homeCopy,
-  reviews,
-  services,
-  whyUs,
-} from "@/content/site";
+import { areas, homeCopy, reviews, services, whyUs } from "@/content/site";
 
 export default function HomePage() {
   const review = reviews[0];
@@ -38,9 +32,7 @@ export default function HomePage() {
                 <p className="font-display text-sm font-semibold tracking-[0.18em] text-signal">
                   0{index + 1}
                 </p>
-                <h3 className="font-display mt-4 text-2xl tracking-[-0.02em] text-ink">
-                  {item.title}
-                </h3>
+                <h3 className="font-display mt-4 text-2xl tracking-[-0.02em] text-ink">{item.title}</h3>
                 <p className="mt-3 text-base leading-relaxed text-mute">{item.body}</p>
               </Reveal>
             ))}
@@ -62,7 +54,7 @@ export default function HomePage() {
             <Reveal>
               <Link
                 href="/services"
-                className="inline-flex font-semibold text-paper underline decoration-signal decoration-2 underline-offset-4 transition hover:text-signal"
+                className="inline-flex font-semibold text-paper underline decoration-signal decoration-2 underline-offset-4 transition-colors hover:text-signal"
               >
                 View all services
               </Link>
@@ -73,11 +65,9 @@ export default function HomePage() {
               <Reveal
                 key={service.id}
                 as="article"
-                className="border-b border-paper/15 p-6 transition hover:bg-paper/[0.03] sm:odd:border-r lg:[&:nth-child(3n)]:border-r-0 lg:border-r"
+                className="border-b border-paper/15 p-6 transition-colors hover:bg-paper/[0.04] sm:odd:border-r lg:border-r lg:[&:nth-child(3n)]:border-r-0"
               >
-                <h3 className="font-display text-2xl tracking-[-0.02em] text-paper">
-                  {service.title}
-                </h3>
+                <h3 className="font-display text-2xl tracking-[-0.02em] text-paper">{service.title}</h3>
                 <p className="mt-3 text-base leading-relaxed text-paper/65">{service.summary}</p>
               </Reveal>
             ))}
@@ -96,7 +86,10 @@ export default function HomePage() {
               />
               <ul className="mt-10 grid gap-x-8 gap-y-4 sm:grid-cols-2">
                 {areas.places.map((place) => (
-                  <li key={place} className="flex items-center gap-3 border-b border-ink/10 pb-3 text-lg font-medium text-ink">
+                  <li
+                    key={place}
+                    className="flex items-center gap-3 border-b border-ink/10 pb-3 text-lg font-medium text-ink"
+                  >
                     <span className="h-1.5 w-1.5 shrink-0 bg-signal" />
                     {place}
                   </li>
@@ -104,20 +97,20 @@ export default function HomePage() {
               </ul>
               <Link
                 href="/areas"
-                className="mt-10 inline-flex font-semibold text-ink underline decoration-signal decoration-2 underline-offset-4"
+                className="mt-10 inline-flex font-semibold text-ink underline decoration-signal decoration-2 underline-offset-4 transition-colors hover:text-signal"
               >
                 See coverage details
               </Link>
             </Reveal>
             <Reveal className="relative aspect-[4/3] overflow-hidden bg-ink">
               <Image
-                src="/images/fleet.jpg"
-                alt="Kim Logistics fleet on a residential job"
+                src="/images/job-1.jpeg"
+                alt="Kim Logistics crew on a residential move"
                 fill
-                className="object-cover object-center"
+                className="object-cover object-center transition-transform duration-500 hover:scale-[1.03]"
                 sizes="(max-width: 1024px) 100vw, 40vw"
               />
-              <div className="absolute inset-0 bg-gradient-to-t from-ink/50 to-transparent" />
+              <div className="absolute inset-0 bg-gradient-to-t from-ink/45 to-transparent" />
             </Reveal>
           </div>
         </div>
@@ -141,7 +134,7 @@ export default function HomePage() {
           <Reveal className="mt-8">
             <Link
               href="/reviews"
-              className="inline-flex font-semibold text-signal underline decoration-signal/40 underline-offset-4"
+              className="inline-flex font-semibold text-signal underline decoration-signal/40 underline-offset-4 transition-colors hover:text-paper"
             >
               Read the review
             </Link>

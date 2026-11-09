@@ -49,7 +49,7 @@ export function QuoteForm({ compact = false }: { compact?: boolean }) {
         </p>
         <button
           type="button"
-          className="mt-5 bg-ink px-4 py-2.5 text-sm font-semibold text-paper"
+          className="btn-solid mt-5 bg-ink px-4 py-2.5 text-sm text-paper hover:bg-ink-soft"
           onClick={() => setStatus("idle")}
         >
           Send another request
@@ -120,10 +120,7 @@ export function QuoteForm({ compact = false }: { compact?: boolean }) {
           </a>
           .
         </p>
-        <button
-          type="submit"
-          className="inline-flex items-center justify-center bg-signal px-5 py-3 text-base font-semibold tracking-tight text-ink transition hover:bg-signal-deep hover:text-paper"
-        >
+        <button type="submit" className="btn-solid btn-signal px-5 py-3">
           Request free quote
         </button>
       </div>

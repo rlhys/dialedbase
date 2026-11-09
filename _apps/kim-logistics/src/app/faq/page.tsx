@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import Link from "next/link";
 import { CtaBand } from "@/components/CtaBand";
 import { PageHero } from "@/components/PageHero";
 import { Reveal } from "@/components/Reveal";
@@ -28,7 +29,10 @@ export default function FaqPage() {
                   <summary className="cursor-pointer list-none px-1 py-6 font-display text-xl tracking-[-0.02em] text-ink marker:content-none [&::-webkit-details-marker]:hidden sm:px-2">
                     <span className="flex items-start justify-between gap-4">
                       {faq.question}
-                      <span aria-hidden className="mt-1 text-signal transition group-open:rotate-45">
+                      <span
+                        aria-hidden
+                        className="mt-1 text-signal transition-transform group-open:rotate-45"
+                      >
                         +
                       </span>
                     </span>
@@ -47,6 +51,9 @@ export default function FaqPage() {
               Share property size, dates, and access notes. We will come back with a clear,
               no-obligation quote.
             </p>
+            <Link href="/contact" className="btn-solid btn-signal mt-6">
+              Request a quote
+            </Link>
           </Reveal>
         </div>
       </section>

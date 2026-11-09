@@ -33,7 +33,7 @@ export default function AreasPage() {
               <Reveal
                 key={place}
                 as="li"
-                className="border-b border-ink/15 px-0 py-7 sm:border-r sm:px-6 sm:odd:pl-0 lg:[&:nth-child(3n)]:border-r-0 lg:[&:nth-child(3n+1)]:pl-0"
+                className="border-b border-ink/15 px-0 py-7 transition-colors hover:bg-field/70 sm:border-r sm:px-6 sm:odd:pl-0 lg:[&:nth-child(3n)]:border-r-0 lg:[&:nth-child(3n+1)]:pl-0"
               >
                 <p className="font-display text-2xl tracking-[-0.02em] text-ink">{place}</p>
                 <p className="mt-2 text-sm leading-relaxed text-mute">
