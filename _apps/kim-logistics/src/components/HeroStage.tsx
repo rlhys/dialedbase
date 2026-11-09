@@ -76,8 +76,8 @@ export function HeroStage() {
           className="object-cover object-[center_38%]"
           sizes="100vw"
         />
-        <div className="absolute inset-0 bg-[linear-gradient(105deg,rgba(9,9,9,0.78)_0%,rgba(9,9,9,0.52)_48%,rgba(9,9,9,0.18)_100%)]" />
-        <div className="absolute inset-0 bg-[linear-gradient(to_top,rgba(9,9,9,0.72)_0%,transparent_48%)]" />
+        <div className="absolute inset-0 bg-[linear-gradient(105deg,rgba(9,9,9,0.9)_0%,rgba(9,9,9,0.68)_44%,rgba(9,9,9,0.22)_100%)]" />
+        <div className="absolute inset-0 bg-[linear-gradient(to_top,rgba(9,9,9,0.9)_0%,transparent_44%)]" />
         {/* Geometric industrial frame — not blue cinematic mist */}
         <div
           aria-hidden
@@ -111,12 +111,12 @@ export function HeroStage() {
           {homeCopy.heroSupport}
         </p>
 
-        {/* CTAs outside GSAP opacity lines — prevents black blank buttons after HMR */}
+        {/* CTAs outside GSAP opacity lines — avoids stuck blank buttons after HMR/remount */}
         <div className="mt-9 flex flex-col gap-3 sm:flex-row sm:items-center">
           <Magnetic>
             <Link
               href="/contact"
-              className="btn-sheen inline-flex items-center justify-center rounded-md bg-[#ff5c1a] px-6 py-3.5 text-base font-semibold tracking-tight text-black transition hover:bg-[#d9480f] hover:text-white"
+              className="btn-sheen inline-flex items-center justify-center bg-signal px-6 py-3.5 text-base font-semibold tracking-tight text-ink transition hover:bg-signal-deep hover:text-paper"
             >
               Get a free quote
             </Link>
@@ -124,7 +124,7 @@ export function HeroStage() {
           <Magnetic strength={0.18}>
             <a
               href={contact.phoneHref}
-              className="glass-lite inline-flex items-center justify-center rounded-md border border-white/35 px-6 py-3.5 text-base font-semibold tracking-tight text-white transition hover:border-white"
+              className="glass-lite inline-flex items-center justify-center px-6 py-3.5 text-base font-semibold tracking-tight text-paper transition hover:border-paper/55"
             >
               Call {contact.phoneDisplay}
             </a>

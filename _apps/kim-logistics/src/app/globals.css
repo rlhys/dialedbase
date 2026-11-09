@@ -8,8 +8,8 @@
   --field-deep: #e6e6e6;
   --chalk: #f7f7f7;
   --mute: #6b6b6b;
-  --signal: #ff5c1a;
-  --signal-deep: #d9480f;
+  --signal: #ff6b1a;
+  --signal-deep: #e0550f;
   --line: rgba(9, 9, 9, 0.14);
   --line-chalk: rgba(255, 255, 255, 0.16);
   --background: var(--paper);
@@ -40,6 +40,11 @@ html {
   scroll-behavior: smooth;
 }
 
+html.lenis,
+html.lenis body {
+  height: auto;
+}
+
 body {
   margin: 0;
   min-height: 100%;
@@ -50,7 +55,7 @@ body {
 }
 
 ::selection {
-  background: rgba(255, 92, 26, 0.28);
+  background: rgba(255, 107, 26, 0.28);
   color: var(--ink);
 }
 
@@ -101,6 +106,37 @@ img {
   height: 1px;
   background: currentColor;
   opacity: 0.35;
+}
+
+/* Glass-lite for dark bands / secondary CTAs — geometric, not frosted marketing fluff */
+.glass-lite {
+  background: color-mix(in srgb, white 6%, transparent);
+  border: 1px solid color-mix(in srgb, white 18%, transparent);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+}
+
+.btn-sheen {
+  position: relative;
+  overflow: hidden;
+}
+
+.btn-sheen::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    105deg,
+    transparent 30%,
+    rgba(255, 255, 255, 0.28) 50%,
+    transparent 70%
+  );
+  transform: translateX(-100%);
+  transition: transform 0.55s ease;
+}
+
+.btn-sheen:hover::after {
+  transform: translateX(100%);
 }
 
 @keyframes rise-in {
@@ -157,5 +193,14 @@ img {
   .animate-rise-delay-3,
   .hash-pulse {
     animation: none !important;
+  }
+
+  .btn-sheen::after {
+    display: none;
+  }
+
+  .glass-lite {
+    backdrop-filter: none;
+    -webkit-backdrop-filter: none;
   }
 }

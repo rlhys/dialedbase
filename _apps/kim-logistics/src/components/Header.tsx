@@ -4,6 +4,7 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useEffect, useState } from "react";
 import { BrandLogo } from "@/components/BrandLogo";
+import { Magnetic } from "@/components/Motion";
 import { brand, contact, nav } from "@/content/site";
 import { cx } from "@/lib/utils";
 
@@ -26,7 +27,6 @@ export function Header() {
         return;
       }
 
-      // Interior pages without brand-hero fall back to ink once past the page hero band
       setOverDark(y < 220);
     };
 
@@ -95,23 +95,27 @@ export function Header() {
         </nav>
 
         <div className="flex items-center gap-2">
-          <a
-            href={contact.phoneHref}
-            className={cx(
-              "hidden px-3 py-2 text-sm font-semibold tracking-tight transition md:inline-flex",
-              dark
-                ? "border border-paper/25 text-paper hover:border-paper/60"
-                : "border border-ink/15 text-ink hover:border-ink/40",
-            )}
-          >
-            {contact.phoneDisplay}
-          </a>
-          <Link
-            href="/contact"
-            className="inline-flex bg-signal px-3.5 py-2 text-sm font-semibold tracking-tight text-ink transition hover:bg-signal-deep hover:text-paper"
-          >
-            Free quote
-          </Link>
+          <Magnetic strength={0.16} className="hidden md:inline-flex">
+            <a
+              href={contact.phoneHref}
+              className={cx(
+                "inline-flex px-3 py-2 text-sm font-semibold tracking-tight transition",
+                dark
+                  ? "border border-paper/25 text-paper hover:border-paper/60"
+                  : "border border-ink/15 text-ink hover:border-ink/40",
+              )}
+            >
+              {contact.phoneDisplay}
+            </a>
+          </Magnetic>
+          <Magnetic strength={0.22}>
+            <Link
+              href="/contact"
+              className="inline-flex bg-signal px-3.5 py-2 text-sm font-semibold tracking-tight text-ink transition hover:bg-signal-deep hover:text-paper"
+            >
+              Free quote
+            </Link>
+          </Magnetic>
           <button
             type="button"
             className={cx(

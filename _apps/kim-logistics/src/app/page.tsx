@@ -2,6 +2,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { CtaBand } from "@/components/CtaBand";
 import { HeroStage } from "@/components/HeroStage";
+import { FadeIn, Magnetic, Stagger, StaggerItem } from "@/components/Motion";
 import { Reveal } from "@/components/Reveal";
 import { SectionHeading } from "@/components/SectionHeading";
 import {
@@ -28,12 +29,14 @@ export default function HomePage() {
               support="Friendly crews, clear communication, and careful handling from quote to unload."
             />
           </Reveal>
-          <div className="mt-14 grid gap-0 border-t border-ink/15 md:grid-cols-2 xl:grid-cols-4">
+          <Stagger
+            gap={0.08}
+            className="mt-14 grid gap-0 border-t border-ink/15 md:grid-cols-2 xl:grid-cols-4"
+          >
             {whyUs.map((item, index) => (
-              <Reveal
+              <StaggerItem
                 key={item.title}
                 className="border-b border-ink/15 px-0 py-8 md:border-b-0 md:border-r md:px-6 md:py-10 md:first:pl-0 md:last:border-r-0 md:last:pr-0"
-                as="article"
               >
                 <p className="font-display text-sm font-semibold tracking-[0.18em] text-signal">
                   0{index + 1}
@@ -42,14 +45,18 @@ export default function HomePage() {
                   {item.title}
                 </h3>
                 <p className="mt-3 text-base leading-relaxed text-mute">{item.body}</p>
-              </Reveal>
+              </StaggerItem>
             ))}
-          </div>
+          </Stagger>
         </div>
       </section>
 
-      <section className="bg-ink text-paper">
-        <div className="site-shell py-20 md:py-28">
+      <section className="relative overflow-hidden bg-ink text-paper">
+        <div
+          aria-hidden
+          className="pointer-events-none absolute inset-0 bg-[linear-gradient(160deg,rgba(255,107,26,0.08)_0%,transparent_38%)]"
+        />
+        <div className="site-shell relative py-20 md:py-28">
           <div className="flex flex-col gap-8 md:flex-row md:items-end md:justify-between">
             <Reveal>
               <SectionHeading
@@ -60,28 +67,32 @@ export default function HomePage() {
               />
             </Reveal>
             <Reveal>
-              <Link
-                href="/services"
-                className="inline-flex font-semibold text-paper underline decoration-signal decoration-2 underline-offset-4 transition hover:text-signal"
-              >
-                View all services
-              </Link>
+              <Magnetic strength={0.14}>
+                <Link
+                  href="/services"
+                  className="inline-flex font-semibold text-paper underline decoration-signal decoration-2 underline-offset-4 transition hover:text-signal"
+                >
+                  View all services
+                </Link>
+              </Magnetic>
             </Reveal>
           </div>
-          <div className="mt-12 grid gap-0 border-t border-paper/15 sm:grid-cols-2 lg:grid-cols-3">
+          <Stagger
+            gap={0.07}
+            className="mt-12 grid gap-0 border-t border-paper/15 sm:grid-cols-2 lg:grid-cols-3"
+          >
             {services.map((service) => (
-              <Reveal
+              <StaggerItem
                 key={service.id}
-                as="article"
-                className="border-b border-paper/15 p-6 transition hover:bg-paper/[0.03] sm:odd:border-r lg:[&:nth-child(3n)]:border-r-0 lg:border-r"
+                className="border-b border-paper/15 p-6 transition hover:bg-paper/[0.04] sm:odd:border-r lg:border-r lg:[&:nth-child(3n)]:border-r-0"
               >
                 <h3 className="font-display text-2xl tracking-[-0.02em] text-paper">
                   {service.title}
                 </h3>
                 <p className="mt-3 text-base leading-relaxed text-paper/65">{service.summary}</p>
-              </Reveal>
+              </StaggerItem>
             ))}
-          </div>
+          </Stagger>
         </div>
       </section>
 
@@ -96,18 +107,23 @@ export default function HomePage() {
               />
               <ul className="mt-10 grid gap-x-8 gap-y-4 sm:grid-cols-2">
                 {areas.places.map((place) => (
-                  <li key={place} className="flex items-center gap-3 border-b border-ink/10 pb-3 text-lg font-medium text-ink">
+                  <li
+                    key={place}
+                    className="flex items-center gap-3 border-b border-ink/10 pb-3 text-lg font-medium text-ink"
+                  >
                     <span className="h-1.5 w-1.5 shrink-0 bg-signal" />
                     {place}
                   </li>
                 ))}
               </ul>
-              <Link
-                href="/areas"
-                className="mt-10 inline-flex font-semibold text-ink underline decoration-signal decoration-2 underline-offset-4"
-              >
-                See coverage details
-              </Link>
+              <Magnetic strength={0.14} className="mt-10 inline-flex">
+                <Link
+                  href="/areas"
+                  className="inline-flex font-semibold text-ink underline decoration-signal decoration-2 underline-offset-4"
+                >
+                  See coverage details
+                </Link>
+              </Magnetic>
             </Reveal>
             <Reveal className="relative aspect-[4/3] overflow-hidden bg-ink">
               <Image
@@ -118,6 +134,10 @@ export default function HomePage() {
                 sizes="(max-width: 1024px) 100vw, 40vw"
               />
               <div className="absolute inset-0 bg-gradient-to-t from-ink/50 to-transparent" />
+              <div
+                aria-hidden
+                className="pointer-events-none absolute inset-x-0 top-0 h-px bg-signal/70"
+              />
             </Reveal>
           </div>
         </div>
@@ -138,14 +158,16 @@ export default function HomePage() {
               {review.place}
             </footer>
           </Reveal>
-          <Reveal className="mt-8">
-            <Link
-              href="/reviews"
-              className="inline-flex font-semibold text-signal underline decoration-signal/40 underline-offset-4"
-            >
-              Read the review
-            </Link>
-          </Reveal>
+          <FadeIn delay={0.1} className="mt-8">
+            <Magnetic strength={0.14}>
+              <Link
+                href="/reviews"
+                className="inline-flex font-semibold text-signal underline decoration-signal/40 underline-offset-4"
+              >
+                Read the review
+              </Link>
+            </Magnetic>
+          </FadeIn>
         </div>
       </section>
 

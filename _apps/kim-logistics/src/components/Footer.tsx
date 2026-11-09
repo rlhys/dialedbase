@@ -1,6 +1,6 @@
-import { DialedbaseCredit } from "@/components/DialedbaseCredit";
 import Link from "next/link";
 import { BrandLogo } from "@/components/BrandLogo";
+import { DialedbaseCredit } from "@/components/DialedbaseCredit";
 import { MotionHashes } from "@/components/MotionHashes";
 import { brand, contact, nav, areas } from "@/content/site";
 
@@ -24,7 +24,7 @@ export function Footer() {
             </a>
             <a
               href={contact.emailHref}
-              className="border border-paper/25 px-4 py-2.5 text-sm font-semibold tracking-tight text-paper transition hover:border-paper/60"
+              className="border border-white/30 px-4 py-2.5 text-sm font-semibold tracking-tight text-paper transition hover:border-paper/50"
             >
               Email us
             </a>
@@ -69,9 +69,9 @@ export function Footer() {
         </div>
       </div>
       <div className="border-t border-paper/10">
-        <div className="site-shell flex flex-col gap-2 py-5 text-sm text-paper/45 sm:flex-row sm:items-center sm:justify-between">
+        <div className="site-shell flex flex-col gap-3 py-5 text-sm text-paper/45 sm:flex-row sm:items-center sm:justify-between">
           <p>© 2026 {brand.name}. All rights reserved.</p>
-          <p>Built by Dialedbase.</p>
+          <DialedbaseCredit />
         </div>
       </div>
     </footer>
