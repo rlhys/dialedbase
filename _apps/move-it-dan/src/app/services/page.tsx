@@ -65,8 +65,8 @@ export default function ServicesPage() {
                     </div>
                   ) : null}
                   <div>
-                    <p className="eyebrow text-[0.7rem] text-signal">
-{String(index + 1).padStart(2, "0")}
+                    <p className="eyebrow">
+                      {String(index + 1).padStart(2, "0")}
                     </p>
                     <h2 className="display mt-3 text-3xl sm:text-4xl">
                       {service.title}

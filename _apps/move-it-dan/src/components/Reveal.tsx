@@ -11,12 +11,16 @@ type RevealProps = {
   y?: number;
 };
 
+/**
+ * GSAP ScrollTrigger reveal. Uses autoAlpha + clearProps so opacity
+ * never sticks at 0 after HMR / remount / once-triggered kills.
+ */
 export function Reveal({
   children,
   className = "",
   as: Tag = "div",
   delay = 0,
-  y = 42,
+  y = 36,
 }: RevealProps) {
   const ref = useRef<HTMLElement | null>(null);
 
@@ -27,24 +31,31 @@ export function Reveal({
       if (!node) return;
 
       if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
-        gsap.set(node, { clearProps: "all", opacity: 1, y: 0 });
+        gsap.set(node, { clearProps: "all", autoAlpha: 1, y: 0, filter: "none" });
         return;
       }
 
+      gsap.set(node, { clearProps: "opacity,visibility,transform,filter" });
+
       gsap.fromTo(
         node,
-        { opacity: 0, y, filter: "blur(6px)" },
+        { autoAlpha: 0, y, filter: "blur(6px)" },
         {
-          opacity: 1,
+          autoAlpha: 1,
           y: 0,
           filter: "blur(0px)",
           duration: 1.05,
           delay,
           ease: "power3.out",
+          clearProps: "filter,transform",
           scrollTrigger: {
             trigger: node,
             start: "top 88%",
             once: true,
+            toggleActions: "play none none none",
+          },
+          onComplete: () => {
+            gsap.set(node, { clearProps: "opacity,visibility", autoAlpha: 1 });
           },
         },
       );

@@ -24,7 +24,7 @@ export default function FaqPage() {
           <div className="divide-y divide-line border-y border-line">
             {faqs.map((faq, index) => (
               <Reveal key={faq.question} className="py-8">
-                <p className="condensed mb-3 flex items-center gap-2 text-[0.65rem] text-signal">
+                <p className="eyebrow mb-3">
 {String(index + 1).padStart(2, "0")}
                 </p>
                 <h2 className="display text-xl sm:text-2xl">{faq.question}</h2>

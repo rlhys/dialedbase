@@ -40,7 +40,7 @@ export function PlaceholderMedia({
         aria-hidden
       />
       <div className="relative z-10 flex h-full min-h-[16rem] flex-col justify-end gap-2 p-5 text-left sm:p-7">
-        <p className="condensed text-[0.68rem] text-signal">Placeholder</p>
+        <p className="eyebrow text-signal">Placeholder</p>
         <p className="display max-w-md text-xl leading-tight text-chalk sm:text-2xl">
           {label}
         </p>

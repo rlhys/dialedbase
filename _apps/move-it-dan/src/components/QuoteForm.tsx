@@ -133,7 +133,7 @@ export function QuoteForm() {
       <div className="flex flex-col gap-3 sm:flex-row sm:items-center">
         <button
           type="submit"
-          className="cta-pulse rounded-md bg-signal px-5 py-3 text-sm font-semibold text-chalk transition hover:bg-signal-deep"
+          className="btn-sheen rounded-full bg-signal px-5 py-3 text-sm font-semibold text-chalk transition hover:bg-signal-deep"
         >
           Send quote request
         </button>

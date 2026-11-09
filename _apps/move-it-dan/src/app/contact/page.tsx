@@ -22,9 +22,7 @@ export default function ContactPage() {
       <section className="bg-paper">
         <div className="mx-auto grid max-w-6xl gap-12 px-5 py-16 sm:px-8 sm:py-20 lg:grid-cols-[0.85fr_1.15fr]">
           <Reveal>
-            <p className="eyebrow text-[0.7rem] text-signal">
-Call
-            </p>
+            <p className="eyebrow">Call</p>
             <a
               href={`tel:${site.phoneTel}`}
               className="display mt-4 block text-4xl tracking-tight text-ink no-underline sm:text-5xl"
@@ -56,7 +54,7 @@ Call
             </div>
           </Reveal>
 
-          <Reveal className="border border-line bg-white p-6 sm:p-8">
+          <Reveal className="glass-ink rounded-2xl p-6 sm:p-8">
             <h2 className="display text-2xl sm:text-3xl">Quote form</h2>
             <div className="mt-6">
               <QuoteForm />

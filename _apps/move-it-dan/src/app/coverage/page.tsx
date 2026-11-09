@@ -23,9 +23,7 @@ export default function CoveragePage() {
         <div className="mx-auto max-w-6xl px-5 py-16 sm:px-8 sm:py-20">
           <div className="grid gap-12 lg:grid-cols-2 lg:gap-16">
             <Reveal as="article" className="border-t border-line pt-8">
-              <p className="eyebrow text-[0.7rem] text-signal">
-United Kingdom
-              </p>
+              <p className="eyebrow">United Kingdom</p>
               <h2 className="display mt-3 text-3xl">{coverage.uk.title}</h2>
               <p className="mt-4 text-steel leading-relaxed">
                 {coverage.uk.body}
@@ -46,9 +44,7 @@ United Kingdom
               </ul>
             </Reveal>
             <Reveal as="article" className="border-t border-line pt-8">
-              <p className="eyebrow text-[0.7rem] text-signal">
-International
-              </p>
+              <p className="eyebrow">International</p>
               <h2 className="display mt-3 text-3xl">
                 {coverage.overseas.title}
               </h2>

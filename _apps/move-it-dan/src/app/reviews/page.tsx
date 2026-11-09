@@ -21,9 +21,7 @@ export default function ReviewsPage() {
       <section className="bg-paper">
         <div className="mx-auto max-w-3xl px-5 py-16 sm:px-8 sm:py-20">
           <Reveal>
-            <p className="eyebrow text-[0.7rem] text-signal">
-Holding space
-            </p>
+            <p className="eyebrow">Holding space</p>
             <p className="mt-5 text-lg leading-relaxed text-steel sm:text-xl">
               The previous site mentioned strong reviews. Until we have
               permission to publish specific customer words, this page stays
