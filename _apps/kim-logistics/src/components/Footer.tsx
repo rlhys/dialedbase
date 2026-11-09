@@ -1,7 +1,6 @@
 import Link from "next/link";
 import { BrandLogo } from "@/components/BrandLogo";
 import { DialedbaseCredit } from "@/components/DialedbaseCredit";
-import { MotionHashes } from "@/components/MotionHashes";
 import { areas, brand, contact, nav } from "@/content/site";
 
 export function Footer() {
@@ -10,11 +9,15 @@ export function Footer() {
       <div className="site-shell grid gap-12 py-16 md:grid-cols-[1.4fr_1fr_1fr]">
         <div>
           <BrandLogo variant="chalk" className="h-12 w-60" sizes="240px" />
-          <div className="mt-6 flex items-center gap-3">
-            <span className="h-px w-10 bg-signal" />
-            <MotionHashes tone="signal" />
-          </div>
           <p className="mt-5 max-w-sm text-base leading-relaxed text-paper/72">{brand.tagline}</p>
+          <a
+            href={contact.facebook}
+            className="mt-4 inline-flex text-sm font-semibold text-signal"
+            target="_blank"
+            rel="noreferrer"
+          >
+            Facebook
+          </a>
           <div className="mt-7 flex flex-wrap gap-3">
             <a href={contact.phoneHref} className="btn-solid btn-signal px-4 py-2.5 text-sm">
               Call {contact.phoneDisplay}
@@ -56,6 +59,14 @@ export function Footer() {
                 {contact.email}
               </a>
             </li>
+          </ul>
+          <p className="mt-6 text-sm font-semibold uppercase tracking-[0.14em] text-paper/45">Hours</p>
+          <ul className="mt-3 space-y-1 text-sm text-paper/80">
+            {contact.hours.map((row) => (
+              <li key={row.label}>
+                {row.label}: {row.value}
+              </li>
+            ))}
           </ul>
           <p className="mt-6 text-sm leading-relaxed text-paper/50">
             Serving {areas.hub} and nearby towns including {areas.places.slice(1, 4).join(", ")}.

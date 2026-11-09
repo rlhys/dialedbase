@@ -1,6 +1,5 @@
 import type { Metadata } from "next";
 import { CtaBand } from "@/components/CtaBand";
-import { MotionHashes } from "@/components/MotionHashes";
 import { PageHero } from "@/components/PageHero";
 import { Reveal } from "@/components/Reveal";
 import { reviews } from "@/content/site";
@@ -25,12 +24,9 @@ export default function ReviewsPage() {
       <section className="bg-paper">
         <div className="site-shell py-16 md:py-24">
           <Reveal as="article" className="mx-auto max-w-3xl border-t border-ink/15 pt-10">
-            <div className="flex items-center gap-3">
-              <p className="text-[0.7rem] font-semibold uppercase tracking-[0.28em] text-mute">
-                Existing testimonial
-              </p>
-              <MotionHashes tone="ink" />
-            </div>
+            <p className="text-sm font-semibold uppercase tracking-[0.18em] text-signal">
+              Existing testimonial
+            </p>
             <blockquote className="mt-8">
               <p className="font-display text-2xl leading-snug tracking-[-0.02em] text-ink sm:text-3xl md:text-4xl">
                 “{review.quote}”

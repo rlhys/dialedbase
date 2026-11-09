@@ -1,4 +1,3 @@
-import { MotionHashes } from "@/components/MotionHashes";
 import { cx } from "@/lib/utils";
 
 type SectionHeadingProps = {
@@ -20,21 +19,18 @@ export function SectionHeading({
   return (
     <div className={cx("max-w-2xl", className)}>
       {eyebrow ? (
-        <div className="flex items-center gap-3">
-          <p
-            className={cx(
-              "text-[0.7rem] font-semibold uppercase tracking-[0.28em]",
-              dark ? "text-signal" : "text-mute",
-            )}
-          >
-            {eyebrow}
-          </p>
-          <MotionHashes tone={dark ? "signal" : "ink"} />
-        </div>
+        <p
+          className={cx(
+            "text-sm font-semibold uppercase tracking-[0.18em]",
+            dark ? "text-signal" : "text-signal",
+          )}
+        >
+          {eyebrow}
+        </p>
       ) : null}
       <h2
         className={cx(
-          "font-display mt-4 text-balance text-3xl leading-[1.05] tracking-[-0.03em] sm:text-4xl md:text-[2.75rem]",
+          "font-display mt-3 text-balance text-3xl leading-[1.05] tracking-[-0.03em] sm:text-4xl",
           dark ? "text-paper" : "text-ink",
         )}
       >

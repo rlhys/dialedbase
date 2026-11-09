@@ -11,6 +11,6 @@ Sacred logo: `public/logo.png` (ink) and `public/logo-on-dark.png` (chalk).
 - Logo placement: header + footer only. Never in the hero.
 - Type: Barlow Condensed (display) + Source Sans 3 (body). Not Inter/Roboto/Arial.
 - Materials: solid ink / paper / brand blue. No glass, frosted blur, shine text, btn-sheen, or magnetic cursor chase.
-- Hero: full-bleed scraped photo (`/images/hero.jpeg`). Brand-first first viewport: tagline, one support line, CTA group. No logo spam, no cards, no floating badges.
+- Hero: split layout. Tagline on paper, scraped job photo (`/images/hero.jpeg`) in a hard frame with a blue left edge. No full-bleed overlay, no logo in the hero.
 - Motion: Lenis + restrained FadeIn / stagger. Calm hover only (color, underline, scale 1.02).
 - Forbidden: purple gradients, cream/terracotta AI look, newspaper columns, dark-mode-by-default pages, invented reviews or prices.

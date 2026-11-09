@@ -1,4 +1,3 @@
-import { MotionHashes } from "@/components/MotionHashes";
 import { cx } from "@/lib/utils";
 
 type PageHeroProps = {
@@ -10,32 +9,15 @@ type PageHeroProps = {
 
 export function PageHero({ eyebrow, title, support, className }: PageHeroProps) {
   return (
-    <section id="brand-hero" className={cx("relative overflow-hidden bg-ink text-paper", className)}>
-      {/* Sharp geometric accents — not soft glow glass */}
-      <div
-        aria-hidden
-        className="pointer-events-none absolute inset-y-0 right-0 w-1/3 opacity-[0.07]"
-        style={{
-          backgroundImage:
-            "repeating-linear-gradient(-28deg, transparent, transparent 18px, #ff5c1a 18px, #ff5c1a 20px)",
-        }}
-      />
-      <div className="site-shell relative pb-16 pt-32 md:pb-24 md:pt-36">
+    <section className={cx("border-b border-[var(--line)] bg-field", className)}>
+      <div className="site-shell pb-12 pt-28 md:pb-16 md:pt-32">
         {eyebrow ? (
-          <div className="animate-rise flex items-center gap-3">
-            <p className="text-[0.7rem] font-semibold uppercase tracking-[0.28em] text-signal">
-              {eyebrow}
-            </p>
-            <MotionHashes tone="signal" />
-          </div>
+          <p className="text-sm font-semibold uppercase tracking-[0.18em] text-signal">{eyebrow}</p>
         ) : null}
-        <h1 className="font-display animate-rise-delay-1 mt-5 max-w-4xl text-balance text-4xl leading-[1.02] tracking-[-0.03em] sm:text-5xl md:text-6xl">
+        <h1 className="font-display mt-3 max-w-3xl text-4xl font-bold leading-[1.02] tracking-[-0.03em] text-ink sm:text-5xl">
           {title}
         </h1>
-        <p className="animate-rise-delay-2 mt-5 max-w-2xl text-lg leading-relaxed text-paper/72 md:text-xl">
-          {support}
-        </p>
-        <div className="animate-rise-delay-3 mt-8 h-px w-24 bg-signal" />
+        <p className="mt-4 max-w-2xl text-lg leading-relaxed text-mute">{support}</p>
       </div>
     </section>
   );

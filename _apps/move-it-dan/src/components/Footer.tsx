@@ -36,6 +36,17 @@ export function Footer() {
           >
             {site.phoneDisplay}
           </a>
+          <div className="mt-6 flex flex-wrap gap-4 text-sm font-semibold">
+            <a href={site.whatsapp} className="text-white no-underline hover:text-signal">
+              WhatsApp
+            </a>
+            <a href={site.facebook} className="text-white no-underline hover:text-signal" target="_blank" rel="noreferrer">
+              Facebook
+            </a>
+            <a href={site.instagram} className="text-white no-underline hover:text-signal" target="_blank" rel="noreferrer">
+              Instagram
+            </a>
+          </div>
           <Link href="/contact" className="btn btn-signal mt-6">
             Request a quote
           </Link>

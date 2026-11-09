@@ -3,11 +3,26 @@ export const site = {
   tagline: "Moving made easy",
   phoneDisplay: "07502 346549",
   phoneTel: "+447502346549",
+  whatsapp: "https://wa.me/447502346549",
+  facebook: "https://www.facebook.com/moveitdan",
+  instagram: "https://www.instagram.com/move.it.dan/?hl=en",
   email: "", // add when client confirms
   domain: "moveitdan.co.uk",
   summary:
     "Fully insured house and commercial moves across the UK and overseas, with careful packing and clear communication from quote to unload.",
 } as const;
+
+/** Blocks taken from the live moveitdan.co.uk homepage. */
+export const pillars = [
+  {
+    title: "Reliable and experienced",
+    body: "We have built a great reputation, resulting in only 5 star reviews.",
+  },
+  {
+    title: "Moving with care",
+    body: "We treat your goods as if they were our own. We know how much your home means to you, so we use the best protection for your furniture and fragiles.",
+  },
+] as const;
 
 export const nav = [
   { href: "/", label: "Home" },
@@ -37,8 +52,8 @@ export const services = [
       "Furniture dismantle and reassemble when needed",
       "Stair, carpet, and floor protection",
     ],
-    image: "/images/crew.jpeg",
-    alt: "Move It Dan crew carrying boxes on a domestic move",
+    image: "/images/hero.jpeg",
+    alt: "Two movers carrying boxes through a house",
   },
   {
     slug: "commercial",
@@ -50,8 +65,8 @@ export const services = [
       "Clear labelling and load order",
       "Flexible start windows where possible",
     ],
-    image: "/images/van.jpeg",
-    alt: "Move It Dan van ready for a commercial or large domestic job",
+    image: "/images/care.jpeg",
+    alt: "Two Move It Dan vans parked outside a house",
   },
   {
     slug: "packing",
@@ -63,8 +78,8 @@ export const services = [
       "Wardrobe boxes so clothes stay on hangers",
       "Bubble wrap and specialised covers for fragiles",
     ],
-    image: "/images/care.jpeg",
-    alt: "Furniture wrapped in quilted protective covers",
+    image: "/images/unload.jpeg",
+    alt: "Sofas protected with blue quilted covers",
   },
   {
     slug: "overseas",
@@ -76,8 +91,8 @@ export const services = [
       "Clear updates while goods are in transit",
       "Quote scoped to your destinations and volume",
     ],
-    image: "/images/unload.jpeg",
-    alt: "Careful unload at the destination",
+    image: "/images/van.jpeg",
+    alt: "Move It Dan crew and vans outside a UK home",
   },
 ] as const;
 
@@ -139,26 +154,26 @@ export const reviewPlaceholders = [
   },
 ] as const;
 
-/** Scraped job photos from moveitdan.co.uk. */
+/** Scraped job photos from moveitdan.co.uk. Alts match what is actually in each frame. */
 export const photos = {
   hero: {
     src: "/images/hero.jpeg",
-    alt: "Move It Dan crew loading a removal van",
+    alt: "Two movers carrying boxes through a house, with more boxes stacked by the stairs",
   },
   care: {
     src: "/images/care.jpeg",
-    alt: "Furniture protection and packing materials on a move",
+    alt: "Two Move It Dan vans parked on a driveway outside a house",
   },
   crew: {
     src: "/images/crew.jpeg",
-    alt: "Move It Dan crew carrying boxes",
+    alt: "Move It Dan luton parked outside a brick house",
   },
   unload: {
     src: "/images/unload.jpeg",
-    alt: "Unload at the new home",
+    alt: "Sofas and chairs protected with blue quilted covers in a living room",
   },
   van: {
     src: "/images/van.jpeg",
-    alt: "Move It Dan van outside a UK home",
+    alt: "Move It Dan crew standing with two branded vans outside a home",
   },
 } as const;
