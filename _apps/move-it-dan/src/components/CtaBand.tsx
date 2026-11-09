@@ -1,40 +1,34 @@
 import Link from "next/link";
-import { Magnetic } from "@/components/Motion";
 import { site } from "@/content/site";
 
-export function CtaBand() {
+type CtaBandProps = {
+  title?: string;
+  body?: string;
+};
+
+export function CtaBand({
+  title = "Ready when you are",
+  body = "Call for a straight answer, or send a quote with your from and to details.",
+}: CtaBandProps) {
   return (
-    <section className="relative overflow-hidden bg-ink text-white">
-      <div className="signal-glow pointer-events-none absolute inset-0 opacity-50" />
-      <div className="relative mx-auto flex max-w-6xl flex-col items-start justify-between gap-8 px-5 py-16 sm:px-8 md:flex-row md:items-center md:py-20">
-        <div className="max-w-xl">
-          <h2 className="display text-3xl sm:text-5xl">
-            <span className="shine-text">Ready when you are</span>
-          </h2>
-          <p className="mt-4 text-white/65">
-            Call for a straight answer, or send a quote with your from/to details.
-          </p>
-        </div>
-        <div className="flex flex-col gap-3 sm:flex-row">
-          <Magnetic>
-            <a
-              href={`tel:${site.phoneTel}`}
-              className="btn-sheen inline-flex items-center gap-2 rounded-full bg-white py-1.5 pl-5 pr-1.5 text-sm font-semibold text-ink no-underline"
-            >
+    <section className="bg-field">
+      <div className="site-shell py-16 md:py-20">
+        <div className="flex flex-col items-start justify-between gap-8 bg-ink px-6 py-12 text-white sm:px-10 md:flex-row md:items-center md:px-14 md:py-16">
+          <div className="max-w-xl">
+            <p className="eyebrow text-signal">Next step</p>
+            <h2 className="display mt-3 text-3xl sm:text-4xl md:text-5xl">{title}</h2>
+            <p className="mt-4 text-base leading-relaxed text-white/65 sm:text-lg">
+              {body}
+            </p>
+          </div>
+          <div className="flex w-full flex-col gap-3 sm:w-auto sm:flex-row">
+            <a href={`tel:${site.phoneTel}`} className="btn bg-white text-ink hover:bg-chalk">
               Call {site.phoneDisplay}
-              <span className="grid h-8 w-8 place-items-center rounded-full bg-signal text-white">
-                →
-              </span>
             </a>
-          </Magnetic>
-          <Magnetic strength={0.16}>
-            <Link
-              href="/contact"
-              className="glass inline-flex items-center justify-center rounded-full px-5 py-3 text-sm font-semibold text-white no-underline hover:bg-white/10"
-            >
+            <Link href="/contact" className="btn btn-ghost">
               Get a quote
             </Link>
-          </Magnetic>
+          </div>
         </div>
       </div>
     </section>

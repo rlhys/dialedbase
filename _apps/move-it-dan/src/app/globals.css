@@ -1,12 +1,12 @@
 @import "tailwindcss";
 
 :root {
-  --ink: #101820;
-  --ink-soft: #243040;
-  --steel: #5a6b7b;
-  --mist: #e8eef4;
-  --paper: #f6f8fb;
-  --chalk: #ffffff;
+  --ink: #0c1520;
+  --ink-soft: #1c2a3a;
+  --steel: #5a6b7c;
+  --field: #eef3f8;
+  --paper: #ffffff;
+  --chalk: #f7fafc;
   --signal: #0073c5;
   --signal-deep: #005fa3;
   --line: color-mix(in srgb, var(--ink) 12%, transparent);
@@ -20,7 +20,7 @@
   --color-ink: var(--ink);
   --color-ink-soft: var(--ink-soft);
   --color-steel: var(--steel);
-  --color-mist: var(--mist);
+  --color-field: var(--field);
   --color-paper: var(--paper);
   --color-chalk: var(--chalk);
   --color-signal: var(--signal);
@@ -48,7 +48,7 @@ body {
 }
 
 ::selection {
-  background: color-mix(in srgb, var(--signal) 35%, white);
+  background: color-mix(in srgb, var(--signal) 32%, white);
   color: var(--ink);
 }
 
@@ -58,29 +58,41 @@ a {
   text-underline-offset: 0.18em;
 }
 
+img {
+  max-width: 100%;
+  height: auto;
+}
+
 .display {
-  font-family: var(--font-mid-display), Outfit, sans-serif;
-  letter-spacing: -0.035em;
+  font-family: var(--font-mid-display), "Barlow Condensed", sans-serif;
+  letter-spacing: -0.01em;
   font-weight: 700;
+  text-transform: none;
 }
 
 .eyebrow {
-  font-family: var(--font-mid-display), Outfit, sans-serif;
-  font-size: 0.72rem;
+  font-family: var(--font-mid-display), "Barlow Condensed", sans-serif;
+  font-size: 0.78rem;
   font-weight: 600;
-  letter-spacing: 0.16em;
+  letter-spacing: 0.18em;
   text-transform: uppercase;
-  color: var(--signal-deep);
+  color: var(--signal);
+}
+
+.site-shell {
+  width: min(1120px, calc(100% - 2.5rem));
+  margin-inline: auto;
 }
 
 .field {
   width: 100%;
-  border-radius: 0.5rem;
+  border-radius: 0.25rem;
   border: 1px solid color-mix(in srgb, var(--ink) 14%, transparent);
-  background: var(--chalk);
+  background: var(--paper);
   padding: 0.8rem 0.9rem;
   color: var(--ink);
   font: inherit;
+  transition: border-color 0.2s ease;
 }
 
 .field:focus-visible {
@@ -88,144 +100,81 @@ a {
   outline-offset: 2px;
 }
 
-/* Dialedbase-grade glass — blue luminance, never purple */
-.glass {
-  background:
-    linear-gradient(180deg, rgba(255, 255, 255, 0.1), rgba(255, 255, 255, 0.03)),
-    radial-gradient(
-      120% 80% at 50% 0%,
-      color-mix(in srgb, var(--signal) 18%, transparent),
-      transparent 60%
-    );
-  border: 1px solid rgba(255, 255, 255, 0.14);
-  backdrop-filter: blur(28px) saturate(1.35);
-  -webkit-backdrop-filter: blur(28px) saturate(1.35);
-  box-shadow:
-    0 1px 0 rgba(255, 255, 255, 0.08) inset,
-    0 24px 60px -28px rgba(0, 0, 0, 0.45);
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  border-radius: 0.25rem;
+  padding: 0.85rem 1.35rem;
+  font-size: 0.95rem;
+  font-weight: 600;
+  letter-spacing: 0.01em;
+  text-decoration: none;
+  transition:
+    background-color 0.2s ease,
+    color 0.2s ease,
+    border-color 0.2s ease,
+    transform 0.2s ease;
 }
 
-.glass-strong {
-  background:
-    linear-gradient(180deg, rgba(255, 255, 255, 0.14), rgba(255, 255, 255, 0.04)),
-    radial-gradient(
-      120% 80% at 50% 0%,
-      color-mix(in srgb, var(--signal) 22%, transparent),
-      transparent 60%
-    );
-  border: 1px solid rgba(255, 255, 255, 0.18);
-  backdrop-filter: blur(36px) saturate(1.45);
-  -webkit-backdrop-filter: blur(36px) saturate(1.45);
-  box-shadow:
-    0 1px 0 rgba(255, 255, 255, 0.12) inset,
-    0 16px 40px -12px rgba(0, 0, 0, 0.5);
+.btn:hover {
+  transform: scale(1.02);
 }
 
-.glass-ink {
-  background:
-    linear-gradient(180deg, rgba(255, 255, 255, 0.72), rgba(255, 255, 255, 0.5)),
-    radial-gradient(
-      120% 80% at 50% 0%,
-      color-mix(in srgb, var(--signal) 8%, transparent),
-      transparent 60%
-    );
+.btn:active {
+  transform: scale(1);
+}
+
+.btn-signal {
+  background: var(--signal);
+  color: white;
+}
+
+.btn-signal:hover {
+  background: var(--signal-deep);
+}
+
+.btn-ink {
+  background: var(--ink);
+  color: white;
+}
+
+.btn-ink:hover {
+  background: var(--ink-soft);
+}
+
+.btn-ghost {
+  border: 1px solid color-mix(in srgb, white 40%, transparent);
+  color: white;
+  background: transparent;
+}
+
+.btn-ghost:hover {
+  border-color: white;
+  background: color-mix(in srgb, white 8%, transparent);
+}
+
+.btn-outline {
   border: 1px solid var(--line);
-  backdrop-filter: blur(18px) saturate(1.2);
-  -webkit-backdrop-filter: blur(18px) saturate(1.2);
+  color: var(--ink);
+  background: transparent;
 }
 
-.glass-hover {
-  position: relative;
-  overflow: hidden;
+.btn-outline:hover {
+  border-color: var(--ink);
 }
 
-.glass-hover::before {
-  content: "";
-  position: absolute;
-  inset: 0;
-  background: radial-gradient(
-    520px circle at var(--mx, 50%) var(--my, 50%),
-    color-mix(in srgb, var(--signal) 16%, transparent),
-    transparent 42%
-  );
-  opacity: 0;
-  transition: opacity 0.4s ease;
-  pointer-events: none;
+.link-quiet {
+  text-decoration: none;
+  font-weight: 600;
+  color: var(--signal);
+  transition: color 0.2s ease;
 }
 
-.glass-hover:hover::before {
-  opacity: 1;
-}
-
-.shine-text {
-  background: linear-gradient(
-    105deg,
-    #ffffff 0%,
-    color-mix(in srgb, var(--signal) 45%, white) 45%,
-    #e8f3fb 78%,
-    #ffffff 100%
-  );
-  background-size: 220% auto;
-  -webkit-background-clip: text;
-  background-clip: text;
-  color: transparent;
-  animation: shine-sweep 8s ease-in-out infinite;
-}
-
-.shine-text-ink {
-  background: linear-gradient(
-    105deg,
-    var(--ink) 0%,
-    var(--signal) 48%,
-    var(--ink-soft) 100%
-  );
-  background-size: 200% auto;
-  -webkit-background-clip: text;
-  background-clip: text;
-  color: transparent;
-  animation: shine-sweep 9s ease-in-out infinite;
-}
-
-@keyframes shine-sweep {
-  0%,
-  100% {
-    background-position: 0% center;
-  }
-  50% {
-    background-position: 100% center;
-  }
-}
-
-.btn-sheen {
-  position: relative;
-  overflow: hidden;
-}
-
-.btn-sheen::after {
-  content: "";
-  position: absolute;
-  inset: 0;
-  background: linear-gradient(
-    120deg,
-    transparent 28%,
-    rgba(255, 255, 255, 0.38) 50%,
-    transparent 72%
-  );
-  transform: translateX(-100%);
-  transition: transform 0.65s ease;
-  pointer-events: none;
-}
-
-.btn-sheen:hover::after {
-  transform: translateX(100%);
-}
-
-.signal-glow {
-  background: radial-gradient(
-    ellipse 60% 50% at 50% 40%,
-    color-mix(in srgb, var(--signal) 28%, transparent),
-    transparent 70%
-  );
+.link-quiet:hover {
+  color: var(--signal-deep);
+  text-decoration: underline;
 }
 
 @media (prefers-reduced-motion: reduce) {
@@ -233,22 +182,8 @@ a {
     scroll-behavior: auto;
   }
 
-  .shine-text,
-  .shine-text-ink {
-    animation: none;
-  }
-
-  .shine-text {
-    color: white;
-    background: none;
-  }
-
-  .shine-text-ink {
-    color: var(--ink);
-    background: none;
-  }
-
-  .btn-sheen::after {
-    display: none;
+  .btn:hover,
+  .btn:active {
+    transform: none;
   }
 }
