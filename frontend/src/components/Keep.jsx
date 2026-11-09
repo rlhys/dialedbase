@@ -10,7 +10,7 @@ const OFFERS = [
     title: "Product Keep",
     eyebrow: "For apps · dashboards · booking platforms",
     price: "From £2.5k / mo",
-    desc: "Stay on as the senior builder after launch — feature velocity, bugfix, Stripe/auth edge cases, and a monthly roadmap call so the product keeps compounding.",
+    desc: "Stay on as the senior builder after launch - feature velocity, bugfix, Stripe/auth edge cases, and a monthly roadmap call so the product keeps compounding.",
     points: [
       "Priority fixes & ops hygiene",
       "Scoped feature days each month",
@@ -24,7 +24,7 @@ const OFFERS = [
     title: "Site Care",
     eyebrow: "For brand · marketing sites",
     price: "From £1.5k / mo",
-    desc: "Ongoing craft for the surface that sells you — new landing sections, CMS updates, CRO tweaks, performance/SEO hygiene, and design polish when the brand moves.",
+    desc: "Ongoing craft for the surface that sells you - new landing sections, CMS updates, CRO tweaks, performance/SEO hygiene, and design polish when the brand moves.",
     points: [
       "Content & CMS updates",
       "Landing pages & conversion tweaks",
@@ -55,7 +55,7 @@ const Keep = () => {
           </FadeIn>
           <FadeIn delay={0.1}>
             <p className="mt-4 text-white/55 max-w-xl mx-auto text-[13.5px] sm:text-[14.5px] px-2">
-              Every build ships with a Keep proposal on the table — so you are not blocked on every Stripe edge case, owner request, or landing-page change.
+              Every build ships with a Keep proposal on the table - so you are not blocked on every Stripe edge case, owner request, or landing-page change.
             </p>
           </FadeIn>
         </div>
@@ -118,7 +118,7 @@ const Keep = () => {
         <FadeIn delay={0.2}>
           <div className="mt-8 sm:mt-10 flex flex-col sm:flex-row items-center justify-center gap-3 text-center">
             <p className="text-white/45 text-[12.5px] sm:text-[13px] max-w-md">
-              Final scope set on the strategy call. One founder face — no junior bench.
+              Final scope set on the strategy call. One founder face - no junior bench.
             </p>
             <a
               href="mailto:hello@dialedbase.com"

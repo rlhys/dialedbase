@@ -41,7 +41,7 @@ const Work = () => {
 
           <FadeIn delay={0.15}>
             <p className="mt-5 text-white/55 text-[14.5px] sm:text-[16px] max-w-2xl leading-relaxed">
-              Two primary paths — product systems and brand sites — with AI, motion, and integrations available when the build needs them. Every engagement is designed to land on Keep.
+              Two primary paths - product systems and brand sites - with AI, motion, and integrations available when the build needs them. Every engagement is designed to land on Keep.
             </p>
           </FadeIn>
         </div>
@@ -107,7 +107,7 @@ const Work = () => {
             />
           </FadeIn>
           <FadeIn delay={0.15}>
-            <p className="mt-4 text-white/55 max-w-xl text-[14px]">Our craft adapts to your sector — from hospitality to AI startups.</p>
+            <p className="mt-4 text-white/55 max-w-xl text-[14px]">Our craft adapts to your sector - from hospitality to AI startups.</p>
           </FadeIn>
 
           <Stagger gap={0.06} className="mt-8 flex flex-wrap gap-2.5">
@@ -130,7 +130,7 @@ const Work = () => {
             </h3>
           </FadeIn>
           <FadeIn delay={0.1}>
-            <p className="mt-3 text-white/55 text-[14px] sm:text-[15.5px]">Book a strategy call — or email hello@dialedbase.com if you already know the seat you need.</p>
+            <p className="mt-3 text-white/55 text-[14px] sm:text-[15.5px]">Book a strategy call - or email hello@dialedbase.com if you already know the seat you need.</p>
           </FadeIn>
           <FadeIn delay={0.18}>
             <div className="mt-6 flex flex-wrap items-center justify-center gap-2.5">

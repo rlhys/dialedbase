@@ -6,7 +6,7 @@ import useReveal from "../hooks/useReveal";
 
 const Team = () => {
   const rhys = TEAM[0];
-  const onBook = () => toast("Booking flow coming soon — mocked.");
+  const onBook = () => toast("Booking flow coming soon - mocked.");
   const [ref, inView] = useReveal();
   return (
     <section id="about" ref={ref} className={`reveal ${inView ? "is-in" : ""} relative py-24 sm:py-32`}>
@@ -22,7 +22,7 @@ const Team = () => {
               <span className="shine-text">engineering & AI.</span>
             </h2>
             <p className="mt-6 text-white/55 max-w-xl">
-              Dialedbase is built from the ground up by operators who design and code. No middlemen, no fluff — just a tight squad shipping work the internet remembers.
+              Dialedbase is built from the ground up by operators who design and code. No middlemen, no fluff - just a tight squad shipping work the internet remembers.
             </p>
             <div className="mt-7 flex items-center gap-3 flex-wrap">
               <button onClick={onBook} className="btn-sheen group inline-flex items-center gap-2 bg-white text-black rounded-full pl-5 pr-1.5 py-1.5 text-[14.5px] font-medium">

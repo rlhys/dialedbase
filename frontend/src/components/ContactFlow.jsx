@@ -13,7 +13,7 @@ const STEPS = [
   {
     id: "service",
     title: "What are you looking for?",
-    subtitle: "Pick the closest match — we'll calibrate on the call.",
+    subtitle: "Pick the closest match - we'll calibrate on the call.",
     type: "single",
     options: [
       { v: "Brand site", desc: "Marketing site or landing pages → often Site Care" },
@@ -98,7 +98,7 @@ const ContactModal = ({ onClose }) => {
   };
   const prev = () => setStep((s) => Math.max(0, s - 1));
 
-  // Build Calendly prefill — combine everything into the default "share anything" textarea (a1)
+  // Build Calendly prefill - combine everything into the default "share anything" textarea (a1)
   // so it shows up cleanly on the booking page.
   const summaryLines = [
     answers.service && `Looking for: ${answers.service}`,
@@ -154,7 +154,7 @@ const ContactModal = ({ onClose }) => {
                 <img src={ASSETS.logoBlack} className="w-7 h-7 rounded-md" alt="" />
                 <div>
                   <div className="text-[14px] font-medium tracking-tight">Book a strategy call</div>
-                  <div className="text-[11.5px] text-white/45">Step {step + 1} of {total} — about 60 seconds</div>
+                  <div className="text-[11.5px] text-white/45">Step {step + 1} of {total} - about 60 seconds</div>
                 </div>
               </div>
               {/* Progress */}
@@ -313,7 +313,7 @@ const CalendlyStep = ({ answers, prefill, onBack, onClose }) => (
       </div>
     </div>
 
-    {/* Calendly inline widget — give it enough height so the Schedule button is reachable */}
+    {/* Calendly inline widget - give it enough height so the Schedule button is reachable */}
     <div className="flex-1 min-h-0 bg-white overflow-y-auto">
       <InlineWidget
         url="https://calendly.com/rhysgbp/rhysgbp-30-min-discovery"

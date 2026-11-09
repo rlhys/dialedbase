@@ -7,7 +7,7 @@ import { useContact } from "./ContactFlow";
 import CapabilityCard from "./CapabilityCard";
 import { CAPABILITIES } from "../data/capabilities";
 
-// Two paths + founder — demote AI/mobile as equal hero pillars
+// Two paths + founder - demote AI/mobile as equal hero pillars
 const FEATURED = {
   topLeft: CAPABILITIES.find((c) => c.id === "booking"),
   bottomLeft: CAPABILITIES.find((c) => c.id === "marketing-site"),
@@ -67,7 +67,7 @@ const Hero = () => {
 
           <FadeIn delay={0.35}>
             <p className="mt-4 text-white/55 text-[13px] sm:text-[14.5px] max-w-xl mx-auto px-2">
-              Premium websites and operator products — then Dialedbase stays on as the senior builder who keeps them compounding.
+              Premium websites and operator products - then Dialedbase stays on as the senior builder who keeps them compounding.
             </p>
           </FadeIn>
 
@@ -194,7 +194,7 @@ const CenterFeaturedCard = ({ cap }) => (
           <span className="serif text-white">compounding.</span>
         </div>
         <div className="mt-2 text-white/55 text-[12.5px] sm:text-[13.5px] leading-relaxed max-w-md">
-          Operator apps and brand sites engineered to ship — then stay sharp under a monthly Keep.
+          Operator apps and brand sites engineered to ship - then stay sharp under a monthly Keep.
         </div>
       </div>
     </div>

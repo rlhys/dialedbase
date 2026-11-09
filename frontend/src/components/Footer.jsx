@@ -21,7 +21,7 @@ const Footer = () => {
               </div>
             </Link>
             <p className="mt-4 text-white/55 max-w-sm text-[13.5px] leading-relaxed">
-              Premium websites and operator products — then Dialedbase stays on Keep so they keep compounding.
+              Premium websites and operator products - then Dialedbase stays on Keep so they keep compounding.
             </p>
           </div>
 

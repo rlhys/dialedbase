@@ -1,4 +1,4 @@
-// MOCK DATA — to be replaced when backend is wired up.
+// MOCK DATA - to be replaced when backend is wired up.
 
 export const ASSETS = {
   logoBlack: "https://customer-assets.emergentagent.com/job_1c9e6057-134b-4c93-b3e6-eea3f8361ee1/artifacts/7bbm5r0b_image.png",
@@ -58,7 +58,7 @@ export const SERVICES = [
   {
     id: "products",
     title: "Product systems",
-    desc: "Booking platforms, owner dashboards, and full‑stack apps that operators run the business on — built to become Product Keep.",
+    desc: "Booking platforms, owner dashboards, and full‑stack apps that operators run the business on - built to become Product Keep.",
     points: ["Bookings · dashboards · ops", "Stripe, Auth, Realtime", "Designed for Product Keep"],
     icon: "Smartphone",
     keep: "Product Keep",
@@ -66,7 +66,7 @@ export const SERVICES = [
   {
     id: "sites",
     title: "Brand sites",
-    desc: "Premium marketing sites and motion‑driven landing pages for DTC, lifestyle, and hospitality brands — built to become Site Care.",
+    desc: "Premium marketing sites and motion‑driven landing pages for DTC, lifestyle, and hospitality brands - built to become Site Care.",
     points: ["Conversion‑led craft", "CMS & SEO foundations", "Designed for Site Care"],
     icon: "Globe",
     keep: "Site Care",

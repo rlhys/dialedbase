@@ -67,7 +67,7 @@ const Founder = () => {
                   </div>
                   <div className="mt-1 text-white/55 text-[13px]">{rhys.role} · Dialedbase</div>
                   <p className="mt-5 text-white/75 leading-relaxed text-[13.5px] sm:text-[14.5px] max-w-xl">
-                    Designer and engineer. Rhys leads every Dialedbase engagement end‑to‑end — from premium brand sites to operator products — then stays on Keep so you are not orphaned after launch.
+                    Designer and engineer. Rhys leads every Dialedbase engagement end‑to‑end - from premium brand sites to operator products - then stays on Keep so you are not orphaned after launch.
                   </p>
 
                   <div className="mt-6 grid grid-cols-3 gap-2.5 max-w-md">

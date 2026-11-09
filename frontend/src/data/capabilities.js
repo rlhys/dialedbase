@@ -1,4 +1,4 @@
-// Capabilities — what we BUILD, replacing the need for fake client logos.
+// Capabilities - what we BUILD, replacing the need for fake client logos.
 // Each item: icon (lucide name), title, blurb, category, gradient palette, accent.
 
 export const CATEGORIES = ["All", "Websites", "Apps", "AI", "Brand & Motion"];
@@ -71,7 +71,7 @@ export const CAPABILITIES = [
     id: "automation",
     title: "Workflow Automation",
     category: "AI",
-    blurb: "End-to-end automations that compound — fewer humans, fewer mistakes.",
+    blurb: "End-to-end automations that compound - fewer humans, fewer mistakes.",
     icon: "Workflow",
     gradient: "from-purple-500/30 via-violet-600/15 to-transparent",
     accent: "purple",
@@ -80,7 +80,7 @@ export const CAPABILITIES = [
     id: "brand",
     title: "Brand Identity",
     category: "Brand & Motion",
-    blurb: "Logo systems, type, color and voice — built to scale across every surface.",
+    blurb: "Logo systems, type, color and voice - built to scale across every surface.",
     icon: "Palette",
     gradient: "from-amber-500/25 via-orange-600/15 to-transparent",
     accent: "amber",
@@ -98,7 +98,7 @@ export const CAPABILITIES = [
     id: "integrations",
     title: "Payments & Auth",
     category: "Apps",
-    blurb: "Stripe, Auth, Resend — wired in cleanly so revenue flows on day one.",
+    blurb: "Stripe, Auth, Resend - wired in cleanly so revenue flows on day one.",
     icon: "CreditCard",
     gradient: "from-blue-500/30 via-indigo-600/15 to-transparent",
     accent: "blue",

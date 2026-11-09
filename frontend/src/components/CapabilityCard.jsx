@@ -4,7 +4,7 @@ import * as Lucide from "lucide-react";
 import { ArrowUpRight } from "lucide-react";
 
 /**
- * Capability card — abstract, gradient-based visual.
+ * Capability card - abstract, gradient-based visual.
  * Variants:
  *  - "default" : full card with title, blurb, icon, hover arrow
  *  - "compact" : tighter version for small bento cells

@@ -1,7 +1,7 @@
 import React, { useRef } from "react";
 import { motion, useMotionValue, useSpring, useTransform } from "framer-motion";
 
-// Magnetic button — element gently follows the cursor
+// Magnetic button - element gently follows the cursor
 export const Magnetic = ({ children, strength = 0.35, className = "", as: Tag = "div", ...rest }) => {
   const ref = useRef(null);
   const x = useMotionValue(0);
@@ -35,7 +35,7 @@ export const Magnetic = ({ children, strength = 0.35, className = "", as: Tag = 
   );
 };
 
-// Tilt card — perspective tilt + spotlight follows cursor
+// Tilt card - perspective tilt + spotlight follows cursor
 export const Tilt = ({ children, className = "", max = 6 }) => {
   const ref = useRef(null);
   const rx = useMotionValue(0);

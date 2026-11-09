@@ -36,13 +36,13 @@ const About = () => {
 
           <FadeIn delay={0.15}>
             <p className="mt-5 text-white/55 text-[14.5px] sm:text-[16px] max-w-2xl leading-relaxed">
-              Dialedbase is a founder‑led studio that builds premium websites and operator products — then stays on Keep so they keep compounding. No middlemen, no agency hand‑offs.
+              Dialedbase is a founder‑led studio that builds premium websites and operator products - then stays on Keep so they keep compounding. No middlemen, no agency hand‑offs.
             </p>
           </FadeIn>
         </div>
       </section>
 
-      {/* TEAM — Rhys feature card */}
+      {/* TEAM - Rhys feature card */}
       <section className="relative py-10 sm:py-14">
         <div className="max-w-6xl mx-auto px-4 sm:px-6">
           <FadeIn>
@@ -83,7 +83,7 @@ const About = () => {
                       </div>
                       <div className="mt-1 text-white/55 text-[13px]">{m.role} · Dialedbase</div>
                       <p className="mt-4 text-white/75 leading-relaxed text-[13.5px] sm:text-[14.5px] max-w-xl">
-                        {m.bio} Based Marbella · London — shipping production design and code for operator products and premium brands.
+                        {m.bio} Based Marbella · London - shipping production design and code for operator products and premium brands.
                       </p>
 
                       <div className="mt-6 grid grid-cols-3 gap-2.5 max-w-md">
@@ -119,7 +119,7 @@ const About = () => {
         </div>
       </section>
 
-      {/* MANIFESTO — word-by-word reveal */}
+      {/* MANIFESTO - word-by-word reveal */}
       <section className="relative py-10 sm:py-16">
         <div className="max-w-5xl mx-auto px-4 sm:px-6">
           <FadeIn>

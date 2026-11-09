@@ -35,7 +35,7 @@ html, body {
   background-size: 40px 40px;
 }
 
-/* Glass surface — refined sleek with multi-layer luminance */
+/* Glass surface - refined sleek with multi-layer luminance */
 .glass {
   background:
     linear-gradient(180deg, rgba(255,255,255,0.055), rgba(255,255,255,0.012)),

@@ -64,8 +64,8 @@ export default function ClientDetail() {
           <ChartCard title="Details">
             <dl className="space-y-3 text-sm">
               <Info icon={Mail} label="Email" value={client.email} />
-              <Info icon={Phone} label="Phone" value={client.phone || "—"} />
-              <Info icon={Building2} label="Company" value={client.company || "—"} />
+              <Info icon={Phone} label="Phone" value={client.phone || "-"} />
+              <Info icon={Building2} label="Company" value={client.company || "-"} />
               <div className="flex justify-between border-t border-white/5 pt-3"><span className="text-white/45">Full price</span><span>{formatMoney(client.total_amount, client.currency)}</span></div>
               <div className="flex justify-between"><span className="text-white/45">Deposit</span><span>{formatMoney(client.deposit_amount, client.currency)}</span></div>
               <div className="flex justify-between"><span className="text-white/45">Balance</span><span>{formatMoney(Math.max(0, (client.total_amount || 0) - (client.deposit_amount || 0)), client.currency)}</span></div>
@@ -136,7 +136,7 @@ export default function ClientDetail() {
                     action.mutate({
                       url: `/square/clients/${id}/save-card-link`,
                       onDone: (d) => {
-                        if (d.url) { navigator.clipboard?.writeText(d.url); toast.success("Subscription link copied — send it to your client"); }
+                        if (d.url) { navigator.clipboard?.writeText(d.url); toast.success("Subscription link copied - send it to your client"); }
                       },
                     })
                   }
@@ -147,7 +147,7 @@ export default function ClientDetail() {
                 </button>
               )}
               <p className="text-[11px] leading-relaxed text-white/35">
-                Sends the client a secure link to add their card once. After that, their monthly plan auto-charges every month — nothing more for you to do.
+                Sends the client a secure link to add their card once. After that, their monthly plan auto-charges every month - nothing more for you to do.
               </p>
             </div>
           </ChartCard>

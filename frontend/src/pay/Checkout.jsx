@@ -211,7 +211,7 @@ export default function Checkout() {
             <p className="mt-2 text-sm text-white/55">
               {phase === "paid"
                 ? "This payment has already been settled. Nothing more to do."
-                : `Thank you${session?.client_name ? `, ${session.client_name.split(" ")[0]}` : ""} — your payment of ${formatMoney(session?.amount, session?.currency)} was received.`}
+                : `Thank you${session?.client_name ? `, ${session.client_name.split(" ")[0]}` : ""} - your payment of ${formatMoney(session?.amount, session?.currency)} was received.`}
             </p>
             <p className="mt-5 text-xs text-white/35">You can close this page.</p>
           </div>
@@ -230,7 +230,7 @@ export default function Checkout() {
               </div>
             </div>
 
-            {/* Payment methods — all mounted up front, revealed together once ready */}
+            {/* Payment methods - all mounted up front, revealed together once ready */}
             <div className="relative min-h-[150px]">
               {!formReady && (
                 <div className="absolute inset-0 flex items-center justify-center text-white/50">

@@ -8,7 +8,7 @@ const STEPS = [
     id: "discover",
     num: "01",
     title: "Discover",
-    desc: "30‑minute strategy call. We map goals, audience and constraints — then scope a tight plan that always includes a Keep option.",
+    desc: "30‑minute strategy call. We map goals, audience and constraints - then scope a tight plan that always includes a Keep option.",
     icon: Compass,
     tags: ["Strategy", "Scope", "Keep option"],
   },
@@ -16,7 +16,7 @@ const STEPS = [
     id: "design",
     num: "02",
     title: "Design",
-    desc: "Brand direction, UX flows, motion language. High fidelity from day one — no static mood boards, no guesswork.",
+    desc: "Brand direction, UX flows, motion language. High fidelity from day one - no static mood boards, no guesswork.",
     icon: Pencil,
     tags: ["Brand", "UX/UI", "Motion"],
   },
@@ -24,7 +24,7 @@ const STEPS = [
     id: "build",
     num: "03",
     title: "Build",
-    desc: "Production engineering. React, Next, Stripe, auth, realtime infra — wired cleanly and ready to scale on launch day.",
+    desc: "Production engineering. React, Next, Stripe, auth, realtime infra - wired cleanly and ready to scale on launch day.",
     icon: Code2,
     tags: ["Web & App", "Infra", "Ship milestone"],
   },
@@ -32,7 +32,7 @@ const STEPS = [
     id: "keep",
     num: "04",
     title: "Keep",
-    desc: "The end-state. Product Keep or Site Care — monthly roadmap, priority fixes, and senior craft so the product keeps compounding.",
+    desc: "The end-state. Product Keep or Site Care - monthly roadmap, priority fixes, and senior craft so the product keeps compounding.",
     icon: RefreshCw,
     tags: ["Retainer", "Roadmap", "Compound"],
   },
@@ -56,7 +56,7 @@ const Process = () => {
           </FadeIn>
           <FadeIn delay={0.1}>
             <p className="mt-4 text-white/55 max-w-xl mx-auto text-[13.5px] sm:text-[14.5px] px-2">
-              Discover → Design → Build → Keep. Launch is a milestone inside Keep — not the end of the engagement.
+              Discover → Design → Build → Keep. Launch is a milestone inside Keep - not the end of the engagement.
             </p>
           </FadeIn>
         </div>

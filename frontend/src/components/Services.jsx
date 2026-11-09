@@ -26,7 +26,7 @@ const Services = () => {
           </FadeIn>
           <FadeIn delay={0.1}>
             <p className="mt-4 text-white/55 max-w-xl mx-auto text-[13.5px] sm:text-[14.5px] px-2">
-              Projects seed retainers. Every build is scoped with a Keep path — Product Keep for operator apps, Site Care for brand surfaces.
+              Projects seed retainers. Every build is scoped with a Keep path - Product Keep for operator apps, Site Care for brand surfaces.
             </p>
           </FadeIn>
           <FadeIn delay={0.15}>
@@ -94,7 +94,7 @@ const Services = () => {
 
         <FadeIn delay={0.2}>
           <p className="mt-8 text-center text-white/40 text-[12.5px] max-w-lg mx-auto">
-            AI agents, voice, and 3D motion are available when the build needs them — not as equal homepage pillars until there is a live case study.
+            AI agents, voice, and 3D motion are available when the build needs them - not as equal homepage pillars until there is a live case study.
           </p>
         </FadeIn>
       </div>

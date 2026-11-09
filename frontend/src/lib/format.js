@@ -16,11 +16,11 @@ export const formatMoneyCompact = (cents, currency = "GBP") =>
   }).format(centsToDollars(cents));
 
 export const formatDate = (iso) => {
-  if (!iso) return "—";
+  if (!iso) return "-";
   try {
     return new Date(iso).toLocaleDateString("en-GB", { month: "short", day: "numeric", year: "numeric" });
   } catch {
-    return "—";
+    return "-";
   }
 };
 

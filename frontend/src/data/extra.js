@@ -17,13 +17,13 @@ export const SERVICES_LONG = [
     id: "web",
     num: "01",
     title: "Web Development",
-    desc: "Your website should be more than functional — it should resonate. We craft bespoke digital experiences that merge innovation with creativity, delivering intuitive, visually stunning platforms that capture attention and convert.",
+    desc: "Your website should be more than functional - it should resonate. We craft bespoke digital experiences that merge innovation with creativity, delivering intuitive, visually stunning platforms that capture attention and convert.",
   },
   {
     id: "apps",
     num: "02",
     title: "Mobile & Web Apps",
-    desc: "From iOS to Android to web, we engineer apps with a design‑first mindset and obsessive attention to detail. Realtime infra, payments, auth, analytics — wired in from day one and built to scale.",
+    desc: "From iOS to Android to web, we engineer apps with a design‑first mindset and obsessive attention to detail. Realtime infra, payments, auth, analytics - wired in from day one and built to scale.",
   },
   {
     id: "ai",
@@ -63,4 +63,4 @@ export const WORKS = [
   { id: "borg", name: "Borg", tag: "AI", mockup: "https://images.unsplash.com/photo-1620712943543-26fc76d3a4d5?crop=entropy&cs=srgb&fm=jpg&q=85" },
 ];
 
-export const MANIFESTO = "At Dialedbase, we embody the studio mindset. Founder‑led and hungry to make a difference. We don't just ship beautiful work — we build premium websites and operator products, then stay on Keep so they keep compounding. Every project is scoped with that end‑state in mind.";
+export const MANIFESTO = "At Dialedbase, we embody the studio mindset. Founder‑led and hungry to make a difference. We don't just ship beautiful work - we build premium websites and operator products, then stay on Keep so they keep compounding. Every project is scoped with that end‑state in mind.";

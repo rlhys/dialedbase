@@ -39,7 +39,7 @@ export const AuthProvider = ({ children }) => {
     try {
       await api.post("/auth/logout");
     } catch {
-      /* stateless token — ignore */
+      /* stateless token - ignore */
     }
     tokenStore.clear();
     setAdmin(null);
