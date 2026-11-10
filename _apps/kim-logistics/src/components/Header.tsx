@@ -15,13 +15,25 @@ export function Header() {
   }, [pathname]);
 
   return (
-    <header className="fixed inset-x-0 top-0 z-50 border-b-4 border-signal bg-paper">
-      <div className="site-shell flex items-center justify-between gap-4 py-3">
-        <Link href="/" aria-label={`${brand.name} home`} className="flex min-w-0 items-center">
-          <BrandLogo variant="ink" priority className="h-8 w-[8.25rem] sm:h-10 sm:w-[12rem]" sizes="192px" />
+    <header className="fixed inset-x-0 top-0 z-50">
+      <div className="site-shell flex items-center justify-between gap-4 py-4 md:py-5">
+        <Link
+          href="/"
+          aria-label={`${brand.name} home`}
+          className="rounded-full bg-chalk/80 px-3 py-2 backdrop-blur-sm"
+        >
+          <BrandLogo
+            variant="ink"
+            priority
+            className="h-8 w-[8.5rem] sm:h-9 sm:w-[10.5rem]"
+            sizes="168px"
+          />
         </Link>
 
-        <nav className="hidden items-center gap-1 lg:flex" aria-label="Primary">
+        <nav
+          className="hidden items-center gap-1 rounded-full border border-[var(--line)] bg-chalk/85 px-2 py-1.5 backdrop-blur-sm lg:flex"
+          aria-label="Primary"
+        >
           {nav
             .filter((item) => item.href !== "/")
             .map((item) => {
@@ -30,8 +42,10 @@ export function Header() {
                 <Link
                   key={item.href}
                   href={item.href}
-                  className={`px-3 py-2 text-sm font-semibold ${
-                    active ? "text-signal" : "text-ink hover:text-signal"
+                  className={`font-mono-ui rounded-full px-3.5 py-2 text-[0.7rem] transition-colors ${
+                    active
+                      ? "bg-bark text-chalk"
+                      : "text-bark-soft hover:bg-chalk-deep"
                   }`}
                 >
                   {item.label}
@@ -43,16 +57,16 @@ export function Header() {
         <div className="flex items-center gap-2">
           <a
             href={contact.phoneHref}
-            className="hidden text-sm font-semibold text-ink md:inline"
+            className="font-mono-ui hidden rounded-full border border-[var(--line)] bg-chalk/85 px-3.5 py-2.5 text-[0.7rem] text-bark backdrop-blur-sm md:inline-flex"
           >
             {contact.phoneDisplay}
           </a>
-          <Link href="/contact" className="btn-solid btn-signal px-3.5 py-2 text-sm">
+          <Link href="/contact" className="btn-dwell btn-signal">
             Free quote
           </Link>
           <button
             type="button"
-            className="inline-flex h-10 items-center border border-ink/20 px-3 text-sm font-semibold lg:hidden"
+            className="font-mono-ui inline-flex h-10 items-center rounded-full border border-[var(--line)] bg-chalk/85 px-3 text-[0.7rem] lg:hidden"
             aria-expanded={open}
             aria-controls="mobile-nav"
             onClick={() => setOpen((value) => !value)}
@@ -63,10 +77,17 @@ export function Header() {
       </div>
 
       {open ? (
-        <div id="mobile-nav" className="border-t border-[var(--line)] bg-paper lg:hidden">
-          <nav className="site-shell flex flex-col py-2" aria-label="Mobile">
+        <div
+          id="mobile-nav"
+          className="border-t border-[var(--line)] bg-chalk/95 backdrop-blur-sm lg:hidden"
+        >
+          <nav className="site-shell flex flex-col py-3" aria-label="Mobile">
             {nav.map((item) => (
-              <Link key={item.href} href={item.href} className="py-3 text-base font-semibold text-ink">
+              <Link
+                key={item.href}
+                href={item.href}
+                className="font-mono-ui py-3 text-sm text-bark"
+              >
                 {item.label}
               </Link>
             ))}

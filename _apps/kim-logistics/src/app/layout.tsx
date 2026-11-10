@@ -1,21 +1,27 @@
 import type { Metadata } from "next";
-import { IBM_Plex_Sans, Space_Grotesk } from "next/font/google";
+import { Fraunces, IBM_Plex_Mono, Source_Serif_4 } from "next/font/google";
 import { Footer } from "@/components/Footer";
 import { Header } from "@/components/Header";
 import { SmoothScroll } from "@/components/SmoothScroll";
 import { brand } from "@/content/site";
 import "./globals.css";
 
-const spaceGrotesk = Space_Grotesk({
-  variable: "--font-space-grotesk",
+const serif = Fraunces({
+  variable: "--font-kim-serif",
   subsets: ["latin"],
   weight: ["400", "500", "600", "700"],
 });
 
-const ibmPlex = IBM_Plex_Sans({
-  variable: "--font-ibm-plex",
+const body = Source_Serif_4({
+  variable: "--font-kim-body",
   subsets: ["latin"],
   weight: ["400", "500", "600", "700"],
+});
+
+const mono = IBM_Plex_Mono({
+  variable: "--font-kim-mono",
+  subsets: ["latin"],
+  weight: ["400", "500", "600"],
 });
 
 export const metadata: Metadata = {
@@ -38,12 +44,15 @@ export const metadata: Metadata = {
 
 export default function RootLayout({ children }: LayoutProps<"/">) {
   return (
-    <html lang="en-GB" className={`${spaceGrotesk.variable} ${ibmPlex.variable} h-full antialiased`}>
-      <body className="flex min-h-full flex-col bg-paper font-sans text-ink">
+    <html
+      lang="en-GB"
+      className={`${serif.variable} ${body.variable} ${mono.variable} h-full antialiased`}
+    >
+      <body className="flex min-h-full flex-col bg-chalk text-bark">
         <SmoothScroll>
           <a
             href="#main"
-            className="sr-only focus:not-sr-only focus:absolute focus:left-4 focus:top-4 focus:z-[100] focus:bg-signal focus:px-4 focus:py-2 focus:text-ink"
+            className="sr-only focus:not-sr-only focus:absolute focus:left-4 focus:top-4 focus:z-[100] focus:rounded-full focus:bg-sky focus:px-4 focus:py-2 focus:text-bark"
           >
             Skip to content
           </a>

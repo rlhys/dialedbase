@@ -1,35 +1,44 @@
 @import "tailwindcss";
 
 :root {
-  --ink: #0a0a0a;
-  --ink-soft: #161616;
-  --paper: #ffffff;
-  --field: #f2f2f2;
-  --field-deep: #e8e8e8;
-  --chalk: #f5f5f5;
-  --mute: #5c5c5c;
+  --chalk: #f5f4ed;
+  --chalk-deep: #ebe9df;
+  --bark: #161605;
+  --bark-soft: #30301a;
+  --stone: #5d5d49;
+  --sky: #aad1ee;
+  --sky-deep: #8cbcdd;
   --signal: #ff5c1a;
   --signal-deep: #e04d12;
-  --line: rgba(10, 10, 10, 0.14);
-  --line-chalk: rgba(255, 255, 255, 0.14);
-  --background: var(--paper);
-  --foreground: var(--ink);
+  --line: rgba(22, 22, 5, 0.12);
+  --radius-sm: 0.75rem;
+  --radius-md: 1.25rem;
+  --radius-lg: 1.75rem;
+  --radius-pill: 999px;
+  --background: var(--chalk);
+  --foreground: var(--bark);
 }
 
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
-  --color-ink: var(--ink);
-  --color-ink-soft: var(--ink-soft);
-  --color-paper: var(--paper);
-  --color-field: var(--field);
-  --color-field-deep: var(--field-deep);
   --color-chalk: var(--chalk);
-  --color-mute: var(--mute);
+  --color-chalk-deep: var(--chalk-deep);
+  --color-bark: var(--bark);
+  --color-bark-soft: var(--bark-soft);
+  --color-stone: var(--stone);
+  --color-sky: var(--sky);
+  --color-sky-deep: var(--sky-deep);
   --color-signal: var(--signal);
   --color-signal-deep: var(--signal-deep);
-  --font-display: var(--font-space-grotesk);
-  --font-sans: var(--font-ibm-plex);
+  --color-ink: var(--bark);
+  --color-ink-soft: var(--bark-soft);
+  --color-paper: var(--chalk);
+  --color-field: var(--chalk-deep);
+  --color-mute: var(--stone);
+  --font-display: var(--font-kim-serif);
+  --font-sans: var(--font-kim-body);
+  --font-mono: var(--font-kim-mono);
 }
 
 * {
@@ -43,15 +52,18 @@ html {
 body {
   margin: 0;
   min-height: 100%;
-  color: var(--foreground);
-  background: var(--paper);
-  font-family: var(--font-sans), "IBM Plex Sans", sans-serif;
+  color: var(--bark);
+  background-color: var(--chalk);
+  background-image: url("/textures/paper.webp");
+  background-repeat: repeat;
+  background-size: 420px auto;
+  font-family: var(--font-kim-body), "Source Serif 4", Georgia, serif;
   text-rendering: optimizeLegibility;
 }
 
 ::selection {
-  background: rgba(255, 92, 26, 0.28);
-  color: var(--ink);
+  background: color-mix(in srgb, var(--sky) 55%, white);
+  color: var(--bark);
 }
 
 a {
@@ -65,55 +77,109 @@ img {
 }
 
 .font-display {
-  font-family: var(--font-display), "Space Grotesk", sans-serif;
+  font-family: var(--font-kim-serif), Fraunces, Georgia, serif;
+  font-weight: 500;
+  letter-spacing: -0.03em;
+}
+
+.font-mono-ui {
+  font-family: var(--font-kim-mono), "IBM Plex Mono", ui-monospace, monospace;
+  letter-spacing: -0.03em;
+  text-transform: uppercase;
 }
 
 .site-shell {
-  width: min(1120px, calc(100% - 2rem));
+  width: min(1180px, calc(100% - 2rem));
   margin-inline: auto;
 }
 
-.site-shell-wide {
-  width: min(1280px, calc(100% - 2rem));
+.site-shell-narrow {
+  width: min(820px, calc(100% - 2rem));
   margin-inline: auto;
 }
 
-/* Geometric slash rail — logo-derived motif */
-.slash-rail {
+.eyebrow {
+  font-family: var(--font-kim-mono), "IBM Plex Mono", monospace;
+  font-size: 0.72rem;
+  font-weight: 500;
+  letter-spacing: -0.02em;
+  text-transform: uppercase;
+  color: var(--stone);
+}
+
+.dwell-frame {
+  overflow: hidden;
+  border-radius: var(--radius-lg);
+  background: var(--chalk-deep);
+}
+
+.btn-dwell {
   display: inline-flex;
-  align-items: flex-end;
-  gap: 3px;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  border-radius: var(--radius-pill);
+  padding: 0.85rem 1.4rem;
+  font-family: var(--font-kim-mono), "IBM Plex Mono", monospace;
+  font-size: 0.78rem;
+  font-weight: 500;
+  letter-spacing: -0.02em;
+  text-transform: uppercase;
+  transition:
+    background-color 180ms ease,
+    color 180ms ease,
+    border-color 180ms ease,
+    transform 180ms ease;
 }
 
-.slash-rail > span {
-  display: block;
-  width: 2px;
-  transform: skewX(-28deg);
-  background: currentColor;
+.btn-dwell:hover {
+  transform: scale(1.02);
 }
 
-.slash-rail > span:nth-child(1) {
-  height: 0.7rem;
-}
-.slash-rail > span:nth-child(2) {
-  height: 0.95rem;
-}
-.slash-rail > span:nth-child(3) {
-  height: 1.2rem;
-}
-.slash-rail > span:nth-child(4) {
-  height: 1.45rem;
+.btn-dwell:active {
+  transform: scale(0.99);
 }
 
-/* Solid CTA — no sheen / glass */
+.btn-signal {
+  background: var(--signal);
+  color: var(--chalk);
+}
+
+.btn-signal:hover {
+  background: var(--signal-deep);
+}
+
+.btn-sky {
+  background: var(--sky);
+  color: var(--bark);
+}
+
+.btn-sky:hover {
+  background: var(--sky-deep);
+}
+
+.btn-ghost {
+  border: 1px solid var(--line);
+  background: transparent;
+  color: var(--bark);
+}
+
+.btn-ghost:hover {
+  border-color: var(--bark);
+}
+
+/* Back-compat aliases used by older pages */
 .btn-solid {
   display: inline-flex;
   align-items: center;
   justify-content: center;
+  border-radius: var(--radius-pill);
   padding: 0.85rem 1.35rem;
-  font-size: 1rem;
-  font-weight: 600;
-  letter-spacing: -0.01em;
+  font-family: var(--font-kim-mono), "IBM Plex Mono", monospace;
+  font-size: 0.78rem;
+  font-weight: 500;
+  letter-spacing: -0.02em;
+  text-transform: uppercase;
   transition:
     background-color 180ms ease,
     color 180ms ease,
@@ -125,45 +191,31 @@ img {
   transform: scale(1.02);
 }
 
-.btn-solid:active {
-  transform: scale(0.99);
-}
-
-.btn-signal {
-  background: var(--signal);
-  color: var(--ink);
-}
-
-.btn-signal:hover {
-  background: var(--signal-deep);
-  color: var(--paper);
-}
-
 .btn-ghost-chalk {
-  border: 1px solid rgba(255, 255, 255, 0.35);
-  color: var(--paper);
+  border: 1px solid rgba(245, 244, 237, 0.35);
+  color: var(--chalk);
   background: transparent;
 }
 
 .btn-ghost-chalk:hover {
-  border-color: rgba(255, 255, 255, 0.85);
-  background: rgba(255, 255, 255, 0.06);
+  border-color: rgba(245, 244, 237, 0.85);
+  background: rgba(245, 244, 237, 0.06);
 }
 
 .btn-ghost-ink {
-  border: 1px solid rgba(10, 10, 10, 0.2);
-  color: var(--ink);
+  border: 1px solid var(--line);
+  color: var(--bark);
   background: transparent;
 }
 
 .btn-ghost-ink:hover {
-  border-color: rgba(10, 10, 10, 0.55);
+  border-color: var(--bark);
 }
 
 @keyframes rise-in {
   from {
     opacity: 0;
-    transform: translateY(28px);
+    transform: translateY(24px);
   }
   to {
     opacity: 1;
@@ -172,19 +224,19 @@ img {
 }
 
 .animate-rise {
-  animation: rise-in 850ms cubic-bezier(0.22, 1, 0.36, 1) both;
+  animation: rise-in 900ms cubic-bezier(0.22, 1, 0.36, 1) both;
 }
 
 .animate-rise-delay-1 {
-  animation: rise-in 850ms cubic-bezier(0.22, 1, 0.36, 1) 100ms both;
+  animation: rise-in 900ms cubic-bezier(0.22, 1, 0.36, 1) 80ms both;
 }
 
 .animate-rise-delay-2 {
-  animation: rise-in 850ms cubic-bezier(0.22, 1, 0.36, 1) 200ms both;
+  animation: rise-in 900ms cubic-bezier(0.22, 1, 0.36, 1) 160ms both;
 }
 
 .animate-rise-delay-3 {
-  animation: rise-in 850ms cubic-bezier(0.22, 1, 0.36, 1) 300ms both;
+  animation: rise-in 900ms cubic-bezier(0.22, 1, 0.36, 1) 240ms both;
 }
 
 @media (prefers-reduced-motion: reduce) {
@@ -192,15 +244,13 @@ img {
     scroll-behavior: auto;
   }
 
+  .btn-dwell:hover,
+  .btn-solid:hover,
   .animate-rise,
   .animate-rise-delay-1,
   .animate-rise-delay-2,
   .animate-rise-delay-3 {
-    animation: none !important;
-  }
-
-  .btn-solid:hover,
-  .btn-solid:active {
+    animation: none;
     transform: none;
   }
 }
