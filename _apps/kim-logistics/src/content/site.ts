@@ -195,15 +195,15 @@ export const faqs = [
 
 export const homeCopy = {
   heroKicker: "Keep it moving",
-  heroHeadline: "Removals Coventry",
+  heroHeadline: "A calm way to move",
   heroSupport:
-    "Kim Logistics. Providing removals services for the West Midlands. Home moves, office relocations, packing, man and van, long-distance work, and storage partners.",
+    "An accessible path to a careful Coventry move. Home, office, packing, man and van, long-distance work, and storage partners. No deposit jargon. Just a clear quote and a crew that shows up.",
   servicesIntro:
     "No two moves are the same. Services are tailored to the job, from a local relocation to a full load.",
   areasIntro:
     "Serving Coventry and surrounding areas: Leamington Spa, Rugby, Nuneaton, Kenilworth, Bedworth, and more.",
   reviewIntro: "Tommy Hyde, Coventry",
-  ctaTitle: "Get your free quote",
+  ctaTitle: "Register interest",
   ctaSupport:
-    "Planning a move? Call us or send the form for a free, no-obligation quote. We always aim to respond as fast as possible.",
+    "Tell us where you are moving from and to. Free, no-obligation quote. We always aim to respond as fast as possible.",
 } as const;

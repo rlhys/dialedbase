@@ -29,27 +29,25 @@ export default function ServicesPage() {
         support="Choose the package that fits the job. We will confirm crew size, materials, and timing in your quote."
       />
 
-      <section className="bg-paper">
+      <section>
         <div className="site-shell py-16 md:py-24">
           <div className="grid gap-16">
             {services.map((service, index) => (
               <Reveal
                 key={service.id}
                 as="article"
-                className="grid items-center gap-8 border-b border-ink/10 pb-16 last:border-b-0 last:pb-0 lg:grid-cols-2 lg:gap-14"
+                className="grid items-center gap-8 border-b border-[var(--line)] pb-16 last:border-b-0 last:pb-0 lg:grid-cols-2 lg:gap-14"
               >
                 <div className={index % 2 === 1 ? "lg:order-2" : undefined}>
-                  <p className="text-[0.7rem] font-semibold uppercase tracking-[0.28em] text-mute">
-                    Service 0{index + 1}
-                  </p>
-                  <h2 className="font-display mt-3 text-3xl tracking-[-0.03em] text-ink sm:text-4xl">
+                  <p className="eyebrow">Service 0{index + 1}</p>
+                  <h2 className="font-display mt-3 text-3xl tracking-[-0.03em] text-bark sm:text-4xl">
                     {service.title}
                   </h2>
-                  <p className="mt-4 text-lg leading-relaxed text-mute">{service.summary}</p>
-                  <p className="mt-4 text-base leading-relaxed text-ink/80">{service.detail}</p>
+                  <p className="mt-4 text-lg leading-relaxed text-stone">{service.summary}</p>
+                  <p className="mt-4 text-base leading-relaxed text-bark-soft">{service.detail}</p>
                 </div>
                 <div
-                  className={`relative aspect-[5/3] overflow-hidden bg-ink ${
+                  className={`dwell-frame relative aspect-[5/3] ${
                     index % 2 === 1 ? "lg:order-1" : ""
                   }`}
                 >
